@@ -55,3 +55,83 @@ body {
     font-weight: 500;
     transition: 0.25s;
 }
+
+.input-box input:focus {
+    border: solid 3px rgb(255, 255, 255, 0.25);
+}
+
+.input-box input::placeholder {
+    color: rgb(255, 255, 255, 0.75);
+}
+
+.input-box input::-ms-reveal {
+    filter: invert(100%);
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 14px;
+    color: rgb(255, 255, 255, 0.75);
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+.input-box input:focus + i {
+    color: white;
+}
+
+.remember-forget-box {
+    display: flex;
+    width: 100%;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+
+.remember-forget-box h5 {
+    font-weight: normal;
+}
+
+.remember-me {
+    display: flex;
+    gap: 8px;
+}
+
+.forget-password {
+    color: white;
+    text-decoration: none;
+}
+
+.forget-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 10px 0;
+    background: #32CDD5;
+    border: none;
+    border-radius: 99px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    outline: transparent 3px solid;
+    transition: 0.1s;
+}
+
+.login-button:focus {
+    outline: #32CDD58A 3px solid;
+}
+
+.dont-have-an-account {
+    font-weight: normal;
+    margin-top: 12px;
+}
+
+.dont-have-an-account a {
+    text-decoration: none;
+    color: white;
+}
