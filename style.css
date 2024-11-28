@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-style: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(3452442.jpg);
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background: rgb(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 24px;
+    border-radius: 16px;
+    border: solid 5px rgb(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 0px 30px 20px rgb(0, 0, 0, 0.1);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-title {
+    margin-bottom: 16px;
+}
+
+.input-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 16px 10px 38px;
+    border-radius: 99px;
+    border: solid 3px transparent;
+    background: rgb(255, 255, 255, 0.1);
+    outline: none;
+    caret-color: white;
+    color: white;
+    font-weight: 500;
+    transition: 0.25s;
+}
