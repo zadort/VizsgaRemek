@@ -43,12 +43,33 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Get",
+    "RelativePath": "api/Kartya/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Put",
-    "RelativePath": "api/Kartya",
+    "RelativePath": "api/Kartya/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
       {
         "Name": "kartya",
         "Type": "vizsga3.Models.Kartyak",
