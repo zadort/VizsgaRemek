@@ -26,5 +26,19 @@ namespace vizsga3.Controllers
             }
             return Ok(kartya);
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            using var db = new Vizsga3Context();
+            var kartya = db.Kartyaks.Find(id);
+            if (kartya == null)
+            {
+                return NotFound();
+            }
+            db.Kartyaks.Remove(kartya);
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
