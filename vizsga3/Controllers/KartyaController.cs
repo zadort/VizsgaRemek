@@ -49,5 +49,22 @@ namespace vizsga3.Controllers
             db.SaveChanges();
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Kartyak kartya)
+        {
+            using var db = new Vizsga3Context();
+            var kartyaToUpdate = db.Kartyaks.Find(id);
+            if (kartyaToUpdate == null)
+            {
+                return NotFound();
+            }
+            kartyaToUpdate.Nev = kartya.Nev;
+            kartyaToUpdate.Ar = kartya.Ar;
+            kartyaToUpdate.Leiras = kartya.Leiras;
+            kartyaToUpdate.KepUrl = kartya.KepUrl;
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
