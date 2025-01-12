@@ -1,0 +1,6 @@
+@vizsga3_HostAddress = http://localhost:5123
+
+GET {{vizsga3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
