@@ -40,5 +40,14 @@ namespace vizsga3.Controllers
             db.SaveChanges();
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Kartyak kartya)
+        {
+            using var db = new Vizsga3Context();
+            db.Kartyaks.Add(kartya);
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
