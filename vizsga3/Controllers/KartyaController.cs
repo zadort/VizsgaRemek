@@ -14,5 +14,17 @@ namespace vizsga3.Controllers
             using var db = new Vizsga3Context();
             return Ok(db.Kartyaks);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            using var db = new Vizsga3Context();
+            var kartya = db.Kartyaks.Find(id);
+            if (kartya == null)
+            {
+                return NotFound();
+            }
+            return Ok(kartya);
+        }
     }
 }
