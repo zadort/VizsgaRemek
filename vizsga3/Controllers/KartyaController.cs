@@ -8,11 +8,18 @@ namespace vizsga3.Controllers
     [ApiController]
     public class KartyaController : ControllerBase
     {
+        private readonly Vizsga3Context _context;
+
+        public KartyaController(Vizsga3Context context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            using var db = new Vizsga3Context();
-            return Ok(db.Kartyaks);
+            var kartyak = _context.Kartyaks.ToList();
+            return Ok(kartyak);
         }
 
         [HttpGet("{id}")]

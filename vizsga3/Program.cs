@@ -1,5 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using vizsga3.Models;
 
 namespace vizsga3
 {
@@ -9,9 +11,17 @@ namespace vizsga3
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+            builder.Services.AddDbContext<Vizsga3Context>(option =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("MySql");
+                option.UseMySQL(connectionString);
+            }
+            );
+            builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
+
+            // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
