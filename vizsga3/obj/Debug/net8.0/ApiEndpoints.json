@@ -1,8 +1,103 @@
 [
   {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Delete",
+    "RelativePath": "Felhasznalo/DeleteById",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Get",
+    "RelativePath": "Felhasznalo/Get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Get",
+    "RelativePath": "Felhasznalo/GetById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Post",
+    "RelativePath": "Felhasznalo/Post",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "felhasznalo",
+        "Type": "vizsga3.Models.Felhasznalok",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Put",
+    "RelativePath": "Felhasznalo/PutById",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "felhasznalo",
+        "Type": "vizsga3.Models.Felhasznalok",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Delete",
+    "RelativePath": "Kartya/DeleteById",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Get",
-    "RelativePath": "api/Kartya",
+    "RelativePath": "Kartya/Get",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -11,8 +106,24 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Get",
+    "RelativePath": "Kartya/GetById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Post",
-    "RelativePath": "api/Kartya",
+    "RelativePath": "Kartya/Post",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -27,40 +138,8 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Get",
-    "RelativePath": "api/Kartya/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Delete",
-    "RelativePath": "api/Kartya/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Put",
-    "RelativePath": "api/Kartya/{id}",
+    "RelativePath": "Kartya/PutById",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -68,7 +147,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "kartya",

@@ -6,70 +6,62 @@ namespace vizsga3.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class KartyaController : ControllerBase
+    public class FelhasznaloController : ControllerBase
     {
         private readonly Vizsga3Context _context;
-
-        public KartyaController(Vizsga3Context context)
+        public FelhasznaloController(Vizsga3Context context)
         {
             _context = context;
         }
-
         [HttpGet("GetAll")]
         public IActionResult Get()
         {
-            var kartyak = _context.Kartyaks.ToList();
-            return Ok(kartyak);
+            var felhasznalok = _context.Felhasznaloks.ToList();
+            return Ok(felhasznalok);
         }
-
         [HttpGet("GetById")]
         public IActionResult Get(int id)
         {
             using var db = new Vizsga3Context();
-            var kartya = db.Kartyaks.Find(id);
-            if (kartya == null)
+            var felhasznalo = db.Felhasznaloks.Find(id);
+            if (felhasznalo == null)
             {
                 return NotFound();
             }
-            return Ok(kartya);
+            return Ok(felhasznalo);
         }
-
         [HttpDelete("DeleteById")]
         public IActionResult Delete(int id)
         {
             using var db = new Vizsga3Context();
-            var kartya = db.Kartyaks.Find(id);
-            if (kartya == null)
+            var felhasznalo = db.Felhasznaloks.Find(id);
+            if (felhasznalo == null)
             {
                 return NotFound();
             }
-            db.Kartyaks.Remove(kartya);
+            db.Felhasznaloks.Remove(felhasznalo);
             db.SaveChanges();
             return Ok();
         }
-
         [HttpPost("Post")]
-        public IActionResult Post([FromBody] Kartyak kartya)
+        public IActionResult Post([FromBody] Felhasznalok felhasznalo)
         {
             using var db = new Vizsga3Context();
-            db.Kartyaks.Add(kartya);
+            db.Felhasznaloks.Add(felhasznalo);
             db.SaveChanges();
             return Ok();
         }
-
         [HttpPut("PutById")]
-        public IActionResult Put(int id, [FromBody] Kartyak kartya)
+        public IActionResult Put(int id, [FromBody] Felhasznalok felhasznalo)
         {
             using var db = new Vizsga3Context();
-            var kartyaToUpdate = db.Kartyaks.Find(id);
-            if (kartyaToUpdate == null)
+            var felhasznaloToUpdate = db.Felhasznaloks.Find(id);
+            if (felhasznaloToUpdate == null)
             {
                 return NotFound();
             }
-            kartyaToUpdate.Nev = kartya.Nev;
-            kartyaToUpdate.Ar = kartya.Ar;
-            kartyaToUpdate.Leiras = kartya.Leiras;
-            kartyaToUpdate.KepUrl = kartya.KepUrl;
+            felhasznaloToUpdate.Felhasznalonev = felhasznalo.Felhasznalonev;
+            felhasznaloToUpdate.Jelszo = felhasznalo.Jelszo;
             db.SaveChanges();
             return Ok();
         }
