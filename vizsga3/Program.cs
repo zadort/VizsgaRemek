@@ -19,8 +19,9 @@ namespace vizsga3
                 option.UseMySQL(connectionString);
             }
             );
-            builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
 
+            builder.Services.AddCors(options => { options.AddPolicy("AllowReactApp", p => { p.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod(); }); });
+        
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -38,9 +39,15 @@ namespace vizsga3
                 app.UseSwaggerUI();
             }
 
+       
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowReactApp");
+
             app.UseAuthorization();
+
+           
+
 
 
             app.MapControllers();
