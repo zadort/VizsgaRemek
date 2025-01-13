@@ -34,7 +34,7 @@ namespace vizsga3.Controllers
             return Ok(kartya);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             using var db = new Vizsga3Context();

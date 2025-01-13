@@ -11,22 +11,6 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Delete",
-    "RelativePath": "api/Kartya",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Post",
     "RelativePath": "api/Kartya",
     "HttpMethod": "POST",
@@ -46,6 +30,22 @@
     "Method": "Get",
     "RelativePath": "api/Kartya/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Delete",
+    "RelativePath": "api/Kartya/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
