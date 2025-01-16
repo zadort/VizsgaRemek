@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace vizsga3.Models;
 
+//debug
+
 public partial class Felhasznalok
 {
     public int Id { get; set; }
