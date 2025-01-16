@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/Felhasznalo/Get": {
+    "/Felhasznalo/GetAll": {
       "get": {
         "tags": [
           "Felhasznalo"
@@ -19,28 +19,6 @@
     },
     "/Felhasznalo/GetById": {
       "get": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/Felhasznalo/DeleteById": {
-      "delete": {
         "tags": [
           "Felhasznalo"
         ],
@@ -133,7 +111,29 @@
         }
       }
     },
-    "/Kartya/Get": {
+    "/Felhasznalo/DeleteById": {
+      "delete": {
+        "tags": [
+          "Felhasznalo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kartya/GetAll": {
       "get": {
         "tags": [
           "Kartya"
@@ -272,10 +272,6 @@
             "format": "int32"
           },
           "felhasznalonev": {
-            "type": "string",
-            "nullable": true
-          },
-          "jelszo": {
             "type": "string",
             "nullable": true
           }

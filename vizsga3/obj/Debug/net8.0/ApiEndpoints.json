@@ -18,7 +18,7 @@
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "Get",
-    "RelativePath": "Felhasznalo/Get",
+    "RelativePath": "Felhasznalo/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -97,7 +97,7 @@
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Get",
-    "RelativePath": "Kartya/Get",
+    "RelativePath": "Kartya/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
