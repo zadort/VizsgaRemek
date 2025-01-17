@@ -15,14 +15,14 @@ namespace vizsga3.Controllers
             _context = context;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public IActionResult Get()
         {
             var kartyak = _context.Kartyaks.ToList();
             return Ok(kartyak);
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             using var db = new Vizsga3Context();
@@ -34,7 +34,7 @@ namespace vizsga3.Controllers
             return Ok(kartya);
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             using var db = new Vizsga3Context();
@@ -48,7 +48,7 @@ namespace vizsga3.Controllers
             return Ok();
         }
 
-        [HttpPost("Post")]
+        [HttpPost]
         public IActionResult Post([FromBody] Kartyak kartya)
         {
             using var db = new Vizsga3Context();
@@ -57,7 +57,7 @@ namespace vizsga3.Controllers
             return Ok();
         }
 
-        [HttpPut("PutById")]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Kartyak kartya)
         {
             using var db = new Vizsga3Context();

@@ -39,6 +39,28 @@
         }
       }
     },
+    "/Felhasznalo/DeleteById": {
+      "delete": {
+        "tags": [
+          "Felhasznalo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Felhasznalo/Post": {
       "post": {
         "tags": [
@@ -111,29 +133,7 @@
         }
       }
     },
-    "/Felhasznalo/DeleteById": {
-      "delete": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/Kartya/GetAll": {
+    "/Kartya": {
       "get": {
         "tags": [
           "Kartya"
@@ -143,53 +143,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Kartya/GetById": {
-      "get": {
-        "tags": [
-          "Kartya"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/Kartya/DeleteById": {
-      "delete": {
-        "tags": [
-          "Kartya"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/Kartya/Post": {
+      },
       "post": {
         "tags": [
           "Kartya"
@@ -220,7 +174,49 @@
         }
       }
     },
-    "/Kartya/PutById": {
+    "/Kartya/{id}": {
+      "get": {
+        "tags": [
+          "Kartya"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Kartya"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Kartya"
@@ -228,7 +224,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -272,6 +269,10 @@
             "format": "int32"
           },
           "felhasznalonev": {
+            "type": "string",
+            "nullable": true
+          },
+          "jelszo": {
             "type": "string",
             "nullable": true
           }

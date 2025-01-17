@@ -13,13 +13,13 @@ namespace vizsga3.Controllers
         {
             _context = context;
         }
-        [HttpGet("GetAll")]
+        [HttpGet]
         public IActionResult Get()
         {
             var felhasznalok = _context.Felhasznaloks.ToList();
             return Ok(felhasznalok);
         }
-        [HttpGet("GetById")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             using var db = new Vizsga3Context();
@@ -30,7 +30,7 @@ namespace vizsga3.Controllers
             }
             return Ok(felhasznalo);
         }
-        [HttpDelete("DeleteById")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             using var db = new Vizsga3Context();
@@ -43,7 +43,7 @@ namespace vizsga3.Controllers
             db.SaveChanges();
             return Ok();
         }
-        [HttpPost("Post")]
+        [HttpPost]
         public IActionResult Post([FromBody] Felhasznalok felhasznalo)
         {
             using var db = new Vizsga3Context();
@@ -51,7 +51,7 @@ namespace vizsga3.Controllers
             db.SaveChanges();
             return Ok();
         }
-        [HttpPut("PutById")]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Felhasznalok felhasznalo)
         {
             using var db = new Vizsga3Context();

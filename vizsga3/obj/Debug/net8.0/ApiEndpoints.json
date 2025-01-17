@@ -80,24 +80,8 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Delete",
-    "RelativePath": "Kartya/DeleteById",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Get",
-    "RelativePath": "Kartya/GetAll",
+    "RelativePath": "Kartya",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -106,24 +90,8 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Get",
-    "RelativePath": "Kartya/GetById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Post",
-    "RelativePath": "Kartya/Post",
+    "RelativePath": "Kartya",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -138,8 +106,40 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Get",
+    "RelativePath": "Kartya/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Delete",
+    "RelativePath": "Kartya/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Put",
-    "RelativePath": "Kartya/PutById",
+    "RelativePath": "Kartya/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -147,7 +147,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
         "Name": "kartya",
