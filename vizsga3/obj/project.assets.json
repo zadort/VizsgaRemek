@@ -3999,23 +3999,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zadortamas\\.nuget\\packages\\": {},
+    "C:\\Users\\Tanulo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zadortamas\\source\\repos\\vizsga3\\vizsga3\\vizsga3.csproj",
+      "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
       "projectName": "vizsga3",
-      "projectPath": "C:\\Users\\zadortamas\\source\\repos\\vizsga3\\vizsga3\\vizsga3.csproj",
-      "packagesPath": "C:\\Users\\zadortamas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zadortamas\\source\\repos\\vizsga3\\vizsga3\\obj\\",
+      "projectPath": "C:\\Users\\Tanulo\\Desktop\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+      "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tanulo\\Desktop\\VizsgaRemek\\vizsga3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\zadortamas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tanulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4087,7 +4087,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
