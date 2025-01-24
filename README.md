@@ -1,4 +1,4 @@
-# Projekt Neve
+# TechNest
 
 Ez a projekt három fő ágra épül: **Main**, **Backend**, és **Frontend**. Az alábbiakban megtalálhatók az egyes branch-ekhez tartozó hivatkozások.
 
@@ -14,13 +14,3 @@ A **Backend** branch az **ASP.NET Core Web API** fejlesztését tartalmazza, ame
 
 ### 🎨 [Frontend Branch](https://github.com/zadort/VizsgaRemek/tree/frontend)
 A **Frontend** branch a **React** alapú felhasználói felület fejlesztését tartalmazza. A frontend dinamikusan jeleníti meg az adatokat, és lehetővé teszi a felhasználói interakciókat.
-
----
-
-## Használat
-
-Bármelyik branch-re navigálhatsz, hogy megtekintsd a megfelelő kódot és dokumentációt.
-
-- **Main branch**: Stabil verzió
-- **Backend branch**: API fejlesztés
-- **Frontend branch**: UI fejlesztés
