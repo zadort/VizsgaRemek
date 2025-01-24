@@ -1,3 +1,3 @@
-[Jump to MAIN](https://github.com/zadort/VizsgaRemek/tree/backend)
-[Jump to BACKEND](https://github.com/zadort/VizsgaRemek/tree/backend)
-[Jump to FRONTEND](https://github.com/zadort/VizsgaRemek/tree/backend)
+- 🚀 [Main branch](https://github.com/username/repository/tree/main)
+- 🛠️ [Backend branch](https://github.com/username/repository/tree/dev)
+- 🌱 [Frontend branch](https://github.com/username/repository/tree/feature-branch)
