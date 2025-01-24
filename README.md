@@ -1,1 +1,2 @@
-
+- [Jump to main](https://github.com/zadort/VizsgaRemek/tree/main)
+- [Jump to backend](https://github.com/zadort/VizsgaRemek/tree/backend)
