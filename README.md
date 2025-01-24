@@ -1,3 +1,2 @@
-- 🚀 [Main branch](https://github.com/username/repository/tree/main)
-- 🛠️ [Backend branch](https://github.com/username/repository/tree/dev)
-- 🌱 [Frontend branch](https://github.com/username/repository/tree/feature-branch)
+- [Jump to backend](https://github.com/zadort/VizsgaRemek/tree/backend)
+- [Jump to frontend](https://github.com/zadort/VizsgaRemek/tree/frontend)
