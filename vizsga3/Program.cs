@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using vizsga3.Models;
+using vizsga3.Services;
+using vizsga3.Services.IEmailService;
 
 namespace vizsga3
 {
@@ -23,6 +25,8 @@ namespace vizsga3
             builder.Services.AddCors(options => { options.AddPolicy("AllowReactApp", p => { p.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod(); }); });
         
             // Add services to the container.
+
+            builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

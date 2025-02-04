@@ -1,16 +1,16 @@
 [
   {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Delete",
-    "RelativePath": "Felhasznalo/DeleteById",
-    "HttpMethod": "DELETE",
+    "ContainingType": "vizsga3.Controllers.EmailsController",
+    "Method": "SendNewEmail",
+    "RelativePath": "emails",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "emailRequestDto",
+        "Type": "vizsga3.Models.Dtos.EmailRequestDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -18,7 +18,7 @@
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "Get",
-    "RelativePath": "Felhasznalo/GetAll",
+    "RelativePath": "Felhasznalo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -27,24 +27,8 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Get",
-    "RelativePath": "Felhasznalo/GetById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "Post",
-    "RelativePath": "Felhasznalo/Post",
+    "RelativePath": "Felhasznalo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -59,8 +43,40 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Get",
+    "RelativePath": "Felhasznalo/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Delete",
+    "RelativePath": "Felhasznalo/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "Put",
-    "RelativePath": "Felhasznalo/PutById",
+    "RelativePath": "Felhasznalo/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -68,7 +84,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
         "Name": "felhasznalo",
@@ -106,25 +122,19 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Get",
-    "RelativePath": "Kartya/{id}",
-    "HttpMethod": "GET",
+    "Method": "Options",
+    "RelativePath": "Kartya",
+    "HttpMethod": "OPTIONS",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Delete",
+    "Method": "Get",
     "RelativePath": "Kartya/{id}",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -152,6 +162,59 @@
       {
         "Name": "kartya",
         "Type": "vizsga3.Models.Kartyak",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Patch",
+    "RelativePath": "Kartya/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "kartya",
+        "Type": "vizsga3.Models.Kartyak",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Delete",
+    "RelativePath": "Kartya/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.KartyaController",
+    "Method": "Head",
+    "RelativePath": "Kartya/{id}",
+    "HttpMethod": "HEAD",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
