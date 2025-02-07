@@ -1,0 +1,107 @@
+.kapcsolat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.kapcsolat-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.kapcsolat-container h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.kapcsolat-container p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.kapcsolat-info,
+.kapcsolat-urmap,
+.kapcsolat-terkep {
+  margin-bottom: 40px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.kapcsolat-terkep iframe {
+  border: none;
+  border-radius: 8px;
+}
+
+.dark-mode .kapcsolat-container {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .kapcsolat-container h1,
+.dark-mode .kapcsolat-container h2,
+.dark-mode .kapcsolat-container p,
+.dark-mode .kapcsolat-container strong {
+  color: #ffffff;
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group textarea {
+  background-color: #333;
+  color: #ffffff;
+  border-color: #444;
+}
+
+.dark-mode .form-group input::placeholder,
+.dark-mode .form-group textarea::placeholder {
+  color: #cccccc;
+}
+
+.dark-mode button {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-mode button:hover {
+  background-color: #0056b3;
+}

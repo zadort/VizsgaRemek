@@ -1,0 +1,131 @@
+.hero {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./hatter.webp') no-repeat center/cover;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+}
+
+.products-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px;
+}
+
+.product-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: calc(33.333% - 40px);
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid #007bff;
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.product-card h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card p {
+  color: #666;
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+
+.product-card .product-price {
+  font-size: 1.2em;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.product-card button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: 100%;
+  }
+}
+
+/* Dark mode stílusok */
+.dark-mode .home-container {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .product-card {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.dark-mode .product-card h2 {
+  color: #ffffff;
+}
+
+.dark-mode .product-card p {
+  color: #cccccc;
+}
+
+.dark-mode .product-card .product-price {
+  color: #007bff;
+}
+
+.dark-mode .product-card button {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-mode .product-card button:hover {
+  background-color: #0056b3;
+}

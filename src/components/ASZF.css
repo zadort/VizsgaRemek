@@ -1,0 +1,35 @@
+.aszf-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.aszf-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.aszf-container h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.aszf-container p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+body.dark-mode .aszf-container h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .aszf-container h2 {
+  color: #cccccc;
+}
+
+body.dark-mode .aszf-container p {
+  color: #cccccc;
+}

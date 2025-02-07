@@ -1,0 +1,107 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  color: #333;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.login-box a {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-box a:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode stílusok */
+.dark-mode .login-container {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .login-box {
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.dark-mode .form-control {
+  background-color: #333;
+  color: #ffffff;
+  border-color: #444;
+}
+
+.dark-mode .form-control::placeholder {
+  color: #cccccc;
+}
+
+.dark-mode .btn-primary {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-mode .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .login-box a {
+  color: #007bff;
+}
+
+.dark-mode .login-box a:hover {
+  color: #0056b3;
+}
