@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanulo\\Desktop\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {}
+    "C:\\Users\\Tanulo\\Desktop\\backend\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanulo\\Desktop\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {
+    "C:\\Users\\Tanulo\\Desktop\\backend\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\backend\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
         "projectName": "vizsga3",
-        "projectPath": "C:\\Users\\Tanulo\\Desktop\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+        "projectPath": "C:\\Users\\Tanulo\\Desktop\\backend\\backend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
         "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tanulo\\Desktop\\backend\\VizsgaRemek\\vizsga3\\obj\\",
+        "outputPath": "C:\\Users\\Tanulo\\Desktop\\backend\\backend\\VizsgaRemek\\vizsga3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tanulo\\AppData\\Roaming\\NuGet\\NuGet.Config",

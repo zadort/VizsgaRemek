@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 12, 2025 at 09:40 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2025. Feb 11. 08:42
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vizsga3`
+-- Adatbázis: `vizsga3`
 --
-CREATE DATABASE IF NOT EXISTS `vizsga3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `vizsga3`;
+CREATE DATABASE IF NOT EXISTS `vizsga3` DEFAULT character set utf8mb4 COLLATE utf8mb4_general_ci;
+use `vizsga3`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kartyak`
+-- Tábla szerkezet ehhez a táblához `felhasznalok`
+--
+
+CREATE TABLE `felhasznalok` (
+  `Id` int(11) NOT NULL,
+  `Felhasznalonev` varchar(100) NOT NULL,
+  `Jelszo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasznalok`
+--
+
+INSERT INTO `felhasznalok` (`Id`, `Felhasznalonev`, `Jelszo`) VALUES
+(1, 'user', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `kartyak`
 --
 
 CREATE TABLE `kartyak` (
@@ -38,7 +57,7 @@ CREATE TABLE `kartyak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kartyak`
+-- A tábla adatainak kiíratása `kartyak`
 --
 
 INSERT INTO `kartyak` (`id`, `nev`, `ar`, `leiras`, `kep_url`) VALUES
@@ -49,14 +68,30 @@ INSERT INTO `kartyak` (`id`, `nev`, `ar`, `leiras`, `kep_url`) VALUES
 (5, 'Asus ROG Zephyrus G14', 650000, 'Nagy teljesítményű gamer laptop, AMD Ryzen 9, 14 hüvelykes kijelző és NVIDIA RTX 3060.', 'https://p1.akcdn.net/full/1369513813.asus-rog-zephyrus-g14-ga403uv-qs022w.jpg');
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `kartyak`
+-- A tábla indexei `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- A tábla indexei `kartyak`
 --
 ALTER TABLE `kartyak`
   ADD PRIMARY KEY (`id`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
