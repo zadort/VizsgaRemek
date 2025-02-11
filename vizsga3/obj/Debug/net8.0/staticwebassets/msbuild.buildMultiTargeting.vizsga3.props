@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\vizsga3.props" />
-</Project>

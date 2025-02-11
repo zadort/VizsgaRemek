@@ -1,0 +1,102 @@
+.cart-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.cart-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item h2 {
+  font-size: 1.5em;
+}
+
+.cart-item p {
+  color: #666;
+}
+
+.total {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  display: block;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  width: 200px;
+  margin: 20px auto;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.remove-btn {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.remove-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Dark mode stílusok */
+.dark-mode .cart-container {
+  background-color: #121212;
+}
+
+.dark-mode .cart-item {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.dark-mode .cart-item h2 {
+  color: #ffffff;
+}
+
+.dark-mode .cart-item p {
+  color: #cccccc;
+}
+
+.dark-mode .total {
+  color: #ffffff;
+}
+
+.dark-mode .btn {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-mode .btn:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .remove-btn {
+  background-color: red;
+  color: #ffffff;
+}
+
+.dark-mode .remove-btn:hover {
+  background-color: #cc0000;
+}
