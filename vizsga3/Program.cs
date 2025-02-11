@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using vizsga3.Models;
+using vizsga3.Services.IEmailService;
+using vizsga3.Services;
 
 namespace vizsga3
 {
@@ -15,6 +17,8 @@ namespace vizsga3
             var builder = WebApplication.CreateBuilder(args);
             // JWT beállítások
             var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+
+            builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
