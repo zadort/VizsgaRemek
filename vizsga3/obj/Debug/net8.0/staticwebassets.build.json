@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "CQXA4ayLCwD4SCdmP0mAUu2uipT8y6Sk5o5CxJvQrSI=",
+  "Hash": "Jbf0GWdjjSRQoZEXfhqRbxfqEiWQXslI1TsUnpL9IuQ=",
   "Source": "vizsga3",
   "BasePath": "_content/vizsga3",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
