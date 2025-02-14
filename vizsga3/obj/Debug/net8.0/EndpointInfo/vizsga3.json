@@ -204,15 +204,6 @@
         "tags": [
           "Kartya"
         ],
-        "parameters": [
-          {
-            "name": "kategoria",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -464,10 +455,6 @@
             "nullable": true
           },
           "kepUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "kategoria": {
             "type": "string",
             "nullable": true
           }

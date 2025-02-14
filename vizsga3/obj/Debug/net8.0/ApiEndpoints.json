@@ -117,13 +117,7 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "kategoria",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -136,7 +130,7 @@
     "Parameters": [
       {
         "Name": "kartya",
-        "Type": "vizsga3.Models.Kartyak",
+        "Type": "Kartyak",
         "IsRequired": true
       }
     ],
@@ -183,7 +177,7 @@
       },
       {
         "Name": "kartya",
-        "Type": "vizsga3.Models.Kartyak",
+        "Type": "Kartyak",
         "IsRequired": true
       }
     ],
@@ -204,7 +198,7 @@
       },
       {
         "Name": "kartya",
-        "Type": "vizsga3.Models.Kartyak",
+        "Type": "Kartyak",
         "IsRequired": true
       }
     ],

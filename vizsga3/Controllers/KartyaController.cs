@@ -16,18 +16,11 @@ namespace vizsga3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] string? kategoria)
+        public IActionResult Get()
         {
-            var kartyak = _context.Kartyaks.AsQueryable();
-
-            if (!string.IsNullOrEmpty(kategoria))
-            {
-                kartyak = kartyak.Where(k => k.Kategoria == kategoria);
-            }
-
-            return Ok(kartyak.ToList());
+            var kartyak = _context.Kartyaks.ToList();
+            return Ok(kartyak);
         }
-
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
