@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "79DGGFfMT24=",
+  "dgSpecHash": "QFcQ2RePgsQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\Tanulo\\Desktop\\hfkjdsdsakjdsa\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tanulo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

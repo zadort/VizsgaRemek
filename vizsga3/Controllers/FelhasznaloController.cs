@@ -1,130 +1,120 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Linq;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using vizsga3.Models;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace vizsga3.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FelhasznaloController : ControllerBase
     {
         private readonly Vizsga3Context _context;
-        private readonly string _jwtSecret = "NagyonBiztonsagosTitkosKulcs12345NagyonBiztonsagosTitkosKulcs12345"; // A secret kulcs a JWT generálásához
-        private readonly int _jwtExpireMinutes = 60; // Token lejárati idő
 
         public FelhasznaloController(Vizsga3Context context)
         {
             _context = context;
         }
 
+        // Bejelentkezési endpoint (hash-elt jelszó ellenőrzéssel)
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var user = _context.Felhasznaloks
-                .FirstOrDefault(u => u.Felhasznalonev == request.Username);
+            Console.WriteLine($"Bejelentkezési kérelem: {request.Felhasznalonev}, {request.Jelszo}");
 
-            if (user == null || user.Jelszo != request.Password)
-            {
-                return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó." });
-            }
+            var felhasznalo = await _context.Felhasznaloks
+                .FirstOrDefaultAsync(f => f.Felhasznalonev == request.Felhasznalonev);
 
-            // JWT token generálása
-            var token = GenerateJwtToken(user);
-
-            return Ok(new { token });
-        }
-
-        private string GenerateJwtToken(Felhasznalok user)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Felhasznalonev),
-                new Claim(ClaimTypes.Name, user.Felhasznalonev),
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: "yourapp",
-                audience: "yourapp",
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(_jwtExpireMinutes),
-                signingCredentials: credentials
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        // Bejelentkezési kérés modellje
-        public class LoginRequest
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
-
-        // Felhasználók lekérdezése
-        [HttpGet("GetAll")]
-        public IActionResult GetAll()
-        {
-            var felhasznalok = _context.Felhasznaloks.ToList();
-            return Ok(felhasznalok);
-        }
-
-        // Felhasználó lekérdezése ID alapján
-        [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
-        {
-            var felhasznalo = _context.Felhasznaloks.Find(id);
             if (felhasznalo == null)
             {
-                return NotFound();
+                Console.WriteLine($"Felhasználó nem található: {request.Felhasznalonev}");
+                return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
             }
-            return Ok(felhasznalo);
-        }
 
-        // Felhasználó törlése ID alapján
-        [HttpDelete("DeleteById/{id}")]
-        public IActionResult DeleteById(int id)
-        {
-            var felhasznalo = _context.Felhasznaloks.Find(id);
-            if (felhasznalo == null)
+            if (!VerifyPassword(request.Jelszo, felhasznalo.Jelszo))
             {
-                return NotFound();
+                Console.WriteLine($"Hibás jelszó próbálkozás a felhasználónál: {request.Felhasznalonev}");
+                return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
             }
 
-            _context.Felhasznaloks.Remove(felhasznalo);
-            _context.SaveChanges();
-            return Ok();
+            Console.WriteLine($"Sikeres bejelentkezés: {request.Felhasznalonev}");
+            return Ok(new { message = "Sikeres bejelentkezés" });
         }
 
-        // Új felhasználó hozzáadása
-        [HttpPost("Post")]
-        public IActionResult Post([FromBody] Felhasznalok felhasznalo)
+        // Regisztráció új felhasználóval (hash-elt jelszóval)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] Felhasznalok felhasznalo)
         {
+            // Ellenőrizzük, hogy a felhasználónév már foglalt-e
+            if (await _context.Felhasznaloks.AnyAsync(f => f.Felhasznalonev == felhasznalo.Felhasznalonev))
+            {
+                return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
+            }
+
+            // Ellenőrizzük, hogy az email cím már létezik-e
+            if (await _context.Felhasznaloks.AnyAsync(f => f.Email == felhasznalo.Email))
+            {
+                return BadRequest(new { message = "Ez az email cím már regisztrálva van." });
+            }
+
+            // Jelszó hash-elése
+            felhasznalo.Jelszo = HashPassword(felhasznalo.Jelszo);
+
+            // Felhasználó hozzáadása az adatbázishoz
             _context.Felhasznaloks.Add(felhasznalo);
-            _context.SaveChanges();
-            return Ok();
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Sikeres regisztráció" });
         }
 
-        // Felhasználó frissítése ID alapján
-        [HttpPut("PutById/{id}")]
-        public IActionResult PutById(int id, [FromBody] Felhasznalok felhasznalo)
+        // PUT endpoint to update user data based on username
+        [HttpPut("update/{felhasznalonev}")]
+        public async Task<IActionResult> UpdateUser(string felhasznalonev, [FromBody] Felhasznalok updatedUser)
         {
-            var felhasznaloToUpdate = _context.Felhasznaloks.Find(id);
-            if (felhasznaloToUpdate == null)
+            var felhasznalo = await _context.Felhasznaloks
+                .FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev);
+
+            if (felhasznalo == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Felhasználó nem található" });
             }
 
-            felhasznaloToUpdate.Felhasznalonev = felhasznalo.Felhasznalonev;
-            felhasznaloToUpdate.Jelszo = felhasznalo.Jelszo;
-            _context.SaveChanges();
-            return Ok();
+            // Update user properties
+            felhasznalo.Email = updatedUser.Email ?? felhasznalo.Email;
+            if (!string.IsNullOrEmpty(updatedUser.Jelszo))
+            {
+                felhasznalo.Jelszo = HashPassword(updatedUser.Jelszo);
+            }
+
+            _context.Felhasznaloks.Update(felhasznalo);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Felhasználó adatai frissítve" });
         }
+
+        // Jelszó hash-elése
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
+            }
+        }
+
+        // Jelszó ellenőrzése
+        private bool VerifyPassword(string inputPassword, string hashedPassword)
+        {
+            return HashPassword(inputPassword) == hashedPassword;
+        }
+    }
+
+    public class LoginRequest
+    {
+        public string Felhasznalonev { get; set; }
+        public string Jelszo { get; set; }
     }
 }

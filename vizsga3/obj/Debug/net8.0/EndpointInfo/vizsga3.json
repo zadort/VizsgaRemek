@@ -37,7 +37,7 @@
         }
       }
     },
-    "/api/Felhasznalo/login": {
+    "/Felhasznalo/login": {
       "post": {
         "tags": [
           "Felhasznalo"
@@ -68,65 +68,7 @@
         }
       }
     },
-    "/api/Felhasznalo/GetAll": {
-      "get": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Felhasznalo/GetById/{id}": {
-      "get": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Felhasznalo/DeleteById/{id}": {
-      "delete": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Felhasznalo/Post": {
+    "/Felhasznalo/register": {
       "post": {
         "tags": [
           "Felhasznalo"
@@ -157,37 +99,26 @@
         }
       }
     },
-    "/api/Felhasznalo/PutById/{id}": {
-      "put": {
+    "/Felhasznalo/update": {
+      "post": {
         "tags": [
           "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
+                "$ref": "#/components/schemas/UpdateUserRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
+                "$ref": "#/components/schemas/UpdateUserRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
+                "$ref": "#/components/schemas/UpdateUserRequest"
               }
             }
           }
@@ -427,6 +358,10 @@
             "type": "string",
             "nullable": true
           },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
           "jelszo": {
             "type": "string",
             "nullable": true
@@ -441,7 +376,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "nev": {
+          "currentUser": {
             "type": "string",
             "nullable": true
           },
@@ -464,11 +399,29 @@
       "LoginRequest": {
         "type": "object",
         "properties": {
-          "username": {
+          "felhasznalonev": {
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "jelszo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "felhasznalonev": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "jelszo": {
             "type": "string",
             "nullable": true
           }

@@ -546,3 +546,4 @@ C:\Users\Tanulo\Desktop\hfkjdsdsakjdsa\VizsgaRemek\vizsga3\obj\Debug\net8.0\stat
 C:\Users\Tanulo\Desktop\hfkjdsdsakjdsa\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.csproj.Up2Date
 C:\Users\Tanulo\Desktop\hfkjdsdsakjdsa\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.genruntimeconfig.cache
 C:\Users\Tanulo\Desktop\hfkjdsdsakjdsa\VizsgaRemek\vizsga3\obj\Debug\net8.0\ref\vizsga3.dll
+C:\Users\Tanulo\Desktop\hfkjdsdsakjdsa\VizsgaRemek\vizsga3\bin\Debug\net8.0\BCrypt.Net-Next.dll

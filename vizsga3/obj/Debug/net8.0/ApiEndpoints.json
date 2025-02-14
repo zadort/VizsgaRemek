@@ -1,100 +1,5 @@
 [
   {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "DeleteById",
-    "RelativePath": "api/Felhasznalo/DeleteById/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetAll",
-    "RelativePath": "api/Felhasznalo/GetAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetById",
-    "RelativePath": "api/Felhasznalo/GetById/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Login",
-    "RelativePath": "api/Felhasznalo/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "vizsga3.Controllers.FelhasznaloController\u002BLoginRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Post",
-    "RelativePath": "api/Felhasznalo/Post",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalo",
-        "Type": "vizsga3.Models.Felhasznalok",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "PutById",
-    "RelativePath": "api/Felhasznalo/PutById/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "felhasznalo",
-        "Type": "vizsga3.Models.Felhasznalok",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "SendNewEmail",
     "RelativePath": "emails",
@@ -105,6 +10,54 @@
       {
         "Name": "emailRequestDto",
         "Type": "vizsga3.Models.Dtos.EmailRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Login",
+    "RelativePath": "Felhasznalo/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "Register",
+    "RelativePath": "Felhasznalo/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "felhasznalo",
+        "Type": "vizsga3.Models.Felhasznalok",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "UpdateUser",
+    "RelativePath": "Felhasznalo/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.UpdateUserRequest",
         "IsRequired": true
       }
     ],
