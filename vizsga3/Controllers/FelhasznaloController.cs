@@ -83,6 +83,7 @@ namespace vizsga3.Controllers
             }
 
             // Update user properties
+            felhasznalo.Felhasznalonev = updatedUser.Felhasznalonev ?? felhasznalo.Felhasznalonev;
             felhasznalo.Email = updatedUser.Email ?? felhasznalo.Email;
             if (!string.IsNullOrEmpty(updatedUser.Jelszo))
             {
@@ -94,6 +95,7 @@ namespace vizsga3.Controllers
 
             return Ok(new { message = "Felhasználó adatai frissítve" });
         }
+
 
         // Jelszó hash-elése
         private string HashPassword(string password)

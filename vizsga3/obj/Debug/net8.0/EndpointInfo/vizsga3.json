@@ -99,26 +99,36 @@
         }
       }
     },
-    "/Felhasznalo/update": {
-      "post": {
+    "/Felhasznalo/update/{felhasznalonev}": {
+      "put": {
         "tags": [
           "Felhasznalo"
+        ],
+        "parameters": [
+          {
+            "name": "felhasznalonev",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequest"
+                "$ref": "#/components/schemas/Felhasznalok"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequest"
+                "$ref": "#/components/schemas/Felhasznalok"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequest"
+                "$ref": "#/components/schemas/Felhasznalok"
               }
             }
           }
@@ -400,24 +410,6 @@
         "type": "object",
         "properties": {
           "felhasznalonev": {
-            "type": "string",
-            "nullable": true
-          },
-          "jelszo": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateUserRequest": {
-        "type": "object",
-        "properties": {
-          "felhasznalonev": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
             "type": "string",
             "nullable": true
           },

@@ -50,14 +50,19 @@
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "UpdateUser",
-    "RelativePath": "Felhasznalo/update",
-    "HttpMethod": "POST",
+    "RelativePath": "Felhasznalo/update/{felhasznalonev}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "vizsga3.Controllers.UpdateUserRequest",
+        "Name": "felhasznalonev",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedUser",
+        "Type": "vizsga3.Models.Felhasznalok",
         "IsRequired": true
       }
     ],
