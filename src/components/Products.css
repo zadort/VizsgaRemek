@@ -1,0 +1,220 @@
+.hero {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./hatter.webp') no-repeat center/cover;
+    color: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+  }
+  
+  .products-grid {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .product-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #007bff;
+  }
+
+  .product-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  .product-price {
+    color: #666;
+    font-size: 1.1em;
+    margin: 10px 0;
+  }
+  
+  .product-price {
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: 500;
+  }
+  
+  .product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .product-details {
+    width: 100%;
+  }
+  
+  .product-name {
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .product-card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .product-card p {
+    color: #666;
+    font-size: 1.1em;
+    margin: 10px 0;
+  }
+  
+  .product-card .product-price {
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: 500;
+  }
+  
+  .product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .quantity-input {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    height: 40px;
+    box-sizing: border-box;
+  }
+  
+  .quantity-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .add-to-cart-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 40px;
+    box-sizing: border-box;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cart-icon {
+    font-size: 1.2em;
+  }
+  
+  @media (max-width: 768px) {
+    .product-card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-card {
+      width: 100%;
+    }
+  }
+  
+  .dark-mode .products-container {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .dark-mode .product-card {
+    background: #1f1f1f;
+    color: #ffffff;
+  }
+  
+  .dark-mode .product-card h2 {
+    color: #ffffff;
+  }
+  
+  .dark-mode .product-card p {
+    color: #cccccc;
+  }
+  
+  .dark-mode .product-card .product-price {
+    color: #007bff;
+  }
+  
+  .dark-mode .quantity-input {
+    background-color: #333;
+    border-color: #555;
+    color: #fff;
+  }
+  
+  .dark-mode .quantity-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .dark-mode .add-to-cart-btn {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .dark-mode .add-to-cart-btn:hover {
+    background-color: #0056b3;
+  }

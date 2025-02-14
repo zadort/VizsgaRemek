@@ -61,7 +61,18 @@
   background-color: #cc0000;
 }
 
-/* Dark mode stílusok */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.button-container .btn {
+  width: auto;
+  padding: 10px 20px;
+}
+
 .dark-mode .cart-container {
   background-color: #121212;
 }

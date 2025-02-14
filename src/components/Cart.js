@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DarkModeContext } from './DarkModeContext';
 import './Cart.css';
 
 function Cart({ cart, updateCart }) {
   const { isDarkMode } = useContext(DarkModeContext);
+  const navigate = useNavigate(); 
 
   const removeFromCart = (itemName) => {
     const newCart = cart.filter(item => item.nev !== itemName);
@@ -20,6 +21,10 @@ function Cart({ cart, updateCart }) {
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.ar * item.quantity, 0);
+  };
+
+  const handleCheckout = () => {
+    navigate('/checkout');
   };
 
   return (
@@ -52,7 +57,10 @@ function Cart({ cart, updateCart }) {
           )}
         </section>
         <div className="total">Összesen: {calculateTotal()} Ft</div>
-        <Link to="/" className="btn">Tovább a vásárláshoz</Link>
+        <div className="button-container">
+          <Link to="/" className="btn">Tovább a vásárláshoz</Link>
+          <button className="btn" onClick={handleCheckout}>Vásárlás</button>
+        </div>
       </main>
     </div>
   );

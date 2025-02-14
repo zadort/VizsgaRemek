@@ -7,39 +7,68 @@ header {
   color: #fff;
 }
 
-header .logo {
+header.dark-mode {
+  background-color: #1f1f1f;
+}
+
+.logo {
   font-size: 1.5em;
   font-weight: bold;
 }
 
-header .search-bar {
+.search-bar {
   flex-grow: 1;
   margin: 0 20px;
+  position: relative;
 }
 
-header .search-bar input {
+.search-bar input {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
-header .cart-profile {
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+}
+
+.search-result-item:hover {
+  background-color: #f4f4f9;
+}
+
+.cart-profile {
   display: flex;
   align-items: center;
   gap: 20px;
   position: relative;
 }
 
-header .cart-profile .cart-icon,
-header .cart-profile i {
+.cart-profile .cart-icon,
+.cart-profile i {
   width: 30px;
   font-size: 1.5em;
   cursor: pointer;
   color: #fff;
 }
 
-header .cart span {
+.cart span {
   color: #fff;
 }
 
@@ -55,7 +84,7 @@ header .cart span {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none; 
+  display: none;
   flex-direction: column;
   width: 150px;
   z-index: 10;
@@ -82,6 +111,18 @@ header .cart span {
   background-color: #f4f4f9;
 }
 
+.dark-mode .profile-menu {
+  background-color: #1f1f1f;
+}
+
+.dark-mode .profile-menu-item {
+  color: #ffffff;
+}
+
+.dark-mode .profile-menu-item:hover {
+  background-color: #333;
+}
+
 .dark-mode-toggle {
   background-color: transparent;
   border: none;
@@ -90,34 +131,15 @@ header .cart span {
   color: #fff;
 }
 
-/* Dark mode stílusok */
-.dark-mode header {
-  background-color: #1f1f1f;
-  color: #ffffff;
-}
-
-.dark-mode .search-bar input {
+.dark-mode .search-results {
   background-color: #333;
-  color: #fff;
   border-color: #444;
 }
 
-.dark-mode .profile-menu {
-  background-color: #333;
-}
-
-.dark-mode .profile-menu-item {
+.dark-mode .search-result-item {
   color: #ffffff;
 }
 
-.dark-mode .profile-menu-item:hover {
+.dark-mode .search-result-item:hover {
   background-color: #444;
-}
-
-.dark-mode .cart span {
-  color: #ffffff;
-}
-
-.dark-mode .cart-profile i {
-  color: #ffffff;
 }

@@ -11,35 +11,52 @@
 }
 
 .register-box {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 100%;
   max-width: 400px;
   color: #333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .register-box h2 {
   text-align: center;
   margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #007bff;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-weight: 600;
+  color: #555;
 }
 
 .form-control {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
 }
 
 .btn-primary {
@@ -47,25 +64,42 @@
   padding: 0.75rem;
   background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-.register-box a {
-  display: block;
+.btn-primary:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6b6b;
   text-align: center;
   margin-top: 1rem;
-  color: #007bff;
-  text-decoration: none;
 }
 
-.register-box a:hover {
+.success-message {
+  color: #28a745;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link:hover {
   text-decoration: underline;
 }
 
@@ -79,29 +113,41 @@
   color: #ffffff;
 }
 
+.dark-mode .register-box h2 {
+  color: #1e90ff;
+}
+
 .dark-mode .form-control {
   background-color: #333;
   color: #ffffff;
   border-color: #444;
 }
 
-.dark-mode .form-control::placeholder {
-  color: #cccccc;
+.dark-mode .form-control:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.3);
 }
 
 .dark-mode .btn-primary {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #1e90ff;
 }
 
 .dark-mode .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #0077cc;
 }
 
-.dark-mode .register-box a {
-  color: #007bff;
+.dark-mode .error-message {
+  color: #ff6b6b;
 }
 
-.dark-mode .register-box a:hover {
-  color: #0056b3;
+.dark-mode .success-message {
+  color: #28a745;
+}
+
+.dark-mode .login-link {
+  color: #1e90ff;
+}
+
+.dark-mode .login-link:hover {
+  color: #0077cc;
 }

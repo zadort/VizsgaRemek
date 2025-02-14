@@ -36,6 +36,9 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 2px solid transparent;
   background-clip: padding-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-card:hover {
@@ -44,9 +47,15 @@
   border: 2px solid #007bff;
 }
 
-.product-card img {
-  max-width: 100%;
+.product-card .product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
+}
+
+.product-details {
+  flex-grow: 1;
 }
 
 .product-card h2 {
@@ -86,6 +95,63 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.quantity-input {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  color: #333;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.quantity-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.add-to-cart-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-icon {
+  font-size: 1.2em;
+}
+
 @media (max-width: 768px) {
   .product-card {
     width: calc(50% - 20px);
@@ -98,7 +164,6 @@
   }
 }
 
-/* Dark mode stílusok */
 .dark-mode .home-container {
   background-color: #121212;
   color: #ffffff;
@@ -127,5 +192,25 @@
 }
 
 .dark-mode .product-card button:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .quantity-input {
+  background-color: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+.dark-mode .quantity-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.dark-mode .add-to-cart-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.dark-mode .add-to-cart-btn:hover {
   background-color: #0056b3;
 }
