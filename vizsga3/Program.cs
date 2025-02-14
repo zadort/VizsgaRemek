@@ -15,15 +15,17 @@ namespace vizsga3
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            // JWT beállítások
-            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+            var configuration = builder.Configuration;
+
+            // JWT settings
+            var jwtSettings = configuration.GetSection("JwtSettings");
 
             builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidIssuer = jwtSettings["Issuer"],
@@ -31,32 +33,32 @@ namespace vizsga3
                         ValidAudience = jwtSettings["Audience"],
                         ValidateLifetime = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"])),
-                        ClockSkew = TimeSpan.Zero // Ha nem akarod, hogy a lejárati idõ nehezebben lejárjon
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 
-            // JSON sorosítás beállítása (optional)
+            // JSON serialization settings (optional)
             builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
-            // DB Context beállítása
-            builder.Services.AddDbContext<Vizsga3Context>(option =>
+            // DB Context settings
+            builder.Services.AddDbContext<Vizsga3Context>(options =>
             {
-                var connectionString = builder.Configuration.GetConnectionString("MySql");
-                option.UseMySQL(connectionString);
+                var connectionString = configuration.GetConnectionString("MySql");
+                options.UseMySQL(connectionString);
             });
 
-            // CORS beállítás
+            // CORS settings
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowReactApp", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000") // Engedélyezett frontend cím
-                          .AllowAnyHeader()                   // Bármilyen fejléc engedélyezése
-                          .AllowAnyMethod();                  // Bármilyen HTTP metódus engedélyezése
+                    policy.WithOrigins("http://localhost:3000")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
                 });
             });
 
-            // Swagger konfigurálása
+            // Swagger configuration
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
@@ -64,13 +66,13 @@ namespace vizsga3
                 {
                     Title = "Vizsga3 API",
                     Version = "v1",
-                    Description = "A backend API a felhasználói bejelentkezéshez és más funkciókhoz"
+                    Description = "A backend API for user login and other functionalities"
                 });
             });
 
             var app = builder.Build();
 
-            // Fejlesztési módban engedélyezze a Swagger UI-t
+            // Enable Swagger UI in development mode
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -80,19 +82,19 @@ namespace vizsga3
                 });
             }
 
-            // HTTPS átirányítás
+            // HTTPS redirection
             app.UseHttpsRedirection();
 
-            // CORS engedélyezése
+            // Enable CORS
             app.UseCors("AllowReactApp");
 
-            // Authorization (ha szükséges a jövõben)
+            // Authorization
             app.UseAuthorization();
 
-            // API végpontok hozzárendelése
+            // Map API endpoints
             app.MapControllers();
 
-            // Az alkalmazás futtatása
+            // Run the application
             app.Run();
         }
     }
