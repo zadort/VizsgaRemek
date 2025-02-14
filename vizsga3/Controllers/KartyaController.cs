@@ -32,8 +32,7 @@ namespace vizsga3.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            using var db = new Vizsga3Context();
-            var kartya = db.Kartyaks.Find(id);
+            var kartya = _context.Kartyaks.Find(id);
             if (kartya == null)
             {
                 return NotFound();
@@ -44,17 +43,15 @@ namespace vizsga3.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Kartyak kartya)
         {
-            using var db = new Vizsga3Context();
-            db.Kartyaks.Add(kartya);
-            db.SaveChanges();
+            _context.Kartyaks.Add(kartya);
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Kartyak kartya)
         {
-            using var db = new Vizsga3Context();
-            var kartyaToUpdate = db.Kartyaks.Find(id);
+            var kartyaToUpdate = _context.Kartyaks.Find(id);
             if (kartyaToUpdate == null)
             {
                 return NotFound();
@@ -63,15 +60,14 @@ namespace vizsga3.Controllers
             kartyaToUpdate.Ar = kartya.Ar;
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;
-            db.SaveChanges();
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] Kartyak kartya)
         {
-            using var db = new Vizsga3Context();
-            var kartyaToUpdate = db.Kartyaks.Find(id);
+            var kartyaToUpdate = _context.Kartyaks.Find(id);
             if (kartyaToUpdate == null)
             {
                 return NotFound();
@@ -80,29 +76,27 @@ namespace vizsga3.Controllers
             kartyaToUpdate.Ar = kartya.Ar;
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;
-            db.SaveChanges();
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            using var db = new Vizsga3Context();
-            var kartya = db.Kartyaks.Find(id);
+            var kartya = _context.Kartyaks.Find(id);
             if (kartya == null)
             {
                 return NotFound();
             }
-            db.Kartyaks.Remove(kartya);
-            db.SaveChanges();
+            _context.Kartyaks.Remove(kartya);
+            _context.SaveChanges();
             return Ok();
         }
 
         [HttpHead("{id}")]
         public IActionResult Head(int id)
         {
-            using var db = new Vizsga3Context();
-            var kartya = db.Kartyaks.Find(id);
+            var kartya = _context.Kartyaks.Find(id);
             if (kartya == null)
             {
                 return NotFound();
