@@ -15,6 +15,9 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    //debug
+    
+
     try {
       const response = await fetch('https://localhost:7051/Felhasznalo/login', {
         method: 'POST',
