@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,8 +16,11 @@ namespace vizsga3
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
 
-            // JWT settings
-            var jwtSettings = configuration.GetSection("JwtSettings");
+            // Bind JWT settings
+            var jwtSettings = new JwtSettings();
+            configuration.GetSection("JwtSettings").Bind(jwtSettings);
+
+            builder.Services.AddSingleton(jwtSettings);
 
             builder.Services.AddScoped<IEmail, Email>();
 
@@ -28,11 +30,11 @@ namespace vizsga3
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = jwtSettings["Issuer"],
+                        ValidIssuer = jwtSettings.Issuer,
                         ValidateAudience = true,
-                        ValidAudience = jwtSettings["Audience"],
+                        ValidAudience = jwtSettings.Audience,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
                         ClockSkew = TimeSpan.Zero
                     };
                 });
@@ -70,6 +72,9 @@ namespace vizsga3
                 });
             });
 
+            // Add health checks
+            builder.Services.AddHealthChecks();
+
             var app = builder.Build();
 
             // Enable Swagger UI in development mode
@@ -82,20 +87,25 @@ namespace vizsga3
                 });
             }
 
-            // HTTPS redirection
+            // Middleware setup
             app.UseHttpsRedirection();
-
-            // Enable CORS
             app.UseCors("AllowReactApp");
-
-            // Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             // Map API endpoints
             app.MapControllers();
+            app.MapHealthChecks("/health");
 
             // Run the application
             app.Run();
         }
+    }
+
+    public class JwtSettings
+    {
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
+        public string SecretKey { get; set; }
     }
 }
