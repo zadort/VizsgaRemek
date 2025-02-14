@@ -49,7 +49,7 @@ namespace vizsga3.Controllers
             {
                 return NotFound();
             }
-            kartyaToUpdate.Nev = kartya.Nev;
+            kartyaToUpdate.CurrentUser = kartya.CurrentUser;
             kartyaToUpdate.Ar = kartya.Ar;
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;
@@ -65,7 +65,7 @@ namespace vizsga3.Controllers
             {
                 return NotFound();
             }
-            kartyaToUpdate.Nev = kartya.Nev;
+            kartyaToUpdate.CurrentUser = kartya.CurrentUser;
             kartyaToUpdate.Ar = kartya.Ar;
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;

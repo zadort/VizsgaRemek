@@ -74,7 +74,7 @@ namespace vizsga3.Models
                     .HasMaxLength(255)
                     .HasDefaultValue(null)
                     .HasColumnName("leiras");
-                entity.Property(e => e.Nev)
+                entity.Property(e => e.CurrentUser)
                     .HasMaxLength(255)
                     .HasDefaultValue(null)
                     .HasColumnName("nev");
