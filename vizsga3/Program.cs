@@ -6,6 +6,7 @@ using System.Text;
 using vizsga3.Models;
 using vizsga3.Services.IEmailService;
 using vizsga3.Services;
+using Microsoft.Extensions.Logging;
 
 namespace vizsga3
 {
@@ -16,17 +17,19 @@ namespace vizsga3
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
 
-            // Bind JWT settings
-            var jwtSettings = new JwtSettings();
-            configuration.GetSection("JwtSettings").Bind(jwtSettings);
+            // Add logging
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
 
-            builder.Services.AddSingleton(jwtSettings);
+            // Bind JWT settings
+            builder.Services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
             builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
+                    var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
@@ -93,6 +96,9 @@ namespace vizsga3
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Add global exception handling middleware
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             // Map API endpoints
             app.MapControllers();
             app.MapHealthChecks("/health");
@@ -107,5 +113,32 @@ namespace vizsga3
         public string Issuer { get; set; }
         public string Audience { get; set; }
         public string SecretKey { get; set; }
+    }
+
+    // Global exception handling middleware
+    public class ExceptionHandlingMiddleware
+    {
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+        {
+            _next = next;
+            _logger = logger;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unhandled exception has occurred.");
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
+            }
+        }
     }
 }
