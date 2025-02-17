@@ -5,7 +5,7 @@ import './Cart.css';
 
 function Cart({ cart, updateCart }) {
   const { isDarkMode } = useContext(DarkModeContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const removeFromCart = (itemName) => {
     const newCart = cart.filter(item => item.nev !== itemName);
@@ -24,7 +24,8 @@ function Cart({ cart, updateCart }) {
   };
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    const total = calculateTotal();
+    navigate('/checkout', { state: { cart, total } }); // Az adatokat itt adja át
   };
 
   return (

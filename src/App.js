@@ -14,6 +14,7 @@ import Adatkezeles from './components/Adatkezeles';
 import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Profile from './components/Profile';
+import Checkout from './components/Checkout';
 import CookieBanner from './components/CookieBanner';
 import { DarkModeProvider } from './components/DarkModeContext';
 import { AuthProvider } from './components/AuthContext';
@@ -44,7 +45,7 @@ function App() {
               <Route path="/" element={<Home cart={cart} updateCart={updateCart} />} />
               <Route path="/cart" element={<Cart cart={cart} updateCart={updateCart} />} />
               <Route path="/products" element={<Products cart={cart} updateCart={updateCart} />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/product/:id" element={<ProductDetail cart={cart} updateCart={updateCart}/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -52,6 +53,7 @@ function App() {
               <Route path="/aszf" element={<ASZF />} />
               <Route path="/kapcsolat" element={<Kapcsolat />} />
               <Route path="/adatkezeles" element={<Adatkezeles />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Routes>
             <Footer />
           </div>
