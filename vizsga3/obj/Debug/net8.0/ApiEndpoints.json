@@ -48,27 +48,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "UpdateUser",
-    "RelativePath": "Felhasznalo/update/{felhasznalonev}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalonev",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "updatedUser",
-        "Type": "vizsga3.Models.Felhasznalok",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Get",
     "RelativePath": "Kartya",

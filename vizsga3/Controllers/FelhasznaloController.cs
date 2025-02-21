@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using vizsga3.Models;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using vizsga3.Models.Dtos;
+using vizsga3.Services.IEmailService;
 
 namespace vizsga3.Controllers
 {
@@ -13,10 +14,12 @@ namespace vizsga3.Controllers
     public class FelhasznaloController : ControllerBase
     {
         private readonly Vizsga3Context _context;
+        private readonly IEmail _email;
 
-        public FelhasznaloController(Vizsga3Context context)
+        public FelhasznaloController(Vizsga3Context context, IEmail email)
         {
             _context = context;
+            _email = email;
         }
 
         // Bejelentkezési endpoint (hash-elt jelszó ellenőrzéssel)
@@ -44,57 +47,38 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres bejelentkezés" });
         }
 
+
         // Regisztráció új felhasználóval (hash-elt jelszóval)
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] Felhasznalok felhasznalo)
         {
-            // Ellenőrizzük, hogy a felhasználónév már foglalt-e
             if (await _context.Felhasznaloks.AnyAsync(f => f.Felhasznalonev == felhasznalo.Felhasznalonev))
             {
                 return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
             }
 
-            // Ellenőrizzük, hogy az email cím már létezik-e
             if (await _context.Felhasznaloks.AnyAsync(f => f.Email == felhasznalo.Email))
             {
                 return BadRequest(new { message = "Ez az email cím már regisztrálva van." });
             }
 
-            // Jelszó hash-elése
             felhasznalo.Jelszo = HashPassword(felhasznalo.Jelszo);
-
-            // Felhasználó hozzáadása az adatbázishoz
             _context.Felhasznaloks.Add(felhasznalo);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Sikeres regisztráció" });
+            // Email küldés
+            var emailRequest = new EmailRequestDto(
+                felhasznalo.Email,
+                "Sikeres regisztráció",
+                $"Kedves {felhasznalo.Felhasznalonev},\n\nSikeresen regisztráltál!\n\nÜdv,\nA csapat"
+            );
+
+            _email.SendEmail(emailRequest);
+
+            return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
-        // PUT endpoint to update user data based on username
-        [HttpPut("update/{felhasznalonev}")]
-        public async Task<IActionResult> UpdateUser(string felhasznalonev, [FromBody] Felhasznalok updatedUser)
-        {
-            var felhasznalo = await _context.Felhasznaloks
-                .FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev);
 
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-
-            // Update user properties
-            felhasznalo.Felhasznalonev = updatedUser.Felhasznalonev ?? felhasznalo.Felhasznalonev;
-            felhasznalo.Email = updatedUser.Email ?? felhasznalo.Email;
-            if (!string.IsNullOrEmpty(updatedUser.Jelszo))
-            {
-                felhasznalo.Jelszo = HashPassword(updatedUser.Jelszo);
-            }
-
-            _context.Felhasznaloks.Update(felhasznalo);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Felhasználó adatai frissítve" });
-        }
 
 
         // Jelszó hash-elése
@@ -106,6 +90,7 @@ namespace vizsga3.Controllers
                 return Convert.ToBase64String(hashedBytes);
             }
         }
+
 
         // Jelszó ellenőrzése
         private bool VerifyPassword(string inputPassword, string hashedPassword)

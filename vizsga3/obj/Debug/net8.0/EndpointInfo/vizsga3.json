@@ -99,47 +99,6 @@
         }
       }
     },
-    "/Felhasznalo/update/{felhasznalonev}": {
-      "put": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "felhasznalonev",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Felhasznalok"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/Kartya": {
       "get": {
         "tags": [
