@@ -4568,23 +4568,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tanulo\\.nuget\\packages\\": {},
+    "C:\\Users\\zadortamas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\hfkjdsdsakjdsa\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+      "projectUniqueName": "C:\\Users\\zadortamas\\Desktop\\asd\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
       "projectName": "vizsga3",
-      "projectPath": "C:\\Users\\Tanulo\\Desktop\\hfkjdsdsakjdsa\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
-      "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tanulo\\Desktop\\hfkjdsdsakjdsa\\VizsgaRemek\\vizsga3\\obj\\",
+      "projectPath": "C:\\Users\\zadortamas\\Desktop\\asd\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+      "packagesPath": "C:\\Users\\zadortamas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zadortamas\\Desktop\\asd\\VizsgaRemek\\vizsga3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tanulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zadortamas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
