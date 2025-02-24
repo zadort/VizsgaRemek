@@ -133,6 +133,12 @@ namespace vizsga3
             {
                 await _next(context);
             }
+            catch (DbUpdateException dbEx)
+            {
+                _logger.LogError(dbEx, "A database update exception has occurred.");
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("A database error occurred. Try again later.");
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An unhandled exception has occurred.");

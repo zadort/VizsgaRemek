@@ -6,6 +6,11 @@ using System.Security.Cryptography;
 using System.Text;
 using vizsga3.Models.Dtos;
 using vizsga3.Services.IEmailService;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace vizsga3.Controllers
 {
@@ -15,38 +20,43 @@ namespace vizsga3.Controllers
     {
         private readonly Vizsga3Context _context;
         private readonly IEmail _email;
+        private readonly ILogger<FelhasznaloController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public FelhasznaloController(Vizsga3Context context, IEmail email)
+        public FelhasznaloController(Vizsga3Context context, IEmail email, ILogger<FelhasznaloController> logger, IConfiguration configuration)
         {
             _context = context;
             _email = email;
+            _logger = logger;
+            _configuration = configuration;
         }
 
         // Bejelentkezési endpoint (hash-elt jelszó ellenőrzéssel)
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            Console.WriteLine($"Bejelentkezési kérelem: {request.Felhasznalonev}, {request.Jelszo}");
+            _logger.LogInformation($"Bejelentkezési kérelem: {request.Felhasznalonev}");
 
             var felhasznalo = await _context.Felhasznaloks
                 .FirstOrDefaultAsync(f => f.Felhasznalonev == request.Felhasznalonev);
 
             if (felhasznalo == null)
             {
-                Console.WriteLine($"Felhasználó nem található: {request.Felhasznalonev}");
+                _logger.LogWarning($"Felhasználó nem található: {request.Felhasznalonev}");
                 return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
             }
 
             if (!VerifyPassword(request.Jelszo, felhasznalo.Jelszo))
             {
-                Console.WriteLine($"Hibás jelszó próbálkozás a felhasználónál: {request.Felhasznalonev}");
+                _logger.LogWarning($"Hibás jelszó próbálkozás a felhasználónál: {request.Felhasznalonev}");
                 return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
             }
 
-            Console.WriteLine($"Sikeres bejelentkezés: {request.Felhasznalonev}");
-            return Ok(new { message = "Sikeres bejelentkezés" });
-        }
+            var token = GenerateJwtToken(felhasznalo);
 
+            _logger.LogInformation($"Sikeres bejelentkezés: {request.Felhasznalonev}");
+            return Ok(new { message = "Sikeres bejelentkezés", token });
+        }
 
         // Regisztráció új felhasználóval (hash-elt jelszóval)
         [HttpPost("register")]
@@ -78,9 +88,6 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
-
-
-
         // Jelszó hash-elése
         private string HashPassword(string password)
         {
@@ -91,11 +98,34 @@ namespace vizsga3.Controllers
             }
         }
 
-
         // Jelszó ellenőrzése
         private bool VerifyPassword(string inputPassword, string hashedPassword)
         {
             return HashPassword(inputPassword) == hashedPassword;
+        }
+
+        // JWT token generálása
+        private string GenerateJwtToken(Felhasznalok felhasznalo)
+        {
+            var jwtSettings = _configuration.GetSection("JwtSettings").Get<JwtSettings>();
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, felhasznalo.Felhasznalonev),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings.Issuer,
+                audience: jwtSettings.Audience,
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 
