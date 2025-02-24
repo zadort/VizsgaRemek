@@ -57,22 +57,6 @@ namespace vizsga3.Controllers
             return Ok();
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, [FromBody] Kartyak kartya)
-        {
-            var kartyaToUpdate = _context.Kartyaks.Find(id);
-            if (kartyaToUpdate == null)
-            {
-                return NotFound();
-            }
-            kartyaToUpdate.CurrentUser = kartya.CurrentUser;
-            kartyaToUpdate.Ar = kartya.Ar;
-            kartyaToUpdate.Leiras = kartya.Leiras;
-            kartyaToUpdate.KepUrl = kartya.KepUrl;
-            _context.SaveChanges();
-            return Ok();
-        }
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -83,24 +67,6 @@ namespace vizsga3.Controllers
             }
             _context.Kartyaks.Remove(kartya);
             _context.SaveChanges();
-            return Ok();
-        }
-
-        [HttpHead("{id}")]
-        public IActionResult Head(int id)
-        {
-            var kartya = _context.Kartyaks.Find(id);
-            if (kartya == null)
-            {
-                return NotFound();
-            }
-            return Ok();
-        }
-
-        [HttpOptions]
-        public IActionResult Options()
-        {
-            Response.Headers.Add("Allow", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
             return Ok();
         }
     }
