@@ -53,9 +53,11 @@ namespace vizsga3.Controllers
             kartyaToUpdate.Ar = kartya.Ar;
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;
+            kartyaToUpdate.Kategoria = kartya.Kategoria;
             _context.SaveChanges();
             return Ok();
         }
+
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

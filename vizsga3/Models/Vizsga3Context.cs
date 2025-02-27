@@ -78,7 +78,12 @@ namespace vizsga3.Models
                     .HasMaxLength(255)
                     .HasDefaultValue(null)
                     .HasColumnName("nev");
+                entity.Property(e => e.Kategoria)
+                    .HasMaxLength(255)
+                    .HasDefaultValue(null)
+                    .HasColumnName("kategoria");
             });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -5,4 +5,5 @@
     public int? Ar { get; set; }
     public string? Leiras { get; set; }
     public string? KepUrl { get; set; }
+    public string? Kategoria { get; set; }
 }

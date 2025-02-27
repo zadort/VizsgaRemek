@@ -75,16 +75,6 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Options",
-    "RelativePath": "Kartya",
-    "HttpMethod": "OPTIONS",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Get",
     "RelativePath": "Kartya/{id}",
     "HttpMethod": "GET",
@@ -122,46 +112,9 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Patch",
-    "RelativePath": "Kartya/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "kartya",
-        "Type": "Kartyak",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
     "Method": "Delete",
     "RelativePath": "Kartya/{id}",
     "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Head",
-    "RelativePath": "Kartya/{id}",
-    "HttpMethod": "HEAD",
     "IsController": true,
     "Order": 0,
     "Parameters": [
