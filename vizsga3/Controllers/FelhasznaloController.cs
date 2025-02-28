@@ -88,6 +88,33 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
+        // Felhasználó létrehozása
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+        {
+            if (await _context.Felhasznaloks.AnyAsync(f => f.Felhasznalonev == request.Felhasznalonev))
+            {
+                return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
+            }
+
+            if (await _context.Felhasznaloks.AnyAsync(f => f.Email == request.Email))
+            {
+                return BadRequest(new { message = "Ez az email cím már regisztrálva van." });
+            }
+
+            var felhasznalo = new Felhasznalok
+            {
+                Felhasznalonev = request.Felhasznalonev,
+                Jelszo = HashPassword(request.Jelszo),
+                Email = request.Email
+            };
+
+            _context.Felhasznaloks.Add(felhasznalo);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Felhasználó sikeresen létrehozva" });
+        }
+
         // Felhasználó adatainak lekérdezése
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetUser(int id)
@@ -147,7 +174,19 @@ namespace vizsga3.Controllers
             public string NewPassword { get; set; }
         }
 
+        public class CreateUserRequest
+        {
+            public string Felhasznalonev { get; set; }
+            public string Jelszo { get; set; }
+            public string Email { get; set; }
+        }
 
+        public class UpdateUserRequest
+        {
+            public string Felhasznalonev { get; set; }
+            public string Jelszo { get; set; }
+            public string Email { get; set; }
+        }
 
         // Felhasználó törlése
         [HttpDelete("user/{id}")]
@@ -182,6 +221,66 @@ namespace vizsga3.Controllers
                 return NotFound(new { message = "Felhasználó nem található" });
             }
             return Ok(felhasznalo);
+        }
+
+        // Felhasználó keresése felhasználónév és email alapján
+        [HttpGet("user/search")]
+        public async Task<IActionResult> SearchUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+            return Ok(felhasznalo);
+        }
+
+        // Felhasználók keresése email alapján
+        [HttpGet("users/search")]
+        public async Task<IActionResult> SearchUsersByEmail([FromQuery] string email)
+        {
+            var felhasznalok = await _context.Felhasznaloks.Where(f => f.Email == email).ToListAsync();
+            if (!felhasznalok.Any())
+            {
+                return NotFound(new { message = "Felhasználók nem találhatók" });
+            }
+            return Ok(felhasznalok);
+        }
+
+        // Felhasználó szerkesztése felhasználónév és email alapján
+        [HttpPut("user/update")]
+        public async Task<IActionResult> UpdateUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email, [FromBody] UpdateUserRequest request)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            felhasznalo.Felhasznalonev = request.Felhasznalonev;
+            felhasznalo.Email = request.Email;
+            if (!string.IsNullOrEmpty(request.Jelszo))
+            {
+                felhasznalo.Jelszo = HashPassword(request.Jelszo);
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Felhasználó adatai frissítve" });
+        }
+
+        // Felhasználó törlése felhasználónév és email alapján
+        [HttpDelete("user/delete")]
+        public async Task<IActionResult> DeleteUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            _context.Felhasznaloks.Remove(felhasznalo);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Felhasználó törölve" });
         }
 
         // Jelszó hash-elése
@@ -231,3 +330,4 @@ namespace vizsga3.Controllers
         public string Jelszo { get; set; }
     }
 }
+
