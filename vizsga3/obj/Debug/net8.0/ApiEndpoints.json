@@ -155,6 +155,22 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "GetUserByUsername",
+    "RelativePath": "Felhasznalo/user/username/{felhasznalonev}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "felhasznalonev",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
     "Method": "GetAllUsers",
     "RelativePath": "Felhasznalo/users",
     "HttpMethod": "GET",

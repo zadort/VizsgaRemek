@@ -88,6 +88,19 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
+        // Felhasználó adatainak lekérdezése ID alapján
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+            return Ok(felhasznalo);
+        }
+
+        // Felhasználó adatainak lekérdezése email alapján
         [HttpGet("user/email/{email}")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
@@ -99,60 +112,24 @@ namespace vizsga3.Controllers
             return Ok(felhasznalo);
         }
 
-        [HttpGet("users")]
-        public async Task<IActionResult> GetAllUsers()
+        // Felhasználó adatainak lekérdezése felhasználónév alapján
+        [HttpGet("user/username/{felhasznalonev}")]
+        public async Task<IActionResult> GetUserByUsername(string felhasznalonev)
         {
-            var felhasznalok = await _context.Felhasznaloks.ToListAsync();
-            return Ok(felhasznalok);
-        }
-
-        [HttpPost("user/reset-password")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Email == request.Email);
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-
-            // Generálj egy új jelszót vagy küldj egy jelszó visszaállítási linket emailben
-            var newPassword = GenerateRandomPassword();
-            felhasznalo.Jelszo = HashPassword(newPassword);
-
-            await _context.SaveChangesAsync();
-
-            // Küldj emailt az új jelszóval
-            var emailRequest = new EmailRequestDto(
-                felhasznalo.Email,
-                "Jelszó visszaállítás",
-                $"Kedves {felhasznalo.Felhasznalonev},\n\nAz új jelszavad: {newPassword}\n\nÜdv,\nA csapat"
-            );
-
-            _email.SendEmail(emailRequest);
-
-            return Ok(new { message = "Jelszó visszaállítva és elküldve emailben" });
-        }
-
-        private string GenerateRandomPassword()
-        {
-            // Generálj egy véletlenszerű jelszót
-            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(validChars, 8)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-
-        // Felhasználó adatainak lekérdezése ID alapján
-        [HttpGet("user/{id}")]
-        public async Task<IActionResult> GetUserById(int id)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev);
             if (felhasznalo == null)
             {
                 return NotFound(new { message = "Felhasználó nem található" });
             }
             return Ok(felhasznalo);
+        }
+
+        // Felhasználók listázása
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var felhasznalok = await _context.Felhasznaloks.ToListAsync();
+            return Ok(felhasznalok);
         }
 
         // Felhasználó adatainak módosítása ID alapján
@@ -210,6 +187,43 @@ namespace vizsga3.Controllers
             _context.Felhasznaloks.Remove(felhasznalo);
             await _context.SaveChangesAsync();
             return Ok(new { message = "Felhasználó törölve" });
+        }
+
+        // Felhasználó jelszavának visszaállítása email alapján
+        [HttpPost("user/reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Email == request.Email);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            // Generálj egy új jelszót vagy küldj egy jelszó visszaállítási linket emailben
+            var newPassword = GenerateRandomPassword();
+            felhasznalo.Jelszo = HashPassword(newPassword);
+
+            await _context.SaveChangesAsync();
+
+            // Küldj emailt az új jelszóval
+            var emailRequest = new EmailRequestDto(
+                felhasznalo.Email,
+                "Jelszó visszaállítás",
+                $"Kedves {felhasznalo.Felhasznalonev},\n\nAz új jelszavad: {newPassword}\n\nÜdv,\nA csapat"
+            );
+
+            _email.SendEmail(emailRequest);
+
+            return Ok(new { message = "Jelszó visszaállítva és elküldve emailben" });
+        }
+
+        private string GenerateRandomPassword()
+        {
+            // Generálj egy véletlenszerű jelszót
+            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(validChars, 8)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         // Jelszó hash-elése
