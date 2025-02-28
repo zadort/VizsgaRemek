@@ -88,6 +88,55 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
+        // Felhasználó adatainak lekérdezése
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+            return Ok(felhasznalo);
+        }
+
+        // Felhasználó adatainak módosítása
+        [HttpPut("user/{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] Felhasznalok updatedUser)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            felhasznalo.Felhasznalonev = updatedUser.Felhasznalonev;
+            felhasznalo.Email = updatedUser.Email;
+            // Jelszó frissítése, ha szükséges
+            if (!string.IsNullOrEmpty(updatedUser.Jelszo))
+            {
+                felhasznalo.Jelszo = HashPassword(updatedUser.Jelszo);
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Felhasználó adatai frissítve" });
+        }
+
+        // Felhasználó törlése
+        [HttpDelete("user/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            _context.Felhasznaloks.Remove(felhasznalo);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Felhasználó törölve" });
+        }
+
         // Jelszó hash-elése
         private string HashPassword(string password)
         {
