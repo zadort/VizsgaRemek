@@ -88,36 +88,64 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
         }
 
-        // Felhasználó létrehozása
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+        [HttpGet("user/email/{email}")]
+        public async Task<IActionResult> GetUserByEmail(string email)
         {
-            if (await _context.Felhasznaloks.AnyAsync(f => f.Felhasznalonev == request.Felhasznalonev))
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Email == email);
+            if (felhasznalo == null)
             {
-                return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
+                return NotFound(new { message = "Felhasználó nem található" });
             }
-
-            if (await _context.Felhasznaloks.AnyAsync(f => f.Email == request.Email))
-            {
-                return BadRequest(new { message = "Ez az email cím már regisztrálva van." });
-            }
-
-            var felhasznalo = new Felhasznalok
-            {
-                Felhasznalonev = request.Felhasznalonev,
-                Jelszo = HashPassword(request.Jelszo),
-                Email = request.Email
-            };
-
-            _context.Felhasznaloks.Add(felhasznalo);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Felhasználó sikeresen létrehozva" });
+            return Ok(felhasznalo);
         }
 
-        // Felhasználó adatainak lekérdezése
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var felhasznalok = await _context.Felhasznaloks.ToListAsync();
+            return Ok(felhasznalok);
+        }
+
+        [HttpPost("user/reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Email == request.Email);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            // Generálj egy új jelszót vagy küldj egy jelszó visszaállítási linket emailben
+            var newPassword = GenerateRandomPassword();
+            felhasznalo.Jelszo = HashPassword(newPassword);
+
+            await _context.SaveChangesAsync();
+
+            // Küldj emailt az új jelszóval
+            var emailRequest = new EmailRequestDto(
+                felhasznalo.Email,
+                "Jelszó visszaállítás",
+                $"Kedves {felhasznalo.Felhasznalonev},\n\nAz új jelszavad: {newPassword}\n\nÜdv,\nA csapat"
+            );
+
+            _email.SendEmail(emailRequest);
+
+            return Ok(new { message = "Jelszó visszaállítva és elküldve emailben" });
+        }
+
+        private string GenerateRandomPassword()
+        {
+            // Generálj egy véletlenszerű jelszót
+            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(validChars, 8)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+
+        // Felhasználó adatainak lekérdezése ID alapján
         [HttpGet("user/{id}")]
-        public async Task<IActionResult> GetUser(int id)
+        public async Task<IActionResult> GetUserById(int id)
         {
             var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
             if (felhasznalo == null)
@@ -127,9 +155,9 @@ namespace vizsga3.Controllers
             return Ok(felhasznalo);
         }
 
-        // Felhasználó adatainak módosítása
+        // Felhasználó adatainak módosítása ID alapján
         [HttpPut("user/{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] Felhasznalok updatedUser)
+        public async Task<IActionResult> UpdateUserById(int id, [FromBody] Felhasznalok updatedUser)
         {
             var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
             if (felhasznalo == null)
@@ -149,6 +177,7 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Felhasználó adatai frissítve" });
         }
 
+        // Felhasználó jelszavának módosítása
         [HttpPut("user/{id}/change-password")]
         public async Task<IActionResult> ChangePassword(int id, [FromBody] ChangePasswordRequest request)
         {
@@ -168,111 +197,11 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Jelszó sikeresen módosítva" });
         }
 
-        public class ChangePasswordRequest
-        {
-            public string OldPassword { get; set; }
-            public string NewPassword { get; set; }
-        }
-
-        public class CreateUserRequest
-        {
-            public string Felhasznalonev { get; set; }
-            public string Jelszo { get; set; }
-            public string Email { get; set; }
-        }
-
-        public class UpdateUserRequest
-        {
-            public string Felhasznalonev { get; set; }
-            public string Jelszo { get; set; }
-            public string Email { get; set; }
-        }
-
-        // Felhasználó törlése
+        // Felhasználó törlése ID alapján
         [HttpDelete("user/{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUserById(int id)
         {
             var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-
-            _context.Felhasznaloks.Remove(felhasznalo);
-            await _context.SaveChangesAsync();
-            return Ok(new { message = "Felhasználó törölve" });
-        }
-
-        // Felhasználók listázása
-        [HttpGet("users")]
-        public async Task<IActionResult> GetUsers()
-        {
-            var felhasznalok = await _context.Felhasznaloks.ToListAsync();
-            return Ok(felhasznalok);
-        }
-
-        // Felhasználó keresése felhasználónév alapján
-        [HttpGet("user/search/{felhasznalonev}")]
-        public async Task<IActionResult> SearchUserByUsername(string felhasznalonev)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev);
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-            return Ok(felhasznalo);
-        }
-
-        // Felhasználó keresése felhasználónév és email alapján
-        [HttpGet("user/search")]
-        public async Task<IActionResult> SearchUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-            return Ok(felhasznalo);
-        }
-
-        // Felhasználók keresése email alapján
-        [HttpGet("users/search")]
-        public async Task<IActionResult> SearchUsersByEmail([FromQuery] string email)
-        {
-            var felhasznalok = await _context.Felhasznaloks.Where(f => f.Email == email).ToListAsync();
-            if (!felhasznalok.Any())
-            {
-                return NotFound(new { message = "Felhasználók nem találhatók" });
-            }
-            return Ok(felhasznalok);
-        }
-
-        // Felhasználó szerkesztése felhasználónév és email alapján
-        [HttpPut("user/update")]
-        public async Task<IActionResult> UpdateUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email, [FromBody] UpdateUserRequest request)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
-            if (felhasznalo == null)
-            {
-                return NotFound(new { message = "Felhasználó nem található" });
-            }
-
-            felhasznalo.Felhasznalonev = request.Felhasznalonev;
-            felhasznalo.Email = request.Email;
-            if (!string.IsNullOrEmpty(request.Jelszo))
-            {
-                felhasznalo.Jelszo = HashPassword(request.Jelszo);
-            }
-
-            await _context.SaveChangesAsync();
-            return Ok(new { message = "Felhasználó adatai frissítve" });
-        }
-
-        // Felhasználó törlése felhasználónév és email alapján
-        [HttpDelete("user/delete")]
-        public async Task<IActionResult> DeleteUserByUsernameAndEmail([FromQuery] string felhasznalonev, [FromQuery] string email)
-        {
-            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev && f.Email == email);
             if (felhasznalo == null)
             {
                 return NotFound(new { message = "Felhasználó nem található" });
@@ -329,5 +258,35 @@ namespace vizsga3.Controllers
         public string Felhasznalonev { get; set; }
         public string Jelszo { get; set; }
     }
-}
 
+    public class ChangePasswordRequest
+    {
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+    }
+
+    public class CreateUserRequest
+    {
+        public string Felhasznalonev { get; set; }
+        public string Jelszo { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class UpdateUserRequest
+    {
+        public string Felhasznalonev { get; set; }
+        public string Jelszo { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class UpdateUserProfileRequest
+    {
+        public string Felhasznalonev { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class ResetPasswordRequest
+    {
+        public string Email { get; set; }
+    }
+}

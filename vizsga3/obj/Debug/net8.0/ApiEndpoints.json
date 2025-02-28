@@ -49,7 +49,7 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetUser",
+    "Method": "GetUserById",
     "RelativePath": "Felhasznalo/user/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -65,7 +65,7 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "UpdateUser",
+    "Method": "UpdateUserById",
     "RelativePath": "Felhasznalo/user/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -86,7 +86,7 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "DeleteUser",
+    "Method": "DeleteUserById",
     "RelativePath": "Felhasznalo/user/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -115,7 +115,7 @@
       },
       {
         "Name": "request",
-        "Type": "vizsga3.Controllers.FelhasznaloController\u002BChangePasswordRequest",
+        "Type": "vizsga3.Controllers.ChangePasswordRequest",
         "IsRequired": true
       }
     ],
@@ -123,56 +123,14 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "DeleteUserByUsernameAndPassword",
-    "RelativePath": "Felhasznalo/user/delete",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalonev",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "jelszo",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "SearchUserByUsernameAndPassword",
-    "RelativePath": "Felhasznalo/user/search",
+    "Method": "GetUserByEmail",
+    "RelativePath": "Felhasznalo/user/email/{email}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "felhasznalonev",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "jelszo",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "SearchUserByUsername",
-    "RelativePath": "Felhasznalo/user/search/{felhasznalonev}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalonev",
+        "Name": "email",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -181,44 +139,28 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetUsers",
+    "Method": "ResetPassword",
+    "RelativePath": "Felhasznalo/user/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "Method": "GetAllUsers",
     "RelativePath": "Felhasznalo/users",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "DeleteUsersByEmail",
-    "RelativePath": "Felhasznalo/users/delete",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "SearchUsersByEmail",
-    "RelativePath": "Felhasznalo/users/search",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
     "ReturnTypes": []
   },
   {
