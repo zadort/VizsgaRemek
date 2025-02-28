@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using vizsga3.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace vizsga3.Controllers
 {
@@ -16,16 +17,16 @@ namespace vizsga3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var kartyak = _context.Kartyaks.ToList();
+            var kartyak = await _context.Kartyaks.ToListAsync();
             return Ok(kartyak);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var kartya = _context.Kartyaks.Find(id);
+            var kartya = await _context.Kartyaks.FindAsync(id);
             if (kartya == null)
             {
                 return NotFound();
@@ -34,17 +35,17 @@ namespace vizsga3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Kartyak kartya)
+        public async Task<IActionResult> Post([FromBody] Kartyak kartya)
         {
             _context.Kartyaks.Add(kartya);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Kartyak kartya)
+        public async Task<IActionResult> Put(int id, [FromBody] Kartyak kartya)
         {
-            var kartyaToUpdate = _context.Kartyaks.Find(id);
+            var kartyaToUpdate = await _context.Kartyaks.FindAsync(id);
             if (kartyaToUpdate == null)
             {
                 return NotFound();
@@ -54,22 +55,29 @@ namespace vizsga3.Controllers
             kartyaToUpdate.Leiras = kartya.Leiras;
             kartyaToUpdate.KepUrl = kartya.KepUrl;
             kartyaToUpdate.Kategoria = kartya.Kategoria;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
-
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var kartya = _context.Kartyaks.Find(id);
+            var kartya = await _context.Kartyaks.FindAsync(id);
             if (kartya == null)
             {
                 return NotFound();
             }
             _context.Kartyaks.Remove(kartya);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        // Kártyák kategória szerinti lekérdezése
+        [HttpGet("kategoria/{kategoria}")]
+        public async Task<IActionResult> GetKartyakByKategoria(string kategoria)
+        {
+            var kartyak = await _context.Kartyaks.Where(k => k.Kategoria == kategoria).ToListAsync();
+            return Ok(kartyak);
         }
     }
 }
