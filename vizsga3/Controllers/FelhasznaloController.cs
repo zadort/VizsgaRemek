@@ -122,6 +122,33 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Felhasználó adatai frissítve" });
         }
 
+        [HttpPut("user/{id}/change-password")]
+        public async Task<IActionResult> ChangePassword(int id, [FromBody] ChangePasswordRequest request)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FindAsync(id);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+
+            if (!VerifyPassword(request.OldPassword, felhasznalo.Jelszo))
+            {
+                return BadRequest(new { message = "Hibás régi jelszó" });
+            }
+
+            felhasznalo.Jelszo = HashPassword(request.NewPassword);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Jelszó sikeresen módosítva" });
+        }
+
+        public class ChangePasswordRequest
+        {
+            public string OldPassword { get; set; }
+            public string NewPassword { get; set; }
+        }
+
+
+
         // Felhasználó törlése
         [HttpDelete("user/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
@@ -135,6 +162,26 @@ namespace vizsga3.Controllers
             _context.Felhasznaloks.Remove(felhasznalo);
             await _context.SaveChangesAsync();
             return Ok(new { message = "Felhasználó törölve" });
+        }
+
+        // Felhasználók listázása
+        [HttpGet("users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var felhasznalok = await _context.Felhasznaloks.ToListAsync();
+            return Ok(felhasznalok);
+        }
+
+        // Felhasználó keresése felhasználónév alapján
+        [HttpGet("user/search/{felhasznalonev}")]
+        public async Task<IActionResult> SearchUserByUsername(string felhasznalonev)
+        {
+            var felhasznalo = await _context.Felhasznaloks.FirstOrDefaultAsync(f => f.Felhasznalonev == felhasznalonev);
+            if (felhasznalo == null)
+            {
+                return NotFound(new { message = "Felhasználó nem található" });
+            }
+            return Ok(felhasznalo);
         }
 
         // Jelszó hash-elése
