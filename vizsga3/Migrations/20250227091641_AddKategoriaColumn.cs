@@ -10,7 +10,7 @@ namespace vizsga3.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Kategoria",
+                name: "category",
                 table: "Kartyaks",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -19,7 +19,7 @@ namespace vizsga3.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Kategoria",
+                name: "category",
                 table: "Kartyaks");
         }
     }

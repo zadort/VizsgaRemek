@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2025 at 10:49 AM
+-- Generation Time: Mar 01, 2025 at 09:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -26,110 +26,63 @@ USE `vizsga3`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `felhasznalok`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `felhasznalok` (
-  `Id` int(11) NOT NULL,
-  `Felhasznalonev` varchar(100) NOT NULL,
-  `Jelszo` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `felhasznalok`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `felhasznalok` (`Id`, `Felhasznalonev`, `Jelszo`, `Email`) VALUES
-(1, 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin@gmail.com'),
-(2, 'sizaks1', '$2a$04$vqghlpCvO.2u5f4ihQgT4.JY80Xv898v/TFlRc2HrIF4C7wE5fKna', 'vcregg1@intel.com'),
-(3, 'jbogies2', '$2a$04$Paho4M3uGxuPfJkGd3edbeJyTzCIh6SzgidWw1fQkwvqRXidzRbSK', 'mlindenbluth2@google.co.jp'),
-(4, 'achittie3', '$2a$04$wxMv2ocPYb6T2dVpjm/Vb.K5qjjVPq26n5MNogM.7lz4QhA1VNDj2', 'cgilbane3@va.gov'),
-(5, 'jfeldklein4', '$2a$04$cd91AAt4FeLjFhK.i7wKwOThA.D5w9wVipRZrHT5sTc9eaIr0NByS', 'rbaxandall4@mashable.com'),
-(6, 'rludwikiewicz5', '$2a$04$lSNkRkNAYCtm8nvoZp66munbRPwKQiV2RqPKP2/Ep.pgIPl07UmT6', 'jdimberline5@ning.com'),
-(7, 'brousel6', '$2a$04$yzHRKxKsTqs8oLo2J2ijXOLGms9SxeDst3RKdrxn9mnQdo75cEZnu', 'roxteby6@networkadvertising.org'),
-(8, 'ebow7', '$2a$04$aJgDdqyum3WKySoeG3mzl.Gsk67uIIFSoXkYUvVr1QpRQIstuzAzy', 'fgipp7@netvibes.com'),
-(9, 'lbelitz8', '$2a$04$l8.0I8hxv0SFidVgpbeAe.xBGsIGQroMan1JipPvg5Ia50//DC.0K', 'rpurchon8@xrea.com'),
-(10, 'aklicher9', '$2a$04$k/zleh3FxxJfFoiWuZCaGeIA./8vYt/GB/2EIBj9.n47oVko8gPPC', 'cfulk9@mashable.com'),
-(11, 'skenderdinea', '$2a$04$AaUrEgerlS2l5SONJlDDUO.9dw0emkLHGvr3JX7/KhVmybPMeGEdq', 'tlaureta@tripadvisor.com'),
-(12, 'mbetancourtb', '$2a$04$kvQVrXs8Lq7vlS/.22C3nOCEzff5T5N/yrRNPIyjgNTCSedl7PRb.', 'aheadrickb@mac.com'),
-(13, 'mwoolattc', '$2a$04$rjmWovlygzU49zRAEBuoDO7BFrnaymZpC6yEi1PdKJVmm6C6xWGPS', 'writzmanc@freewebs.com'),
-(14, 'ewyllcocksd', '$2a$04$Fzj0i5X9j8JpTj6Ctfb5Re0Vi6WBZw8jrpaVxpLWK7BRDTmYtPUJK', 'nharbisond@eventbrite.com'),
-(15, 'jfearnleye', '$2a$04$EcEpxYPBCH0DfIt/xAMDdOJD3y3lD0sQD29gcURTXY7qccGJmTTMu', 'rcoupere@harvard.edu'),
-(16, 'nmackibbonf', '$2a$04$wBJWSNJpKAkP.Ghcmjq8BO0waFbFGWqMEggoSqU3NgelLXOlNERzG', 'ecronf@infoseek.co.jp'),
-(17, 'eurweng', '$2a$04$3n5w0dfXab46lmVBPdMhMOGQs/5.am0KSbvaVwW/PaTxqF1tT4LYO', 'ecloughg@instagram.com'),
-(18, 'jkighlyh', '$2a$04$1yIO2f89MxK20YoGfc9TlOUwce7aX/99CpTebJNZhnGzMKJWl.WH.', 'rveillardh@networksolutions.com'),
-(19, 'gcannopi', '$2a$04$k/dDnJSSfbAc0m0/PfGKvu7bQ0rWiN.jZuh5hwc8x0eQ0ZIqpiM6G', 'hranklini@thetimes.co.uk'),
-(20, 'glamminj', '$2a$04$3ebhtuV3tUWBYATnjepN2u1Pr2s31A1AvZcH1ks8gKG9PvlQAsieK', 'abubbj@macromedia.com'),
-(21, 'dshadrackk', '$2a$04$pEu2idZ2nj5j6/7awD7Bdu19qw1py0LdrSaetK9AkKdtGs8DKVFC6', 'wmccordk@topsy.com'),
-(22, 'edessaurl', '$2a$04$absSSiL5oMj2Hn0706XH/.BYC9P.qNJ09tJdliZDp3a9k8N1XSNwq', 'rhaquardl@infoseek.co.jp'),
-(23, 'swinchesterm', '$2a$04$yNDtVZXTgJa7aN.l2iBj3OasBF1sOBxCe0RfvMIooBXhRH8Kav4x2', 'kmallenderm@networkadvertising.org'),
-(24, 'cariesn', '$2a$04$bOYVn2ZnzL/zTDfXJvHBOOlJahgemeRIySTsPGuEOyNJ3aOHq4mLG', 'sgrogonan@newyorker.com'),
-(25, 'edomeniconeo', '$2a$04$QYr5OHAHzpRdaCbma4cjVOVoP3tMGYJ/kgzV2kAjSvF.Tf7OT7QxO', 'bmccarrono@flavors.me'),
-(26, 'jcopleyp', '$2a$04$VGcFjKdKZBF4N9Ri.SZ50uKMhJiYdRdKSe9NAs1PFWWzLwS7XJgBC', 'bsprullp@list-manage.com'),
-(27, 'lmervynq', '$2a$04$Qozyyod4557M4C38RxPeTOCZxbtRe7YvD4SqGKCRJL1MddBOAmybm', 'ahairyesq@odnoklassniki.ru'),
-(28, 'cgoldr', '$2a$04$XUKLNol2MlszV0uTsERvxesGPpyGkZBoaxPvxJ9J.GLXM9/OwVv26', 'csailer@mapquest.com'),
-(29, 'llarretts', '$2a$04$hd9.8yeGgiedlBcxSuM0T.dybTwFxK4N2.742qJefLJ3nchEiOtRu', 'obevenss@blogs.com'),
-(30, 'jballintynet', '$2a$04$2s/7tpyAt1jSYW2H7I5RWu/eC3svBii8Ds3KEmh7NzhG2FAJT7SB.', 'eferrelit@phoca.cz'),
-(31, 'evonbrooku', '$2a$04$NjatsTdpZC/0CW0U8dkeVeFdTdTWiJkficGNGIw2nkwbZ9E53kS9K', 'dnewburnu@hostgator.com'),
-(32, 'ldullardv', '$2a$04$rhr70m/xq66E.upAy6Vszu3xki1eppja38j.0xmWv7iK0jo1U4O8y', 'gjuschkav@irs.gov'),
-(33, 'wgeckew', '$2a$04$1wBuScF/4SiPEMSasGcKsulHfyc.VjFCJmt0W5thSk.v7TzuyxpAC', 'bkitteringhamw@sciencedirect.com'),
-(34, 'whenrichsenx', '$2a$04$K7l8KSkYC.iQi4roG96iXOnp3TKd.DUil.WkD3hHQd/2KiBrTZVly', 'wuvedalex@eepurl.com'),
-(35, 'hrandalsony', '$2a$04$AJJ0Fx8v6bRecsfoGIhL6O8D4YGrKoIIlS7qx4WvvpDkjshHp8hXe', 'gmcairty@flickr.com'),
-(36, 'pledekerz', '$2a$04$E1V/dOxhD/Mb9wkJafkYlex/bQ1eMEJ65jJO493hIudrMY.npiteu', 'pstigersz@csmonitor.com'),
-(37, 'lcourtois10', '$2a$04$Vz1Yd4xyNJ96drsIeP3hbujqyq5pYfyXOTckOlF3Mky1bvG4mByGm', 'bibbeson10@amazon.co.jp'),
-(38, 'dattrey11', '$2a$04$lXilQDnBPIqjjF6ZmJGiMew4byOwjs0ZW/MPXATesk5zPkvTs/0e.', 'cshoebrook11@51.la'),
-(39, 'dcorkan12', '$2a$04$nM0vzBxTcJOuytOcudmibuDXot0ZevJYVKMkrylRObopvHjUBO0le', 'nlunny12@arstechnica.com'),
-(40, 'mvallentine13', '$2a$04$pwRjzvSMUCmgiqEcJyOAl.BtbaQRDBSvxqYOqrL2UjU6vTrBhDZRG', 'pfancutt13@drupal.org'),
-(41, 'rhinsch14', '$2a$04$q9ltCifZc53h8xPrY610xelycaLj2OHxgtLj3.Z1Cjppg7ADy.D.i', 'bivankin14@chron.com'),
-(42, 'adeye15', '$2a$04$LnQE/ra3lzX9BSCjT49Sru9/2fNXUvaWapp2OtBdIzad2kos2l.Um', 'asorrie15@dion.ne.jp'),
-(43, 'dbasnall16', '$2a$04$UAU4uSHsgmzUST58W.ZUtOyxks6WBmHwuNok5beVdpALSEtq.pnZa', 'ewatters16@ustream.tv'),
-(44, 'rpaszek17', '$2a$04$kqVaNRTqUnqSfsSYTBS7healhFhpfJuJ4K9G0zVvOBjUD0.Ajq9he', 'chellier17@icio.us'),
-(45, 'sgewer18', '$2a$04$RGk5IojGvhpe4dzOwTcYluiXw8is4qs0mogzT5uHQ.la0ubPaXtkG', 'jnathon18@washington.edu'),
-(46, 'eavrahamian19', '$2a$04$wPqgJmnU57suEQgmTIxGmud9668cKKBjwxl715uRAI008h9eDPMqy', 'crider19@lulu.com'),
-(47, 'sbatie1a', '$2a$04$IYQ1ELZPbvlbovWOLSSyxOQdal6BAgs9OE2D3GoMhJ1LIOLQN3iPW', 'jgoforth1a@umich.edu'),
-(48, 'cpawelski1b', '$2a$04$gYvffeGDxVQe/ViGLdmuMe4cDp1u7Lta9eD/K0Ps2Be2k5HPlwt2m', 'mamott1b@jugem.jp'),
-(49, 'apeasegood1c', '$2a$04$3MGSVvKxtYZ1fb2klmlS9ustbydysYATfFqJ8f8VKy5ZZtVnPV/ny', 'jorae1c@forbes.com'),
-(50, 'glucchi1d', '$2a$04$svjVlYqSkBoCfGxtciunwen230E4ercaMB2TV.Kpk0Bn7E9UoQH/W', 'atrivett1d@theguardian.com'),
-(51, 'oaloshechkin1e', '$2a$04$YDOcqFgg.eRrJycMQV8vdeqoxHh5U4CB7ipmqJRqA1O/1ZN20RIAO', 'fmaciejewski1e@digg.com');
+INSERT INTO `categories` (`id`, `category`) VALUES
+(1, 'Notebook'),
+(2, 'Okostelefon'),
+(3, 'Fülhallgató'),
+(4, 'Okosóra'),
+(5, 'Tablet'),
+(6, 'VR Szemüveg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kartyak`
+-- Table structure for table `products`
 --
 
-CREATE TABLE `kartyak` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `nev` varchar(255) DEFAULT NULL,
-  `ar` int(255) DEFAULT NULL,
-  `leiras` varchar(10000) DEFAULT NULL,
-  `kep_url` varchar(255) DEFAULT NULL,
-  `muszaki_adatok` varchar(255) DEFAULT NULL,
-  `Kategoria` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `price` int(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `specs` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kartyak`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `kartyak` (`id`, `nev`, `ar`, `leiras`, `kep_url`, `muszaki_adatok`, `Kategoria`) VALUES
-(1, 'Dell XPS 13', 500000, 'A Dell XPS 13 a prémium kategóriás, ultrakompakt laptop, amely a legújabb technológiát és stílust ötvözi. Kiváló teljesítménye és lenyűgöző kijelzője ideálissá teszi mindennapi feladatokhoz, kreatív munkához és üzleti használatra.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 13,4\" InfinityEdge FHD+ / 4K UHD+ érintőképernyő, keskeny kávával.\r\n    Erőteljes teljesítmény: Intel Core i5 / i7, gyors SSD meghajtóval.\r\n    Hosszú akkumulátor-élettartam: Akár 12-15 óra folyamatos használat.\r\n    Mobilitás: 1,2 kg súly, 14,8 mm vastagság, prémium anyaghasználat.\r\n\r\n\r\nA Dell XPS 13 egy tökéletes választás a prémium laptopok között, kiváló teljesítménnyel és elegáns dizájnnal.', 'https://p1.akcdn.net/full/998179977.dell-xps-13-plus-9320-9320fi7wb1.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,4\" InfinityEdge FHD+ / 4K UHD+ érintőképernyő\r\n    Processzor: Intel Core i5 vagy i7, 10. generáció\r\n    RAM: 8 GB / 16 GB LPDDR4x\r\n    Tárhely: 256 GB / 512 GB / 1 TB SSD\r\n    Operációs rendszer: Windows 11 Home', 'Notebook'),
-(2, 'Apple MacBook Air M2', 450000, 'A MacBook Air M2 egy elegáns, könnyű és nagy teljesítményű laptop, amely az Apple új M2 chipjével érkezik, így gyorsabb és energiahatékonyabb, mint valaha. Ideális választás mindennapi feladatokhoz, kreatív munkához, üzleti használatra és szórakozásra egyaránt.\r\n\r\nFőbb jellemzők:\r\n\r\n    M2 chip: Fejlett teljesítmény és energiahatékonyság.\r\n    Kiváló kijelző: 13,6 hüvelykes Retina kijelző, True Tone technológiával.\r\n    Hosszú akkumulátor-élettartam: Akár 18 óra webes böngészés és videólejátszás.\r\n    Könnyű és vékony: Csak 1,24 kg súlyú, 1,13 cm vastag.\r\n    Sokoldalú portok: 2x Thunderbolt / USB 4, MagSafe töltőcsatlakozó.\r\n\r\n\r\nMiért válaszd?\r\nAz Apple MacBook Air M2 tökéletes választás mindazok számára, akik egy könnyű, gyors és hatékony laptopot keresnek, amely elegáns dizájnnal és kiváló teljesítménnyel rendelkezik. A M2 chip hihetetlen gyorsasága és az energiatakarékos működés hosszú akkumulátor-élettartamot biztosít, így ideális választás diákok, üzletemberek és kreatív szakemberek számára.', 'https://p1.akcdn.net/full/1081640598.apple-macbook-air-m2-z15s000re.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,6\" Retina kijelző, 2560x1664 pixel felbontás\r\n    Processzor: Apple M2 chip (8 magos CPU, 10 magos GPU)\r\n    RAM: 8 GB / 16 GB Unified Memory\r\n    Tárhely: 256 GB / 512 GB / 1 TB / 2 TB SSD\r\n    Operációs rendsze', 'Notebook'),
-(3, 'Lenovo ThinkPad X1 Carbon', 600000, 'A Lenovo ThinkPad X1 Carbon egy prémium kategóriás ultrakönnyű laptop, amely a legújabb technológiát és robusztus dizájnt ötvözi. Kiváló választás üzletembereknek, kreatív szakembereknek és mindenkinek, aki magas szintű teljesítményt és mobilitást igényel.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 14\" WQHD+ / 4K UHD, 100% sRGB színtér, Dolby Vision támogatással.\r\n    Erőteljes teljesítmény: Intel Core i5 / i7 (12. generáció), akár 32 GB RAM, gyors SSD.\r\n    Hosszú akkumulátor-élettartam: Akár 15-20 óra folyamatos használat.\r\n    Kiváló mobilitás: 1,12 kg súly, mindössze 14,9 mm vastagság.\r\n    Tartósság: MIL-STD-810H katonai szabványoknak megfelelően tesztelve.\r\n\r\nMiért válaszd?\r\nA Lenovo ThinkPad X1 Carbon egy csúcskategóriás laptop, amely kiváló teljesítményt, lenyűgöző kijelzőt és hosszú akkumulátor-élettartamot kínál. Tökéletes választás azoknak, akik igényes munkát végeznek, gyakran úton vannak, és a legjobb minőséget keresik egy könnyű, de erős laptopban.', 'https://p1.akcdn.net/full/1284532306.lenovo-thinkpad-x1-carbon-gen-12-21kc0056hv.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 14\" WQHD+ (2560x1600) / 4K UHD (3840x2160) IPS, érintőképernyő opcióval\r\n    Processzor: Intel Core i5 / i7 (12. generáció)\r\n    RAM: 16 GB / 32 GB LPDDR5\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Operációs rendszer: Win', 'Notebook'),
-(4, 'HP Spectre x360', 550000, 'A HP Spectre x360 egy prémium 2 az 1-ben laptop, amely kiemelkedő teljesítményt és elegáns dizájnt kínál. A forgatható kijelző és a nagy teljesítmény ideálissá teszi kreatív feladatokhoz, üzleti használatra, és mindennapi feladatokhoz is.\r\n\r\nFőbb jellemzők:\r\n\r\n    Forgatható kijelző: 13,5\" / 14\" 3K / 4K UHD OLED érintőképernyő, 360 fokban elforgatható.\r\n    Erőteljes teljesítmény: Intel Core i5 / i7 (12. generáció), akár 16 GB RAM, gyors SSD meghajtó.\r\n    Hosszú akkumulátor-élettartam: Akár 12-15 óra folyamatos használat.\r\n    Stílusos dizájn: Vékony, prémium fémházas kivitel, modern megjelenés.\r\n    Tökéletes mobilitás: 1,3 kg súly, 16,5 mm vastagság.\r\n\r\n\r\nMiért válaszd?\r\nA HP Spectre x360 ideális választás azoknak, akik a prémium dizájnt és a hordozhatóságot keresik, miközben nagy teljesítményre van szükségük. A 360 fokban elforgatható érintőképernyő és a hosszú akkumulátor-élettartam tökéletesen alkalmassá teszi a kreatív munkákra, valamint mindennapi üzleti és szórakoztató feladatokra egyaránt.', 'https://p1.akcdn.net/full/629150685.hp-spectre-x360-13-aw0001nh-8bs71ea.jpg', '\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 13,5\" / 14\" 3K (3000x2000) / 4K UHD (3840x2160) OLED, érintőképernyő\r\n    Processzor: Intel Core i5 / i7 (12. generáció)\r\n    RAM: 8 GB / 16 GB LPDDR4x\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Operációs rendszer: Wind', 'Notebook'),
-(5, 'Asus ROG Zephyrus G14', 650000, 'Az Asus ROG Zephyrus G14 a prémium kategóriás gaming laptopok királya, amely erőteljes teljesítményt és lenyűgöző dizájnt kínál a játékosok és kreatív szakemberek számára. Kompakt és könnyű kialakítása miatt tökéletes mobilitást biztosít, miközben a legújabb technológia gondoskodik a páratlan teljesítményről.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 14\" QHD (2560x1600) 120Hz / 144Hz / 4K UHD érintőképernyő, nagy fényerő és színgazdagság.\r\n    Erőteljes teljesítmény: AMD Ryzen 9 / Ryzen 7 7000 sorozatú processzor, NVIDIA GeForce RTX 4050/4060/4070 GPU, akár 32 GB RAM.\r\n    Nagy teljesítményű hűtés: HyperCool Pro rendszer, amely biztosítja a laptop hosszú távú teljesítményét és hatékony hűtést.\r\n    Mobilitás: 1,7 kg súly, prémium fémház.\r\n    Tökéletes játékélmény: Gyors válaszidő, alacsony input lag, és a ROG szintű játékos dizájn.\r\n\r\n\r\nMiért válaszd?\r\nAz Asus ROG Zephyrus G14 az ideális választás azoknak, akik nemcsak játékra, hanem igényes grafikai munkákra is szeretnének egy erőteljes laptopot. A szupergyors kijelző és az erős GPU kombinációja biztosítja a csúcsminőségű vizuális élményeket, míg az AMD Ryzen processzor és az NVIDIA RTX grafika a legújabb játékok futtatására is elegendő teljesítményt nyújt.', 'https://p1.akcdn.net/full/1369513813.asus-rog-zephyrus-g14-ga403uv-qs022w.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 14\" QHD (2560x1600) / 4K UHD, 120Hz / 144Hz, IPS, érintőképernyő\r\n    Processzor: AMD Ryzen 9 7940HS / Ryzen 7 7840HS (7000 sorozat)\r\n    Grafikus kártya: NVIDIA GeForce RTX 4050 / RTX 4060 / RTX 4070\r\n    RAM: 16 G', 'Notebook'),
-(6, 'ASUS TUF Gaming A15 FA507NUR-LP005', 350000, 'Az ASUS TUF Gaming A15 FA507NUR-LP005 egy erőteljes és strapabíró gaming laptop, amely ideális választás azok számára, akik kiemelkedő teljesítményre és hosszú távú megbízhatóságra vágynak. A TUF sorozat a tartósságáról és a katonai szabványú tesztelésről ismert, így az A15 minden helyzetben megállja a helyét, legyen szó intenzív játékokról vagy kemikális igénybevételről.\r\n\r\nFőbb jellemzők:\r\n\r\n    Erőteljes kijelző: 15,6\" FHD (1920x1080) 144Hz IPS, amely kiváló vizuális élményt nyújt a gyors mozgású játékokhoz is.\r\n    Hihetetlen teljesítmény: AMD Ryzen 7 7735HS processzor, NVIDIA GeForce RTX 4060 grafika, 16 GB DDR5 RAM és 512 GB SSD tároló.\r\n    Hosszú üzemidő: Akár 8-10 óra normál használat mellett, köszönhetően az optimalizált energiafelhasználásnak.\r\n    Tartós és robosztus: A TUF sorozat erős, katonai szabványoknak megfelelő kialakítást kínál, amely a legkeményebb környezetekben is megállja a helyét.\r\n    Hatékony hűtés: A TUF Gaming laptopok különleges hűtési rendszere biztosítja, hogy a rendszer mindig optimális teljesítménnyel működjön.\r\n\r\nMiért válaszd?\r\nAz ASUS TUF Gaming A15 egy kiváló választás, ha erőteljes és megbízható gaming laptopra van szükséged, amely hosszú távon kiszolgálja igényeidet. Az RTX 4060 grafika és a Ryzen 7 processzor lehetővé teszi a legújabb játékok és alkalmazások zökkenőmentes futtatását, míg a robosztus, katonai szabványú kialakítás biztosítja a laptop hosszú távú megbízhatóságát.', 'https://p1.akcdn.net/full/1328151121.asus-tuf-gaming-a15-fa507nur-lp005.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 15,6\" FHD (1920x1080), 144Hz IPS\r\n    Processzor: AMD Ryzen 7 7735HS (8 mag, 16 szál, 3.2GHz alap, 4.8GHz boost)\r\n    Grafikus kártya: NVIDIA GeForce RTX 4060\r\n    RAM: 16 GB DDR5\r\n    Tárhely: 512 GB PCIe Gen 4 SSD', 'Notebook'),
-(7, 'Apple MacBook Air 13.3 M1 MGN63MG/A', 385000, 'Az Apple MacBook Air 13.3 M1 MGN63MG/A a legújabb Apple M1 chip-pel felszerelt, prémium ultrakompakt laptop, amely kiemelkedő teljesítményt, lenyűgöző akkumulátor-élettartamot és egyedi dizájnt kínál. Az Apple híres a minőségéről és az egyszerű, de elegáns designjáról, és ez a MacBook Air sem kivétel. Ideális választás azok számára, akik könnyű, de erőteljes laptopot keresnek munkához, tanuláshoz vagy szórakozáshoz.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 13,3\" Retina kijelző, True Tone technológiával, amely élénk színeket és éles képeket biztosít.\r\n    Erőteljes teljesítmény: Apple M1 chip, 8 magos CPU és 7 magos GPU, amely gyors és sima teljesítményt garantál minden feladathoz.\r\n    Hosszú akkumulátor-élettartam: Akár 15-18 óra webes böngészés vagy akár 20 óra videólejátszás egyetlen töltéssel.\r\n    Vékony és könnyű: Csak 1,29 kg súlyú, 16,1 mm vastagságú, így ideális mobilitásra.\r\n    Többszörös portok: 2x Thunderbolt 3 (USB-C), 3,5 mm-es fejhallgató-csatlakozó.\r\n\r\nMiért válaszd?\r\nAz Apple MacBook Air M1 tökéletes választás, ha egy gyors, megbízható és hosszú akkumulátor-élettartamú laptopot keresel. A M1 chip kiemelkedő teljesítménye és energiahatékonysága lehetővé teszi, hogy zökkenőmentesen dolgozz, játssz vagy nézz filmeket. Az ultrakönnyű és vékony kialakításnak köszönhetően könnyen hordozható, míg a Retina kijelző gyönyörű, élénk színeket és részletgazdag képeket biztosít.', 'https://p1.akcdn.net/full/1206282703.apple-macbook-air-13-3-m1-mgn63mg-a.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,3\" Retina kijelző (2560 x 1600 felbontás), True Tone technológia\r\n    Processzor: Apple M1 chip, 8 magos CPU, 7 magos GPU\r\n    RAM: 8 GB Unified RAM\r\n    Tárhely: 256 GB SSD\r\n    Operációs rendszer: macOS Montere', 'Notebook'),
-(8, 'ASUS Vivobook X1504VA-BQ772', 190000, 'Az ASUS Vivobook X1504VA-BQ772 egy kiváló ár-érték arányú laptop, amely ideális mindennapi használatra, iskolai feladatokhoz és irodai munkákhoz. A Vivobook sorozatot az egyszerű, mégis megbízható teljesítmény jellemzi, és az X1504VA-BQ772 is ezt a filozófiát követi. A laptop megfelelő egyensúlyt kínál a teljesítmény és a mobilitás között, mindezt egy szép dizájnban.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 15,6\"-os Full HD (1920 x 1080) kijelző, amely élénk színeket és tiszta képeket biztosít.\r\n    Erőteljes teljesítmény: Intel Core i5 (11. generáció) processzor és 8 GB RAM, amely elegendő teljesítményt biztosít a legtöbb napi feladathoz.\r\n    Nagy tárhely: 512 GB SSD, amely gyors indítást és elegendő helyet kínál fájlok, dokumentumok és programok tárolására.\r\n    Hosszú akkumulátor-élettartam: Akár 6-8 óra webes böngészés, így ideális mobilitásra és hosszú munkanapokra.\r\n    Modern design: Vékony és könnyű kivitel, amely könnyedén elfér a táskában.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 15,6\" Full HD (1920 x 1080), matt kijelző\r\n    Processzor: Intel Core i5-1135G7 (11. generáció)\r\n    RAM: 8 GB DDR4\r\n    Tárhely: 512 GB SSD\r\n    Operációs rendszer: Windows 11 Home\r\n    Akkumulátor üzemidő: Akár 6-8 óra\r\n    Súly: 1,8 kg\r\n    Portok: 1x USB 3.2 Type-C, 2x USB 3.2 Type-A, 1x USB 2.0, HDMI, 3,5 mm-es fejhallgató-csatlakozó\r\n\r\nMiért válaszd?\r\nAz ASUS Vivobook X1504VA-BQ772 tökéletes választás azok számára, akik egy megfizethető, de mégis erőteljes laptopot keresnek mindennapi használatra. A nagy teljesítményű Intel Core i5 processzor és az SSD gyors indítást és zökkenőmentes munkát biztosít, miközben a 15,6\"-os Full HD kijelző tiszta és élénk képeket kínál. Az ergonomikus design és a hosszú akkumulátor-élettartam lehetővé teszi, hogy könnyedén dolgozz és szórakozz bárhol.', 'https://p1.akcdn.net/full/1254648817.asus-vivobook-x1504va-bq772.jpg', NULL, 'Notebook'),
-(9, 'Lenovo IdeaPad 1 82V700FBHV', 140000, 'A Lenovo IdeaPad 1 82V700FBHV egy költséghatékony és praktikus laptop, amely ideális alapvető feladatokhoz, például internetezéshez, dokumentumok szerkesztéséhez és online tanuláshoz. A könnyű és kompakt kialakításnak köszönhetően könnyedén hordozható, miközben elégséges teljesítményt nyújt a mindennapi használathoz.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 14\"-os Full HD (1920x1080) kijelző, amely éles és tiszta képeket biztosít.\r\n    Kompakt és könnyű: 1,4 kg súlyával rendkívül könnyű és hordozható.\r\n    Megfelelő teljesítmény: AMD Athlon 3050U processzor és 4 GB RAM, amely elégséges teljesítményt biztosít alapvető feladatokhoz.\r\n    SSD tároló: 128 GB SSD, amely gyors rendszerindítást és megfelelő helyet biztosít a fájlok számára.\r\n    Hosszú akkumulátor-élettartam: Akár 8 órán át képes működni, ideális egész napos használatra.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 14\" Full HD (1920x1080) matt kijelző\r\n    Processzor: AMD Athlon 3050U\r\n    RAM: 4 GB DDR4\r\n    Tárhely: 128 GB SSD\r\n    Operációs rendszer: Windows 11 Home\r\n    Akkumulátor üzemidő: Akár 8 óra\r\n    Súly: 1,4 kg\r\n    Portok: 1x USB-C, 2x USB 3.2 Type-A, HDMI, 3,5 mm-es fejhallgató-csatlakozó\r\n\r\nMiért válaszd?\r\nA Lenovo IdeaPad 1 82V700FBHV egy remek választás azok számára, akik megfizethető laptopot keresnek alapvető használatra, mint például internetezés, e-mail küldés, irodai szoftverek használata vagy online tanulás. A 14\"-os Full HD kijelző kiváló képet biztosít, míg az SSD gyors és megbízható tárolást kínál. A könnyű és hordozható kialakításnak köszönhetően könnyen viheted bárhová, és hosszú akkumulátor-élettartamával egész nap használhatod.', 'https://p1.akcdn.net/full/1244205769.lenovo-ideapad-1-82v700fbhv.jpg', NULL, 'Notebook'),
-(10, 'Apple MacBook Air 13 M3 MRXN3MG/A', 455000, 'Az Apple MacBook Air 13 M3 MRXN3MG/A a legújabb generációs MacBook Air, amely az új M3 chip-el érkezik, biztosítva ezzel a még jobb teljesítményt és energiahatékonyságot. A prémium dizájn és az Apple ökoszisztéma zökkenőmentes integrációja tovább növeli a készülék értékét. Ideális választás mindennapi munkára, kreatív feladatokhoz és egyéb professzionális használatra.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 13,3\"-os Retina kijelző, True Tone technológiával és széles színtartománnyal, amely kiváló képi élményt biztosít.\r\n    Fejlett teljesítmény: Az új Apple M3 chip biztosítja a gyors működést és zökkenőmentes multitaskingot, legyen szó fotószerkesztésről, videóvágásról vagy napi produktivitási feladatokról.\r\n    Hosszú akkumulátor-élettartam: Akár 18 órás akkumulátor-élettartam, amely biztosítja a folyamatos használatot egy egész munkanapon keresztül.\r\n    Vékony és könnyű: Csak 1,24 kg, így rendkívül hordozható, ideális útközbeni használatra.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 13,3\" Retina kijelző, 2560x1600 felbontás, True Tone\r\n    Processzor: Apple M3 chip, 8 magos CPU és 10 magos GPU\r\n    RAM: 8 GB / 16 GB Unified Memory\r\n    Tárhely: 256 GB / 512 GB / 1 TB SSD\r\n    Operációs rendszer: macOS Ventura\r\n    Akkumulátor üzemidő: Akár 18 óra\r\n    Súly: 1,24 kg\r\n    Portok: 2x Thunderbolt 4 (USB-C), 3,5 mm-es fejhallgató-csatlakozó, MagSafe 3 töltőport\r\n\r\nMiért válaszd?\r\nA MacBook Air 13 M3 az Apple legújabb fejlesztését hozza el, amely az új M3 chip-nek köszönhetően a legújabb technológiát kínálja a legjobb teljesítmény és energiahatékonyság kombinációjával. A 13,3\"-os Retina kijelző éles és tiszta képet biztosít minden feladathoz. A laptop rendkívül könnyű és vékony kialakítása miatt kényelmesen hordozható, míg az akár 18 órás akkumulátor-élettartam biztosítja, hogy a nap bármely szakaszában használhasd. Ha tökéletes integrációt keresel az Apple ökoszisztémájába, ez a modell az ideális választás számodra.', 'https://p1.akcdn.net/full/1261068961.apple-macbook-air-13-m3-mrxn3mg-a.jpg', NULL, 'Notebook'),
-(11, 'Acer Swift Go 14 AI SFG14-01-X2C3 NX.KYXEU.007', 300000, 'Az Acer Swift Go 14 AI SFG14-01-X2C3 egy prémium ultrakönnyű és vékony laptop, amely az Intel Core i5 vagy i7 processzorral és a legújabb generációs technológiákkal érkezik. Az Acer Swift Go ideális választás a mindennapi feladatokhoz, kreatív munkához és üzleti célokra is, mindezt kiemelkedő mobilitással és akkumulátor-élettartammal kombinálva.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 14\"-os Full HD+ IPS kijelző, 16:10-es képarányban, szép színvisszaadással és széles látószöggel, ideális a munkához és szórakozáshoz is.\r\n    Erőteljes teljesítmény: Az Intel Core i5 vagy i7 processzor és az integrált Intel Iris Xe grafika gyors működést biztosít minden feladathoz, legyen szó irodai munkáról, kreatív alkalmazásokról vagy multimédia szerkesztésről.\r\n    AI támogatás: A beépített AI technológia segíti a gyorsabb munkavégzést és az optimalizált teljesítményt, figyelembe véve a használati szokásokat és az alkalmazások igényeit.\r\n    Könnyű és vékony: Csak 1,25 kg súlyú és 14,9 mm vastag, így ideális választás azoknak, akik sokat utaznak, de nem akarnak lemondani a teljesítményről.\r\n    Hosszú akkumulátor-élettartam: Akár 12 órás akkumulátor-élettartam, amely elegendő energiát biztosít egy egész munkanaphoz.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 14\" Full HD+ IPS kijelző (1920x1200), 100% sRGB színskála\r\n    Processzor: Intel Core i5-1335U / i7-1355U, 12. generációs\r\n    RAM: 8 GB / 16 GB LPDDR5\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Operációs rendszer: Windows 11 Home\r\n    Akkumulátor üzemidő: Akár 12 óra\r\n    Súly: 1,25 kg\r\n    Portok: 2x USB-C Thunderbolt 4, 1x USB-A 3.2, HDMI 2.1, microSD kártyaolvasó, 3,5 mm-es fejhallgató-csatlakozó\r\n\r\nMiért válaszd?\r\nAz Acer Swift Go 14 AI a mobilitás és teljesítmény tökéletes egyensúlyát kínálja. Az Intel Core i5 vagy i7 processzor biztosítja a gyors és hatékony munkavégzést, míg az AI technológia gondoskodik a rendszer optimalizálásáról. A 14\"-os kijelző kiváló színvisszaadással és kényelmes mérettel rendelkezik, ideális mindennapi feladatokhoz és szórakozáshoz. Az akár 12 órás akkumulátor-élettartam és a könnyű, 1,25 kg-os kialakítás révén ideális útközbeni használatra is.', 'https://p1.akcdn.net/full/1375613428.acer-swift-go-14-ai-sfg14-01-x2c3-nx-kyxeu-007.jpg', NULL, 'Notebook'),
-(12, 'ASUS Vivobook Go E1504FA-NJ648', 170000, 'Az ASUS Vivobook Go E1504FA-NJ648 egy belépő szintű laptop, amely alapvető feladatokra lett tervezve. Könnyű, de tartós kialakítása, valamint a jó ár-érték aránya miatt ideális választás mindennapi használatra, iskolai munkához vagy irodai alkalmazásokhoz.\r\n\r\nFőbb jellemzők:\r\n\r\n    Kiváló kijelző: 15,6\"-os Full HD (1920x1080) kijelző, amely élénk színeket és tiszta képeket biztosít, ideális az alapvető feladatokhoz, mint a szövegszerkesztés, internetezés vagy videózás.\r\n    Erőteljes teljesítmény: Az Intel Core i3 vagy i5 processzor biztosítja a gyors működést a mindennapi feladatokhoz, míg a nagy kapacitású SSD gyors betöltési időt és elegendő tárolóhelyet biztosít.\r\n    Hosszú akkumulátor-élettartam: Az akkumulátor élettartama akár 8-10 óráig is elérheti, így a laptop egész napos használatra is alkalmas, anélkül, hogy állandóan a töltőt kellene keresni.\r\n    Könnyű és hordozható: Mindössze 1,8 kg súlyú és 19,9 mm vastag, így kényelmesen szállítható, és ideális választás diákoknak vagy azoknak, akik sokat utaznak.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 15,6\" Full HD (1920x1080) IPS kijelző\r\n    Processzor: Intel Core i3-1215U / i5-1235U, 12. generációs\r\n    RAM: 4 GB / 8 GB DDR4\r\n    Tárhely: 128 GB / 256 GB SSD\r\n    Operációs rendszer: Windows 11 Home\r\n    Akkumulátor üzemidő: Akár 8-10 óra\r\n    Súly: 1,8 kg\r\n    Portok: 1x USB-C 3.2, 2x USB-A 3.2, HDMI 1.4, microSD kártyaolvasó, 3,5 mm-es fejhallgató-csatlakozó\r\n\r\nMiért válaszd?\r\nAz ASUS Vivobook Go E1504FA-NJ648 egy kiváló belépő szintű laptop, amely ideális alapvető feladatok elvégzésére. Az Intel Core i3 vagy i5 processzor megfelelő teljesítményt biztosít az irodai munkákhoz, tanuláshoz és internetezéshez. Az SSD gyorsítja a rendszer indítását és az alkalmazások betöltését. A 15,6\"-os Full HD kijelző tiszta és élénk képet biztosít, míg az akár 10 órás akkumulátor lehetővé teszi a hosszú munkanapokat is.', 'https://p1.akcdn.net/full/1193052613.asus-vivobook-go-e1504fa-nj648.jpg', NULL, 'Notebook'),
-(13, 'ASUS TUF Gaming FA506NCR-HN108', 455000, 'Az ASUS TUF Gaming FA506NCR-HN108 egy erőteljes gaming laptop, amely a legújabb hardverekkel és robusztus kialakítással biztosítja a zökkenőmentes és élvezetes gaming élményt. Az AMD Ryzen processzor és a NVIDIA GeForce RTX videokártya lehetővé teszi, hogy a legújabb játékokat is nagy felbontásban és magas grafikai beállításokkal futtassa.\r\n\r\nFőbb jellemzők:\r\n\r\n    Erőteljes grafika: Az NVIDIA GeForce RTX 3050 Ti vagy RTX 3060 videokártya rendkívüli grafikai teljesítményt biztosít a legújabb AAA játékokhoz, valamint a játékok streameléséhez és videószerkesztéshez is ideális.\r\n    Teljesítmény: Az AMD Ryzen 7 6800H vagy Ryzen 9 6900HX processzorok, párosítva akár 16 GB RAM-mal, gyors és zökkenőmentes élményt nyújtanak minden feladathoz, legyen szó gamingról vagy munkahelyi használatról.\r\n    Kiváló kijelző: A 15,6\"-os Full HD 144Hz kijelző gyors frissítési rátát kínál, amely lehetővé teszi a sima és akadozás nélküli játékélményt, különösen a versenyszerű gaminghez.\r\n    Tartós és robusztus: A MIL-STD-810H katonai szabványoknak megfelelően készült, amely biztosítja, hogy a laptop ellenálljon a nehezebb környezeti feltételeknek, így ideális hosszú távú használatra.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 15,6\" Full HD (1920x1080), 144Hz\r\n    Processzor: AMD Ryzen 7 6800H / Ryzen 9 6900HX\r\n    RAM: 16 GB / 32 GB DDR5\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Grafika: NVIDIA GeForce RTX 3050 Ti / RTX 3060\r\n    Operációs rendszer: Windows 11 Home\r\n    Akkumulátor üzemidő: Akár 6-8 óra (a használat függvényében)\r\n    Súly: 2,3 kg\r\n    Portok: 1x USB-C 3.2, 3x USB-A 3.2, 1x HDMI 2.1, RJ-45 Ethernet, 3,5 mm-es fejhallgató-csatlakozó, microSD kártyaolvasó\r\n\r\nMiért válaszd?\r\nAz ASUS TUF Gaming FA506NCR-HN108 tökéletes választás azok számára, akik egy megbízható és erőteljes gaming laptopot keresnek. Az AMD Ryzen 7 6800H processzor és az NVIDIA GeForce RTX 3060 videokártya lehetővé teszik a legújabb játékok és alkalmazások zökkenőmentes futtatását. A 144Hz-es kijelző biztosítja a sima játékmenetet, míg a MIL-STD-810H katonai szabvány tartóssága garantálja, hogy a laptop bírja a kemikáliákat, hőmérsékleti ingadozásokat és a mindennapi használatot.', 'https://p1.akcdn.net/full/1335152110.asus-tuf-gaming-fa506ncr-hn108.jpg', NULL, 'Notebook'),
-(14, 'Apple MacBook Air 13 M2 MLXY3MG/A', 525000, 'MacBook Air M2 chip-hAz Apple MacBook Air 13 M2 egy vékony és könnyű, prémium kategóriás laptop, amely az Apple M2 chip erejére épít, így gyorsabb és hatékonyabb teljesítményt kínál, mint elődje. A 13 hüvelykes Retina kijelző, a hosszú akkumulátor-élettartam és az elegáns dizájn kombinációja ideálissá teszi mindennapi használatra, munkahelyi feladatokra, valamint kreatív munkákhoz is.\r\n\r\nFőbb jellemzők:\r\n\r\n    M2 chip: Az Apple M2 chip még erősebb teljesítményt biztosít a feladatok elvégzéséhez, legyen szó egyszerű irodai munkáról vagy erőforrás-igényes alkalmazásokról.\r\n    Retina kijelző: A 13,6\"-os Liquid Retina kijelző élénk színeket és rendkívüli részletességet biztosít, így minden tartalom gyönyörűen jelenik meg.\r\n    Akár 18 órás akkumulátor-élettartam: A MacBook Air M2 az Apple új energiahatékony chipjének köszönhetően hosszú üzemidőt biztosít, így egész nap képes vagy dolgozni vagy szórakozni anélkül, hogy folyamatosan tölteni kellene.\r\n    Design: A 2,7 cm vékony és 1,24 kg súlyú MacBook Air könnyedén hordozható, ideális utazáshoz, prezentációkhoz vagy bárhol, ahol fontos a mobilitás.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 13,6\" Liquid Retina, 2560 x 1664, True Tone\r\n    Processzor: Apple M2 chip, 8 magos CPU, 10 magos GPU\r\n    RAM: 8 GB / 16 GB Unified Memory\r\n    Tárhely: 256 GB / 512 GB / 1 TB / 2 TB SSD\r\n    Operációs rendszer: macOS Monterey\r\n    Akkumulátor üzemidő: Akár 18 óra video lejátszás\r\n    Súly: 1,24 kg\r\n    Portok: 2x Thunderbolt 3 (USB-C), 1x 3,5 mm-es fejhallgató-csatlakozó, MagSafe töltés\r\n    Webkamera: 1080p FaceTime HD kamera\r\n    Billentyűzet: Magic Keyboard, háttérvilágítással\r\n\r\nMiért válaszd?\r\nAz Apple MacBook Air 13 M2 ideális választás azok számára, akik prémium eszközt keresnek mindennapi használatra, miközben figyelnek a stílusra és a hosszú akkumulátor-élettartamra. Az M2 chip kiemelkedő sebességet és energiagazdálkodást biztosít, míg a Liquid Retina kijelző éles képekkel és színekkel gazdagítja a munkát vagy a szórakozást. A MacBook Air a legújabb macOS rendszerrel, a felhasználói élményt még teljesebbé teszi.el, új és fejlettebb technológiával.', 'https://p1.akcdn.net/full/982927995.apple-macbook-air-13-m2-mlxy3mg-a.jpg', NULL, 'Notebook'),
-(15, 'Apple MacBook Air 13 M3 MRXV3MG/A', 540000, 'Az Apple MacBook Air 13 M3 a legújabb generációs MacBook Air modell, amely az Apple M3 chip erejére épít, így még gyorsabb és energiatakarékosabb teljesítményt kínál, mint valaha. Az új 13,6\"-os Liquid Retina kijelző, az akár 20 órás akkumulátor-élettartam és az újraalkotott dizájn kombinációja ideálissá teszi mindennapi feladatokhoz, professzionális munkákhoz és szórakozáshoz.\r\n\r\nFőbb jellemzők:\r\n\r\n    M3 chip: Az új Apple M3 chip hatékonyabb CPU és GPU teljesítménnyel rendelkezik, így gyorsabb munkavégzést és többfeladatos teljesítményt biztosít, miközben rendkívül alacsony fogyasztással működik.\r\n    13,6\"-os Liquid Retina kijelző: A képernyő kiváló felbontású, élénk színekkel és részletgazdag megjelenítéssel, amely mindenféle multimédiás és munka célú tartalomhoz ideális.\r\n    Hosszú akkumulátor-élettartam: Az Apple M3 chip energiatakarékosságának köszönhetően akár 20 órás akkumulátor-élettartamot biztosít, így egész nap használhatod a gépet töltés nélkül.\r\n    Könnyű és vékony: A MacBook Air továbbra is könnyű és vékony, mindössze 1,24 kg súlyú és 1,13 cm vastag, így ideális választás a mobilitásra.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 13,6\" Liquid Retina, 2560 x 1664, True Tone\r\n    Processzor: Apple M3 chip, 8 magos CPU, 10 magos GPU\r\n    RAM: 8 GB / 16 GB Unified Memory\r\n    Tárhely: 256 GB / 512 GB / 1 TB / 2 TB SSD\r\n    Operációs rendszer: macOS Ventura\r\n    Akkumulátor üzemidő: Akár 20 óra video lejátszás\r\n    Súly: 1,24 kg\r\n    Portok: 2x Thunderbolt 3 (USB-C), 1x 3,5 mm-es fejhallgató-csatlakozó, MagSafe töltés\r\n    Webkamera: 1080p FaceTime HD kamera\r\n    Billentyűzet: Magic Keyboard, háttérvilágítással\r\n    Audio: Stereo hangszórók, térbeli hangzás\r\n\r\nMiért válaszd?\r\nA MacBook Air 13 M3 ideális választás azok számára, akik egy erősebb, gyorsabb és még jobban optimalizált laptopot keresnek a mindennapi feladatokhoz. Az új M3 chip lehetővé teszi a gördülékeny munkavégzést, míg az új kijelző és hosszú akkumulátor-élettartam még kellemesebbé teszi a felhasználói élményt. A MacBook Air M3 a legújabb macOS rendszerrel a legjobb teljesítményt nyújtja a mindennapi munka és a szórakozás terén egyaránt.', 'https://p1.akcdn.net/full/1261068322.apple-macbook-air-13-m3-mrxv3mg-a.jpg', NULL, 'Notebook'),
-(16, 'Samsung Galaxy S24 Ultra 5G 256GB 12GB RAM Dual (SM-S928B)', 500000, 'A Samsung Galaxy S24 Ultra 5G a legújabb prémium okostelefon a Samsung Galaxy sorozatában, amely a legújabb technológiai újításokat és a csúcskategóriás teljesítményt ötvözi. Az S24 Ultra 5G a lenyűgöző 200 MP-es főkamerájával, a gyors 5G hálózati támogatással és a szupergyors Snapdragon 8 Gen 3 processzorral ideális választás a legnagyobb kihívásokkal szembenéző felhasználók számára.\r\n\r\nFőbb jellemzők:\r\n\r\n    200 MP-es főkamera: Az egyik legnagyobb felbontású kamera a piacon, amely rendkívül részletgazdag fényképeket készít, még gyenge fényviszonyok között is. A különböző lencsék és mesterséges intelligencia támogatásával az S24 Ultra minden fényképen tökéletes részletességet nyújt.\r\n    Snapdragon 8 Gen 3 processzor: A legújabb Snapdragon 8 Gen 3 chipset maximális teljesítményt biztosít minden alkalmazás és játék futtatásához. Az ultra-gyors sebesség és a megnövelt energiahatékonyság segít, hogy hosszú órákon át is simán használhasd a készüléket.\r\n    12 GB RAM: A 12 GB RAM garantálja a sima többfeladatos használatot, lehetővé téve a gyors alkalmazásváltást és a zökkenőmentes multitaskingot.\r\n    5G támogatás: A gyors 5G kapcsolat lehetővé teszi a rendkívül gyors internetsebességet, így streaming, játék és online munkavégzés közben is problémamentesen élvezheted a legújabb tartalmakat.\r\n    6,8\"-os Dynamic AMOLED 2X kijelző: Az S24 Ultra 5G csúcskategóriás kijelzője elképesztően élénk színeket és mély feketéket biztosít, amely tökéletes a filmek, videók, és fotók megtekintésére. A 120 Hz-es frissítési sebesség sima görgetést és reagálást biztosít.\r\n    4000 mAh akkumulátor: Az 4000 mAh akkumulátor segít abban, hogy a telefon hosszú ideig bírja a napi használatot, akár 2 napig is.\r\n\r\nMűszaki adatok:\r\n\r\n    Képernyő: 6,8” Dynamic AMOLED 2X, 120 Hz, 1440 x 3088 pixel\r\n    Processzor: Snapdragon 8 Gen 3\r\n    RAM: 12 GB\r\n    Tárhely: 256 GB (nem bővíthető)\r\n    Operációs rendszer: Android 14, One UI 6\r\n    Kamera: 200 MP f/1.7 fő kamera, 12 MP ultra széles kamera, 10 MP periszkópos teleobjektív (10x optikai zoom), 10 MP teleobjektív (3x optikai zoom)\r\n    Előre kamera: 12 MP, f/2.2\r\n    Akkumulátor: 4000 mAh, gyorstöltés (45W), vezeték nélküli töltés (15W), fordított töltés (4.5W)\r\n    Portok: USB Type-C 3.2\r\n    Hálózati támogatás: 5G, Wi-Fi 6E, Bluetooth 5.3\r\n    Víz- és porállóság: IP68\r\n    Méretek: 163.4 x 79.9 x 8.9 mm\r\n    Súly: 233 g\r\n\r\nMiért válaszd?\r\n\r\nA Samsung Galaxy S24 Ultra 5G tökéletes választás azoknak, akik prémium teljesítményt, kiváló kamerát, és a legújabb technológiai újításokat keresik egy készülékben. A 200 MP-es kamera kiemelkedő fényképeket és videókat biztosít, míg a Snapdragon 8 Gen 3 chip gyors és sima teljesítményt nyújt. Ha a legújabb mobil technológia és szuper gyors 5G kapcsolat mellett nem szeretnél kompromisszumot kötni, akkor az S24 Ultra a legjobb választás.', 'https://p1.akcdn.net/full/1240638061.samsung-galaxy-s24-ultra-5g-256gb-12gb-ram-dual-sm-s928b.jpg', NULL, 'Okostelefon'),
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `specs`, `category`) VALUES
+(1, 'Dell XPS 13', 500000, 'A Dell XPS 13 a prémium kategóriás, ultrakompakt laptop, amely a legújabb technológiát és stílust ötvözi. Kiváló teljesítménye és lenyűgöző kijelzője ideálissá teszi mindennapi feladatokhoz, kreatív munkához és üzleti használatra.\r\n\r\nFőbb jellemzők:\r\n\r\n  ', 'https://p1.akcdn.net/full/998179977.dell-xps-13-plus-9320-9320fi7wb1.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,4\" InfinityEdge FHD+ / 4K UHD+ érintőképernyő\r\n    Processzor: Intel Core i5 vagy i7, 10. generáció\r\n    RAM: 8 GB / 16 GB LPDDR4x\r\n    Tárhely: 256 GB / 512 GB / 1 TB SSD\r\n    Operációs rendszer: Windows 11 Home', 'Notebook'),
+(2, 'Apple MacBook Air M2', 450000, 'A MacBook Air M2 egy elegáns, könnyű és nagy teljesítményű laptop, amely az Apple új M2 chipjével érkezik, így gyorsabb és energiahatékonyabb, mint valaha. Ideális választás mindennapi feladatokhoz, kreatív munkához, üzleti használatra és szórakozásra egy', 'https://p1.akcdn.net/full/1081640598.apple-macbook-air-m2-z15s000re.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,6\" Retina kijelző, 2560x1664 pixel felbontás\r\n    Processzor: Apple M2 chip (8 magos CPU, 10 magos GPU)\r\n    RAM: 8 GB / 16 GB Unified Memory\r\n    Tárhely: 256 GB / 512 GB / 1 TB / 2 TB SSD\r\n    Operációs rendsze', 'Notebook'),
+(3, 'Lenovo ThinkPad X1 Carbon', 600000, 'A Lenovo ThinkPad X1 Carbon egy prémium kategóriás ultrakönnyű laptop, amely a legújabb technológiát és robusztus dizájnt ötvözi. Kiváló választás üzletembereknek, kreatív szakembereknek és mindenkinek, aki magas szintű teljesítményt és mobilitást igényel', 'https://p1.akcdn.net/full/1284532306.lenovo-thinkpad-x1-carbon-gen-12-21kc0056hv.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 14\" WQHD+ (2560x1600) / 4K UHD (3840x2160) IPS, érintőképernyő opcióval\r\n    Processzor: Intel Core i5 / i7 (12. generáció)\r\n    RAM: 16 GB / 32 GB LPDDR5\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Operációs rendszer: Win', 'Notebook'),
+(4, 'HP Spectre x360', 550000, 'A HP Spectre x360 egy prémium 2 az 1-ben laptop, amely kiemelkedő teljesítményt és elegáns dizájnt kínál. A forgatható kijelző és a nagy teljesítmény ideálissá teszi kreatív feladatokhoz, üzleti használatra, és mindennapi feladatokhoz is.\r\n\r\nFőbb jellemző', 'https://p1.akcdn.net/full/629150685.hp-spectre-x360-13-aw0001nh-8bs71ea.jpg', '\r\nMűszaki adatok:\r\n\r\n    Képernyő mérete: 13,5\" / 14\" 3K (3000x2000) / 4K UHD (3840x2160) OLED, érintőképernyő\r\n    Processzor: Intel Core i5 / i7 (12. generáció)\r\n    RAM: 8 GB / 16 GB LPDDR4x\r\n    Tárhely: 512 GB / 1 TB SSD\r\n    Operációs rendszer: Wind', 'Notebook'),
+(5, 'Asus ROG Zephyrus G14', 650000, 'Az Asus ROG Zephyrus G14 a prémium kategóriás gaming laptopok királya, amely erőteljes teljesítményt és lenyűgöző dizájnt kínál a játékosok és kreatív szakemberek számára. Kompakt és könnyű kialakítása miatt tökéletes mobilitást biztosít, miközben a legúj', 'https://p1.akcdn.net/full/1369513813.asus-rog-zephyrus-g14-ga403uv-qs022w.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 14\" QHD (2560x1600) / 4K UHD, 120Hz / 144Hz, IPS, érintőképernyő\r\n    Processzor: AMD Ryzen 9 7940HS / Ryzen 7 7840HS (7000 sorozat)\r\n    Grafikus kártya: NVIDIA GeForce RTX 4050 / RTX 4060 / RTX 4070\r\n    RAM: 16 G', 'Notebook'),
+(6, 'ASUS TUF Gaming A15 FA507NUR-LP005', 350000, 'Az ASUS TUF Gaming A15 FA507NUR-LP005 egy erőteljes és strapabíró gaming laptop, amely ideális választás azok számára, akik kiemelkedő teljesítményre és hosszú távú megbízhatóságra vágynak. A TUF sorozat a tartósságáról és a katonai szabványú tesztelésről', 'https://p1.akcdn.net/full/1328151121.asus-tuf-gaming-a15-fa507nur-lp005.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 15,6\" FHD (1920x1080), 144Hz IPS\r\n    Processzor: AMD Ryzen 7 7735HS (8 mag, 16 szál, 3.2GHz alap, 4.8GHz boost)\r\n    Grafikus kártya: NVIDIA GeForce RTX 4060\r\n    RAM: 16 GB DDR5\r\n    Tárhely: 512 GB PCIe Gen 4 SSD', 'Notebook'),
+(7, 'Apple MacBook Air 13.3 M1 MGN63MG/A', 385000, 'Az Apple MacBook Air 13.3 M1 MGN63MG/A a legújabb Apple M1 chip-pel felszerelt, prémium ultrakompakt laptop, amely kiemelkedő teljesítményt, lenyűgöző akkumulátor-élettartamot és egyedi dizájnt kínál. Az Apple híres a minőségéről és az egyszerű, de elegán', 'https://p1.akcdn.net/full/1206282703.apple-macbook-air-13-3-m1-mgn63mg-a.jpg', 'Műszaki adatok:\r\n\r\n    Képernyő mérete: 13,3\" Retina kijelző (2560 x 1600 felbontás), True Tone technológia\r\n    Processzor: Apple M1 chip, 8 magos CPU, 7 magos GPU\r\n    RAM: 8 GB Unified RAM\r\n    Tárhely: 256 GB SSD\r\n    Operációs rendszer: macOS Montere', 'Notebook'),
+(8, 'ASUS Vivobook X1504VA-BQ772', 190000, 'Az ASUS Vivobook X1504VA-BQ772 egy kiváló ár-érték arányú laptop, amely ideális mindennapi használatra, iskolai feladatokhoz és irodai munkákhoz. A Vivobook sorozatot az egyszerű, mégis megbízható teljesítmény jellemzi, és az X1504VA-BQ772 is ezt a filozó', 'https://p1.akcdn.net/full/1254648817.asus-vivobook-x1504va-bq772.jpg', NULL, 'Notebook'),
+(9, 'Lenovo IdeaPad 1 82V700FBHV', 140000, 'A Lenovo IdeaPad 1 82V700FBHV egy költséghatékony és praktikus laptop, amely ideális alapvető feladatokhoz, például internetezéshez, dokumentumok szerkesztéséhez és online tanuláshoz. A könnyű és kompakt kialakításnak köszönhetően könnyedén hordozható, mi', 'https://p1.akcdn.net/full/1244205769.lenovo-ideapad-1-82v700fbhv.jpg', NULL, 'Notebook'),
+(10, 'Apple MacBook Air 13 M3 MRXN3MG/A', 455000, 'Az Apple MacBook Air 13 M3 MRXN3MG/A a legújabb generációs MacBook Air, amely az új M3 chip-el érkezik, biztosítva ezzel a még jobb teljesítményt és energiahatékonyságot. A prémium dizájn és az Apple ökoszisztéma zökkenőmentes integrációja tovább növeli a', 'https://p1.akcdn.net/full/1261068961.apple-macbook-air-13-m3-mrxn3mg-a.jpg', NULL, 'Notebook'),
+(11, 'Acer Swift Go 14 AI SFG14-01-X2C3 NX.KYXEU.007', 300000, 'Az Acer Swift Go 14 AI SFG14-01-X2C3 egy prémium ultrakönnyű és vékony laptop, amely az Intel Core i5 vagy i7 processzorral és a legújabb generációs technológiákkal érkezik. Az Acer Swift Go ideális választás a mindennapi feladatokhoz, kreatív munkához és', 'https://p1.akcdn.net/full/1375613428.acer-swift-go-14-ai-sfg14-01-x2c3-nx-kyxeu-007.jpg', NULL, 'Notebook'),
+(12, 'ASUS Vivobook Go E1504FA-NJ648', 170000, 'Az ASUS Vivobook Go E1504FA-NJ648 egy belépő szintű laptop, amely alapvető feladatokra lett tervezve. Könnyű, de tartós kialakítása, valamint a jó ár-érték aránya miatt ideális választás mindennapi használatra, iskolai munkához vagy irodai alkalmazásokhoz', 'https://p1.akcdn.net/full/1193052613.asus-vivobook-go-e1504fa-nj648.jpg', NULL, 'Notebook'),
+(13, 'ASUS TUF Gaming FA506NCR-HN108', 455000, 'Az ASUS TUF Gaming FA506NCR-HN108 egy erőteljes gaming laptop, amely a legújabb hardverekkel és robusztus kialakítással biztosítja a zökkenőmentes és élvezetes gaming élményt. Az AMD Ryzen processzor és a NVIDIA GeForce RTX videokártya lehetővé teszi, hog', 'https://p1.akcdn.net/full/1335152110.asus-tuf-gaming-fa506ncr-hn108.jpg', NULL, 'Notebook'),
+(14, 'Apple MacBook Air 13 M2 MLXY3MG/A', 525000, 'MacBook Air M2 chip-hAz Apple MacBook Air 13 M2 egy vékony és könnyű, prémium kategóriás laptop, amely az Apple M2 chip erejére épít, így gyorsabb és hatékonyabb teljesítményt kínál, mint elődje. A 13 hüvelykes Retina kijelző, a hosszú akkumulátor-élettar', 'https://p1.akcdn.net/full/982927995.apple-macbook-air-13-m2-mlxy3mg-a.jpg', NULL, 'Notebook'),
+(15, 'Apple MacBook Air 13 M3 MRXV3MG/A', 540000, 'Az Apple MacBook Air 13 M3 a legújabb generációs MacBook Air modell, amely az Apple M3 chip erejére épít, így még gyorsabb és energiatakarékosabb teljesítményt kínál, mint valaha. Az új 13,6\"-os Liquid Retina kijelző, az akár 20 órás akkumulátor-élettarta', 'https://p1.akcdn.net/full/1261068322.apple-macbook-air-13-m3-mrxv3mg-a.jpg', NULL, 'Notebook'),
+(16, 'Samsung Galaxy S24 Ultra 5G 256GB 12GB RAM Dual (SM-S928B)', 500000, 'A Samsung Galaxy S24 Ultra 5G a legújabb prémium okostelefon a Samsung Galaxy sorozatában, amely a legújabb technológiai újításokat és a csúcskategóriás teljesítményt ötvözi. Az S24 Ultra 5G a lenyűgöző 200 MP-es főkamerájával, a gyors 5G hálózati támogat', 'https://p1.akcdn.net/full/1240638061.samsung-galaxy-s24-ultra-5g-256gb-12gb-ram-dual-sm-s928b.jpg', NULL, 'Okostelefon'),
 (17, 'Xiaomi Poco X7 Pro 5G 512GB 12GB RAM Dual', 450000, 'Erőteljes 5G telefon 512 GB tárolóval és 12 GB RAM-mal.', 'https://p1.akcdn.net/full/1390398406.xiaomi-poco-x7-pro-5g-512gb-12gb-ram-dual.jpg', NULL, 'Okostelefon'),
 (18, 'Samsung Galaxy A55 5G 128GB 8GB RAM Dual (SM-A556)', 220000, 'Kiváló középkategóriás okostelefon 8 GB RAM-mal és 128 GB tárolóval.', 'https://p1.akcdn.net/full/1262383174.samsung-galaxy-a55-5g-128gb-8gb-ram-dual-sm-a556.jpg', NULL, 'Okostelefon'),
 (19, 'Apple iPhone 16 128GB', 600000, 'Az új iPhone 16, 128 GB tárolóval, fejlett kamerával és teljesítménnyel.', 'https://p1.akcdn.net/full/1337109469.apple-iphone-16-128gb.jpg', NULL, 'Okostelefon'),
@@ -183,25 +136,121 @@ INSERT INTO `kartyak` (`id`, `nev`, `ar`, `leiras`, `kep_url`, `muszaki_adatok`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategoriak`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `kategoriak` (
-  `id` int(11) NOT NULL,
-  `nev` varchar(255) NOT NULL
+CREATE TABLE `users` (
+  `id` int(255) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kategoriak`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `kategoriak` (`id`, `nev`) VALUES
-(1, 'Notebook'),
-(2, 'Okostelefon'),
-(3, 'Fülhallgató'),
-(4, 'Okosóra'),
-(5, 'Tablet'),
-(6, 'VR Szemüveg');
+INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com'),
+(2, 'tspore1', '$2a$04$MiEfeKRoA.EBODXV4agF1u4.lt7zqN74Lx8Bv2KMlWopJOCdslLJ.', 'zbursell1@homestead.com'),
+(3, 'efreezor2', '$2a$04$/obz10JvtTHLMBKOl9rAZ.T6aPc/ztYRPDs/cvUpZ1orn5izr0XxK', 'vjobke2@usatoday.com'),
+(4, 'skolak3', '$2a$04$N0k.hQUUPMrSNlDs9jLfSO/tSaGECuklNYRtTJ9.kPW1abvmo7N3m', 'ubellefonte3@google.co.uk'),
+(5, 'smacconnulty4', '$2a$04$k0Vku6vIg5FvWurCXxGYOuwV4id/ywxg4MDdMMbp0rbJEcCAzjt32', 'adrowsfield4@mapquest.com'),
+(6, 'msterman5', '$2a$04$RIqRbQlVpf8iWbpQQ7RMqOcNMTJSRAMLWHxE06UpMrQIZLoC5Id4u', 'dosgorby5@uol.com.br'),
+(7, 'vwansbury6', '$2a$04$QJyXIga9.ht8I4PKIfC7J.z7hIOejfxlw2lXxS2HUrTvxRlT4eIIC', 'lbelderson6@ameblo.jp'),
+(8, 'pwaylen7', '$2a$04$sNYlEIbd1pz9RlTKFSlyEeFLVI3l8O7EQqxAUHhz9pQHzSGTq8JYS', 'jkenelin7@merriam-webster.com'),
+(9, 'ameletti8', '$2a$04$JeAPeoCLGtE4M4PxRNaf6OmT0a0cYvdFx9XK2CGX9/IwpIn0bYJl6', 'rleftley8@skyrock.com'),
+(10, 'emcaneny9', '$2a$04$BDe7HsLDZe56DU5i7tlx2.2EXg1UrKodkhHA4cIvitBkvSG1s9ndW', 'rsivil9@vimeo.com'),
+(11, 'blabbaa', '$2a$04$vLlgJBAOJyc5LVr/HxETc.6hzIOb2FTarACA/BqtoXQlLWHUGTUCq', 'gmcdonagha@storify.com'),
+(12, 'pmatzkaitisb', '$2a$04$afZSikeNum86ZpRVAlKd6.3raWL6acdY3YmnLuZawJXkCga1sWiPG', 'shannigerb@netscape.com'),
+(13, 'stutchellc', '$2a$04$SYkd4pEfPtRaDBLwZGX.Fe4MTNHBjvO2eio2gobtBOOgrxil9Nefa', 'dtreacyc@lulu.com'),
+(14, 'spinillad', '$2a$04$p790luiiaNGS70Ec0k09BO9YyE.jsKAebLltTsS1OUIBVak7WfXSW', 'sstringmand@amazon.co.uk'),
+(15, 'fsoutherane', '$2a$04$M0zTy47/zYSCOu2AbLFACedYkmQq57sZbfJ5uPcwRFRzGXt/YKlTq', 'rwollrauche@wikia.com'),
+(16, 'tharrellf', '$2a$04$/tYeYRI781CiaJJlg52Im.cSjEX1o389tsfhP6yJPfawNFVA57Mda', 'abolsoverf@who.int'),
+(17, 'udicheg', '$2a$04$lZNWHQPL4L.InVLGvdJL2ucbtd/WusPINRDLk3GAiAMov3gQUfgoW', 'chilling@nhs.uk'),
+(18, 'rpautoth', '$2a$04$Feqm4wPQuompiVMFObaAj.FGu5U7sMid4ZFTHsGZKHz6esEBWvh.S', 'zrockhillh@phoca.cz'),
+(19, 'ptauntoni', '$2a$04$3LLSOGj/QEeJ/q2jk985q.bkuzLJgcoNKm2kqSOxhh9bf2embRxY.', 'jgrzelaki@hatena.ne.jp'),
+(20, 'lpolj', '$2a$04$huUdI621Z2fkq0CVLXwtbOM6ogTKgjkgGTvpyyaTXnC9ZyqxMQkhS', 'mlamberthj@sciencedirect.com'),
+(21, 'nsolank', '$2a$04$P3/VGBXennRQJ/xg8fQgIeLAv9L.hZsVIJ.CniCkiEO9Ye2A8BmWq', 'cmaccrackenk@europa.eu'),
+(22, 'sdemangell', '$2a$04$/lp1HZM6ZJa8BfRA06QuLOTGKZMSgiz5DsgZt1K42p7q1F8qhhHJq', 'bormrodl@scientificamerican.com'),
+(23, 'sbleuem', '$2a$04$TY5E.nog4u8VP9JvcNZFiusN6P8Tle4/aZm0ycsW2.R.hLb6QaGZC', 'jmcallanm@mediafire.com'),
+(24, 'plimeburnern', '$2a$04$2S99iJY1iB.UBaIFhOV1r.6yCuvniZDMYDkYVeVvMrCnVZh3eqk9O', 'dnaismithn@xinhuanet.com'),
+(25, 'mcarlowo', '$2a$04$s5TkAnwhsjv.Vvg2rlv7zu.hwswJqS0Rn5YSifp6.DCNvuexXF0bq', 'cblankmano@europa.eu'),
+(26, 'gmeadowcraftp', '$2a$04$r3aTxKpDffUecHbLieTJ6.47/DmRP9QBKgNqjjgtT6NvCsFY6.wQy', 'nhalmkinp@loc.gov'),
+(27, 'cdighthamq', '$2a$04$/WLJThlhbJIqd3J7c58dEuqHtgRoU6i5dwelFnakpMWRaLhDbfEIG', 'jdinckeq@usatoday.com'),
+(28, 'jstonuaryr', '$2a$04$nuvk4rnMzQBvQFJMq989c.ex06Wc.qXc.7GoI7UHK4aGUnzBWjSw2', 'npaner@is.gd'),
+(29, 'hfountaines', '$2a$04$.Tsfc7zCjUKTloTSu7gbfuHmrzK1TK5Z372mRtayto4Kxsb95p5cO', 'cmeardons@elegantthemes.com'),
+(30, 'kfergusont', '$2a$04$YYlf2lZugQvG9u/JTzeH7.dhdMorXgF6/qR79dM1pF64Gc7hIQ2yi', 'jbrookhouset@wired.com'),
+(31, 'agauntlettu', '$2a$04$5K9nYRAZIOd36OzqHJj4cOm/BhfsLYCix8tjZiMu/BxcpMWMUf21C', 'kriseboroughu@epa.gov'),
+(32, 'fnavarrev', '$2a$04$bzlsNmLfbC6gTkbmil5s0OrgtPVIbGPLUgYc38tME7KDu8yOwbsTy', 'pbinfordv@plala.or.jp'),
+(33, 'pgavenw', '$2a$04$vzK20Oh6z8wCgKDwuko3Hu3dSEqxBU/p4tgQW1fK5zfyTGcxT00We', 'amedlerw@cyberchimps.com'),
+(34, 'hstemsonx', '$2a$04$B/I3tDkDL6LbrdognHZJw.0cwlmTlNIMTnEUEqlhleOpofniMshFe', 'smulheronx@auda.org.au'),
+(35, 'reckeryy', '$2a$04$JAHCbCbQASb/SYKcoDtH9u0cQIPKvBg9Y13owoT3TV0XkbLerNSuq', 'jlassetery@goo.ne.jp'),
+(36, 'smaccumeskeyz', '$2a$04$MVUl2foL5yD9ZVgabRPZH.PAVfybzJ/fBs1fmTKUlsSAuVsL1RiWW', 'mrauz@ning.com'),
+(37, 'wworsnop10', '$2a$04$5lyB.4Ia53tdk.z97hQBuuRSJ4HxGT2UlteW4GCum//5my60tKliS', 'hbente10@goo.ne.jp'),
+(38, 'ifareweather11', '$2a$04$86/lLfOWaUpJ1AV9yhLKTeKjAFY7l62aKSDHjg5Nji4vDHhyyJIV.', 'ctatlock11@china.com.cn'),
+(39, 'mlorincz12', '$2a$04$W.4z1CPMqzejt0XGvvTUFuA1ZihY/Ex3tiBoFo9yBout7hklCGLHW', 'mbusen12@indiatimes.com'),
+(40, 'nwoollett13', '$2a$04$5Pc34Yu.ZeUrM/sLVQ1u6OJjCP.b6vpGZldYYj5l8NUYjp8.POES2', 'bkerins13@blogs.com'),
+(41, 'jvautrey14', '$2a$04$n8Uf3oL1/hpUAiwD574VuO5V3peAC8tR9zXCIYWFfFkm5nPCdaC82', 'lbeake14@jigsy.com'),
+(42, 'cpainten15', '$2a$04$Nk4gwn21asZ6h7TkNA3U3O41YblJzq8xTu23fxMmT.0AF3Mtp8KWO', 'lahrend15@unc.edu'),
+(43, 'jmacmeeking16', '$2a$04$V8JQo1bssrcnWdDNOK4.te0uR8tDupiUqeoNM4SUz1Jmcu4lNwG7u', 'gjulien16@guardian.co.uk'),
+(44, 'dascrofte17', '$2a$04$IIpZ/L/ha5hoc4pxMVwG1e0itfUwP3TE8RVNunlSWQkSPxcZ4dq4K', 'kschechter17@fema.gov'),
+(45, 'mchavey18', '$2a$04$.jhoHaa3yFRP6YyeNnPH3ew2KnYtjP/vQDzCaQOWND.1qmzUblXZ6', 'shurich18@jiathis.com'),
+(46, 'mtammadge19', '$2a$04$afZXf6kj8Z58/t5NsGqFAu1nICYLE5HWrU9Dt6m0D0pecSJjw1qZS', 'wdorr19@ustream.tv'),
+(47, 'odewan1a', '$2a$04$sOKYp3VRnvcBChCYsWFLBu1e.ewM/oQFpcn9UHemeeT4S3U2XoJQO', 'cbreslauer1a@studiopress.com'),
+(48, 'sgorst1b', '$2a$04$gxvzK1255lkfEX.6PufDyOguTriytVM5yHpvPbi7yh/dSK/emhiwK', 'fmariet1b@bbb.org'),
+(49, 'finsole1c', '$2a$04$5qeeyM79LJ8X1wQZ4CIGsO40mJF48h.CE2EWUD7kccM2H77yNWQhq', 'kcatton1c@1und1.de'),
+(50, 'seagers1d', '$2a$04$FGMB5e1YMoFtBIWZlw67N.RCeYRs5q9uS1GE5T3TpLlO2roy63ZVq', 'mleyborne1d@usnews.com'),
+(51, 'nbeston1e', '$2a$04$pIcTjlZwkmdHv7azdbnyGOkafIcRnQXeFTQPvHesYd...01tjtRaa', 'sbednall1e@vkontakte.ru'),
+(52, 'nleyburn1f', '$2a$04$Mu0.6f85zF.aGkb06sK42OghZYZ/4wG8QEetPplk0a0vhFHsOQ3ey', 'psalvage1f@amazon.com'),
+(53, 'iarrell1g', '$2a$04$a/BVyKHZdQEhd92lCfOxieqJemHXXwiC8ZbHh8DMZeq.Rx855m/fG', 'smcsherry1g@sina.com.cn'),
+(54, 'gharrowing1h', '$2a$04$.BFBjE6d/ailgPbQy8wqHuUOkXPo8ZuaAiO7Lzc5xr5NQNiRHfDRm', 'cagius1h@utexas.edu'),
+(55, 'rdutteridge1i', '$2a$04$eHiCyZ7Iv1luEyqtEdE.jefEFtM223aj7tcQOu0g8duUwqRNfMRTG', 'dmcmanus1i@ning.com'),
+(56, 'cclearie1j', '$2a$04$RMSiBlUaFUkz3j8Qkl9wL.H.Sn/LTjY9OxEoLdtZ6b0yiL0OTKAH6', 'cjiggen1j@vistaprint.com'),
+(57, 'dsilvers1k', '$2a$04$4UxZ8/EhsZ0nU09LwQfSr.s6fJ3b/yhEtHJWi4U4hwbKPAiYFpStK', 'htume1k@columbia.edu'),
+(58, 'amuslim1l', '$2a$04$2sI3xQ823yz7/qxRUhcIneeJ8fjO6zDLzpg8KcuW3fvTJR7Aj4nmK', 'dtrevains1l@soundcloud.com'),
+(59, 'bbrocklebank1m', '$2a$04$Lm5lZ99uzEQzQ2GWu07Cde9lT1zkuuq/yrT3TEq70nRuudpzwbm0e', 'jcleverly1m@tinyurl.com'),
+(60, 'ehawkin1n', '$2a$04$OkUAasscWyxcdRpb.TR6suwXHOSkBc6TkvxLxFt.oyruvpZeU5Mf.', 'ccheesworth1n@cyberchimps.com'),
+(61, 'lcodrington1o', '$2a$04$UBojILoDBRw9hpSTisF/O.NdFsADJZeBZWZObaHLRZFipeQCQk0T2', 'trenish1o@blogtalkradio.com'),
+(62, 'csomerville1p', '$2a$04$g9WYMkFx34X6D2ARz8xiC.mDaJ7uma6B/uwtxXlVxhkjcv7Eqzik6', 'eburtwhistle1p@jimdo.com'),
+(63, 'jroe1q', '$2a$04$D4jONnQMWzIn5iKD3NXyLOUKTb8goF/0cwIWTKHzxLT8CAO4Frw..', 'rgrouen1q@answers.com'),
+(64, 'ecreggan1r', '$2a$04$2S7RTvQEkwJcet49wBDmaOEw.gylrSyrHcoD.BimM79sNou8QXFzW', 'civel1r@usnews.com'),
+(65, 'camaya1s', '$2a$04$QNqcNKYSe3pUoMIwFCRYu.tjdMiTDo1FsauB2T7WNOuwq/Yxr1apC', 'lklempke1s@twitter.com'),
+(66, 'dgoacher1t', '$2a$04$UWRT0eCEZmYp1lUpCQgH0OEDQ7IquWviUJZzffVVT8sqxXiMugsv6', 'mskones1t@cbsnews.com'),
+(67, 'wmillott1u', '$2a$04$1lnWLAAlHrYsT6Wq7HEYIeEZV.tDoPnvdB89RGTv6cG47CxM39Bgq', 'vgarret1u@businessweek.com'),
+(68, 'bgealle1v', '$2a$04$NAswWIRXSyz8MeTNioppa.E6voWIkSzNuHBtXmjOUMpk1lGrx1t26', 'odellcasa1v@ted.com'),
+(69, 'scleyburn1w', '$2a$04$FeHEZBboYhzc2RBGpJGLiOlZr.TqbdGGXO6X/gtb2vvdkExLnC7Cy', 'fhallock1w@netvibes.com'),
+(70, 'wwyldbore1x', '$2a$04$mi9/NRUYfGLf2iAnkV1AvubX0/siSNLtLdwzyUudIMZS91MNvHOKW', 'shegges1x@umich.edu'),
+(71, 'vbulbrook1y', '$2a$04$p63.7pA.Iq/8QOsrDpmcoe9RH/CgiF444HdT4Aq7L8w/HsdCkKPi.', 'sigounet1y@blog.com'),
+(72, 'mselwyn1z', '$2a$04$IVEunFEzS44olTDWZraaIuv8nIXHc0zQV4z87Gkz7nytvdDEjbmH.', 'adiviny1z@lycos.com'),
+(73, 'bfreschi20', '$2a$04$NIBYWHK2j6XyzUB6lCTgce9K1MBrkltWItUJouKa9jhevpBB6cOka', 'aravens20@nydailynews.com'),
+(74, 'thuband21', '$2a$04$z29dq3Qdy7/Vv2jeR729x.sBko7uaNc4Y5Yon/5W4bnGyCmXVL6Z2', 'jdeviney21@nhs.uk'),
+(75, 'bmcilwrath22', '$2a$04$TInAjSQM6wUNs6zfW6/2.u1zFx10HWjFIiv4Igx4W8r5f2xds4ce2', 'abrittoner22@photobucket.com'),
+(76, 'veverly23', '$2a$04$CC2ZBsKAIiVQcglF2qnvCe.C4de42PrWroLXfjbAIF1XC2EfulcC2', 'nansley23@tuttocitta.it'),
+(77, 'acruddas24', '$2a$04$nfguL80Yjeb6KRbzYhZNHuZ4qFNY8PbG9HtSrcjraihq8U1bTv38K', 'bhilbourne24@sun.com'),
+(78, 'hertelt25', '$2a$04$GcbZgwrStmhZZ4qN43FPq.uoVZC6.yQ2g3jRL.jmRrdvC18A2snZ6', 'jmandel25@cbslocal.com'),
+(79, 'jvalero26', '$2a$04$iAwjIiOx9y9cGMI2L.47JeT4H1Bj.LDmZ6tSe3vHGeF18cCIKl6qi', 'llaste26@wired.com'),
+(80, 'esager27', '$2a$04$JxEnCq9/Kq0/RvDq2mbpWO1JEamLAVP4HIrbOiDXsYKGAJNAE2ZKK', 'tgrubbe27@yale.edu'),
+(81, 'hflanner28', '$2a$04$gG9RGaLJ/.4a7ijQJKtx7OmDrcqGreLVeRxYfbjMkTRa35hxjX8Qq', 'rplank28@live.com'),
+(82, 'kgarrity29', '$2a$04$eHLLqON8VxZ301vIFcfrK.ouscIFvE5xpuQ/SQsUGuzTm8vaWJbyq', 'cspehr29@digg.com'),
+(83, 'squarton2a', '$2a$04$ktKf9NSFrqexgwlv2dNteeb7zCwO1sXKLElUDwlotLp7yaoSYnr26', 'cdillon2a@cbsnews.com'),
+(84, 'kfife2b', '$2a$04$4wio1WTAT0.DLFmbtBsm9OY1ABs/q5eKL4Icp8TrA5MHANGTegrLq', 'rfendt2b@bloglovin.com'),
+(85, 'hgrowy2c', '$2a$04$VoFLYU11EgGDmmPL8HpKTexVWk29ZHyuKNY0oF.47Jbf9LHQlshhm', 'jlodemann2c@berkeley.edu'),
+(86, 'cmcilmorie2d', '$2a$04$sEYZFvCYX2ZjakQDTX8Ja.VdTfRqS3ri0NE.iGkRhq1Ey5uaJh7UO', 'dfrandsen2d@twitter.com'),
+(87, 'alesieur2e', '$2a$04$mJwp.xHoorSsBAkuGamHe.pvMvftZFdJ0RSjbQN9yBNk8CUm7LXh.', 'agolsworthy2e@tamu.edu'),
+(88, 'aquirke2f', '$2a$04$edVK74XPPfV7krP.6D93wO986ZHp4XIYuNo0fGYxtmo6ANZnqWRS.', 'ploverock2f@google.it'),
+(89, 'gnursey2g', '$2a$04$FzrK1b31Ldf0ADaLBP7BVOC5L2jUvmtS/71S8gH2rl0iYFxkz1RcC', 'hjex2g@gmpg.org'),
+(90, 'strevan2h', '$2a$04$WOOh3QGl9x8SaRzeRUY74OxSZ2K1IU6KHw0INdwFrlTUFXrKzBPnC', 'wormrod2h@house.gov'),
+(91, 'wdowney2i', '$2a$04$GjJ/kr5hy/n6Ppe1CIIwO.m.okh2vN1AytvjrYV2D1FkEbf73eR4K', 'bcolebrook2i@theglobeandmail.com'),
+(92, 'mnemchinov2j', '$2a$04$YcBABazcdyiVnJRdBR7Y.uPOWqRpCOjYa5ftb.GX9BvEIh.m6ahjK', 'grayman2j@taobao.com'),
+(93, 'rfensome2k', '$2a$04$229Y2In80cPEOoHrHeZ0/OcWY2Q51ep8zHVX.RSSSPVZMHrsUFpCa', 'ljepson2k@bloglines.com'),
+(94, 'dsmalecombe2l', '$2a$04$axwZWNUyvTKXxkhvgB33suuqjt21vJbv7NPER/DKIuLo/k7/Rx7rG', 'esheer2l@army.mil'),
+(95, 'ktrowsdall2m', '$2a$04$P5ocOXi/ZSTD0GWZYpd4/OsVC3KMjODf3yqx5YTmgzS5adt47w17y', 'lpimblotte2m@cdbaby.com'),
+(96, 'mreidie2n', '$2a$04$vajKc/H97R3tBOVsCCmxy.CxwmTk.L3UTNP3X9doce.GSVO3J02Jm', 'bambrogioli2n@cmu.edu'),
+(97, 'ekarolczyk2o', '$2a$04$kR5FFIu1AXYdjITNdXOIiOl9b92zunpP5S562VJ/8kydzYFENkdYa', 'mbrandolini2o@tiny.cc'),
+(98, 'bebhardt2p', '$2a$04$8bnLC8Th4Mb5rJvE7dAv8.5nl42hgL8s/uGNvN9oAwdeCzmB9dzQO', 'tthurborn2p@xing.com'),
+(99, 'bbockin2q', '$2a$04$IsA3Pzv.4Lt09b6aH34U0eia3e6MY8HBnU4/OhHEwkcoEQKmx/cE.', 'lfinnigan2q@symantec.com'),
+(100, 'kcraisford2r', '$2a$04$OulPbcqOmnoqEAqrb2OGfeJAu1WPyrY8cbMevuLJqfldWq3mefsp6', 'abertomier2r@nifty.com');
 
 -- --------------------------------------------------------
 
@@ -219,21 +268,21 @@ CREATE TABLE `__efmigrationshistory` (
 --
 
 --
--- Indexes for table `felhasznalok`
+-- Indexes for table `categories`
 --
-ALTER TABLE `felhasznalok`
-  ADD PRIMARY KEY (`Id`);
-
---
--- Indexes for table `kartyak`
---
-ALTER TABLE `kartyak`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kategoriak`
+-- Indexes for table `products`
 --
-ALTER TABLE `kategoriak`
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -247,22 +296,16 @@ ALTER TABLE `__efmigrationshistory`
 --
 
 --
--- AUTO_INCREMENT for table `felhasznalok`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `felhasznalok`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `kartyak`
---
-ALTER TABLE `kartyak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
-
---
--- AUTO_INCREMENT for table `kategoriak`
---
-ALTER TABLE `kategoriak`
+ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

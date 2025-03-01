@@ -1,5 +1,100 @@
 [
   {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Get",
+    "RelativePath": "Card",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Post",
+    "RelativePath": "Card",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "vizsga3.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Get",
+    "RelativePath": "Card/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Put",
+    "RelativePath": "Card/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "product",
+        "Type": "vizsga3.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Delete",
+    "RelativePath": "Card/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "GetProductsByCategory",
+    "RelativePath": "Card/category/{category}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "SendNewEmail",
     "RelativePath": "emails",
@@ -16,115 +111,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Login",
-    "RelativePath": "Felhasznalo/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "vizsga3.Controllers.LoginRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "Register",
-    "RelativePath": "Felhasznalo/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalo",
-        "Type": "vizsga3.Models.Felhasznalok",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetUserById",
-    "RelativePath": "Felhasznalo/user/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "UpdateUserById",
-    "RelativePath": "Felhasznalo/user/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "updatedUser",
-        "Type": "vizsga3.Models.Felhasznalok",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "DeleteUserById",
-    "RelativePath": "Felhasznalo/user/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "ChangePassword",
-    "RelativePath": "Felhasznalo/user/{id}/change-password",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "vizsga3.Controllers.ChangePasswordRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
+    "ContainingType": "vizsga3.Controllers.UserController",
     "Method": "GetUserByEmail",
-    "RelativePath": "Felhasznalo/user/email/{email}",
+    "RelativePath": "User/{email}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -138,77 +127,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "ResetPassword",
-    "RelativePath": "Felhasznalo/user/reset-password",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "vizsga3.Controllers.ResetPasswordRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetUserByUsername",
-    "RelativePath": "Felhasznalo/user/username/{felhasznalonev}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "felhasznalonev",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.FelhasznaloController",
-    "Method": "GetAllUsers",
-    "RelativePath": "Felhasznalo/users",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Get",
-    "RelativePath": "Kartya",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Post",
-    "RelativePath": "Kartya",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "kartya",
-        "Type": "Kartyak",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Get",
-    "RelativePath": "Kartya/{id}",
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "User/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -222,9 +143,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Put",
-    "RelativePath": "Kartya/{id}",
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "UpdateUserById",
+    "RelativePath": "User/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -235,17 +156,17 @@
         "IsRequired": true
       },
       {
-        "Name": "kartya",
-        "Type": "Kartyak",
+        "Name": "updatedUser",
+        "Type": "vizsga3.Models.User",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "Delete",
-    "RelativePath": "Kartya/{id}",
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "DeleteUserById",
+    "RelativePath": "User/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -259,16 +180,74 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.KartyaController",
-    "Method": "GetKartyakByKategoria",
-    "RelativePath": "Kartya/kategoria/{kategoria}",
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "GetUserByUsername",
+    "RelativePath": "User/{username}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "kategoria",
+        "Name": "username",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "GetAllUsers",
+    "RelativePath": "User/all-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "User/registration",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "vizsga3.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "ResetPassword",
+    "RelativePath": "User/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.ResetPasswordRequest",
         "IsRequired": true
       }
     ],

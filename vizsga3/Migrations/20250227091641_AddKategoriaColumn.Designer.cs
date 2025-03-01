@@ -24,12 +24,12 @@ namespace vizsga3.Migrations
 
             modelBuilder.Entity("Kartyak", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(255)")
                         .HasColumnName("id");
 
-                    b.Property<int?>("Ar")
+                    b.Property<int?>("price")
                         .HasColumnType("int(255)")
                         .HasColumnName("ar");
 
@@ -38,22 +38,22 @@ namespace vizsga3.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("nev");
 
-                    b.Property<string>("Kategoria")
+                    b.Property<string>("category")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("kategoria");
 
-                    b.Property<string>("KepUrl")
+                    b.Property<string>("image")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("kep_url");
 
-                    b.Property<string>("Leiras")
+                    b.Property<string>("description")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("leiras");
 
-                    b.HasKey("Id")
+                    b.HasKey("id")
                         .HasName("PRIMARY");
 
                     b.ToTable("kartyak", (string)null);
@@ -61,7 +61,7 @@ namespace vizsga3.Migrations
 
             modelBuilder.Entity("vizsga3.Models.Felhasznalok", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(255)")
                         .HasColumnName("id");
@@ -69,17 +69,17 @@ namespace vizsga3.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Felhasznalonev")
+                    b.Property<string>("Username")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("felhasznalonev");
 
-                    b.Property<string>("Jelszo")
+                    b.Property<string>("Password")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("jelszo");
 
-                    b.HasKey("Id")
+                    b.HasKey("id")
                         .HasName("PRIMARY");
 
                     b.ToTable("felhasznalok", (string)null);

@@ -1,0 +1,84 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using vizsga3.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace vizsga3.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class CardController : ControllerBase
+    {
+        private readonly Vizsga3Context _context;
+
+        public CardController(Vizsga3Context context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var products = await _context.Products.ToListAsync();
+            return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] Product product)
+        {
+            var productToUpdate = await _context.Products.FindAsync(id);
+            if (productToUpdate == null)
+            {
+                return NotFound();
+            }
+            productToUpdate.Name = product.Name;
+            productToUpdate.Price = product.Price;
+            productToUpdate.Description = product.Description;
+            productToUpdate.Image = product.Image;
+            productToUpdate.Category = product.Category;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        // Kártyák kategória szerinti lekérdezése
+        [HttpGet("category/{category}")]
+        public async Task<IActionResult> GetProductsByCategory(string category)
+        {
+            var products = await _context.Products.Where(p => p.Category == category).ToListAsync();
+            return Ok(products);
+        }
+    }
+}
+
