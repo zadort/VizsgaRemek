@@ -277,7 +277,7 @@
         }
       }
     },
-    "/User/all-user": {
+    "/User/all-users": {
       "get": {
         "tags": [
           "User"
@@ -373,7 +373,7 @@
         }
       }
     },
-    "/User/{username}": {
+    "/User/username/{username}": {
       "get": {
         "tags": [
           "User"
@@ -395,7 +395,7 @@
         }
       }
     },
-    "/User/{email}": {
+    "/User/email/{email}": {
       "get": {
         "tags": [
           "User"

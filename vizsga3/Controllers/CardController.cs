@@ -20,7 +20,7 @@ namespace vizsga3.Controllers
         public async Task<IActionResult> Get()
         {
             var products = await _context.Products.ToListAsync();
-            return Ok(products);
+            return Ok(new { message = "Products retrieved successfully", products });
         }
 
         [HttpGet("{id}")]
@@ -29,9 +29,9 @@ namespace vizsga3.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product not found" });
             }
-            return Ok(product);
+            return Ok(new { message = "Product retrieved successfully", product });
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { message = "Product created successfully" });
         }
 
         [HttpPut("{id}")]
@@ -48,7 +48,7 @@ namespace vizsga3.Controllers
             var productToUpdate = await _context.Products.FindAsync(id);
             if (productToUpdate == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product not found" });
             }
             productToUpdate.Name = product.Name;
             productToUpdate.Price = product.Price;
@@ -56,7 +56,7 @@ namespace vizsga3.Controllers
             productToUpdate.Image = product.Image;
             productToUpdate.Category = product.Category;
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { message = "Product updated successfully" });
         }
 
         [HttpDelete("{id}")]
@@ -65,20 +65,22 @@ namespace vizsga3.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product not found" });
             }
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { message = "Product deleted successfully" });
         }
 
-        // Kártyák kategória szerinti lekérdezése
+        // Get products by category
         [HttpGet("category/{category}")]
         public async Task<IActionResult> GetProductsByCategory(string category)
         {
             var products = await _context.Products.Where(p => p.Category == category).ToListAsync();
-            return Ok(products);
+            return Ok(new { message = "Products retrieved successfully", products });
         }
     }
 }
+
+
 

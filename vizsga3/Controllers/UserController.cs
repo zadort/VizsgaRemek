@@ -31,182 +31,182 @@ namespace vizsga3.Controllers
             _configuration = configuration;
         }
 
-        // Bejelentkezési endpoint (hash-elt jelszó ellenőrzéssel)
+        // Login endpoint (with hashed password verification)
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            _logger.LogInformation($"Bejelentkezési kérelem: {request.Username}");
+            _logger.LogInformation($"Login request: {request.Username}");
 
             var user = await _context.Users
                 .FirstOrDefaultAsync(f => f.Username == request.Username);
 
             if (user == null)
             {
-                _logger.LogWarning($"Felhasználó nem található: {request.Username}");
-                return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
+                _logger.LogWarning($"User not found: {request.Username}");
+                return Unauthorized(new { message = "Invalid username or password" });
             }
 
             if (!VerifyPassword(request.Password, user.Password))
             {
-                _logger.LogWarning($"Hibás jelszó próbálkozás a felhasználónál: {request.Username}");
-                return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
+                _logger.LogWarning($"Invalid password attempt for user: {request.Username}");
+                return Unauthorized(new { message = "Invalid username or password" });
             }
 
             var token = GenerateJwtToken(user);
 
-            _logger.LogInformation($"Sikeres bejelentkezés: {request.Username}");
-            return Ok(new { message = "Sikeres bejelentkezés", token });
+            _logger.LogInformation($"Successful login: {request.Username}");
+            return Ok(new { message = "Login successful", token });
         }
 
-        // Regisztráció új felhasználóval (hash-elt jelszóval)
+        // Registration endpoint (with hashed password)
         [HttpPost("registration")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
             if (await _context.Users.AnyAsync(f => f.Username == user.Username))
             {
-                return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
+                return BadRequest(new { message = "This username is already taken." });
             }
 
             if (await _context.Users.AnyAsync(f => f.Email == user.Email))
             {
-                return BadRequest(new { message = "Ez az email cím már regisztrálva van." });
+                return BadRequest(new { message = "This email address is already registered." });
             }
 
             user.Password = HashPassword(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            // Email küldés
+            // Send email
             var emailRequest = new EmailRequestDto(
                 user.Email,
-                "Sikeres regisztráció",
-                $"Kedves {user.Username},\n\nSikeresen regisztráltál!\n\nÜdv,\nA csapat"
+                "Successful registration",
+                $"Dear {user.Username},\n\nYou have successfully registered!\n\nBest regards,\nThe team"
             );
 
             _email.SendEmail(emailRequest);
 
-            return Ok(new { message = "Sikeres regisztráció! Az emailt elküldtük." });
+            return Ok(new { message = "Registration successful! The email has been sent." });
         }
 
-        // Felhasználó jelszavának visszaállítása email alapján
+        // Password reset endpoint (by email)
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {
             var user = await _context.Users.FirstOrDefaultAsync(f => f.Email == request.Email);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
 
-            // Generálj egy új jelszót vagy küldj egy jelszó visszaállítási linket emailben
+            // Generate a new password or send a password reset link via email
             var newPassword = GenerateRandomPassword();
             user.Password = HashPassword(newPassword);
 
             await _context.SaveChangesAsync();
 
-            // Küldj emailt az új jelszóval
+            // Send email with the new password
             var emailRequest = new EmailRequestDto(
                 user.Email,
-                "Jelszó visszaállítás",
-                $"Kedves {user.Username},\n\nAz új jelszavad: {newPassword}\n\nÜdv,\nA csapat"
+                "Password reset",
+                $"Dear {user.Username},\n\nYour new password is: {newPassword}\n\nBest regards,\nThe team"
             );
 
             _email.SendEmail(emailRequest);
 
-            return Ok(new { message = "Jelszó visszaállítva és elküldve emailben" });
+            return Ok(new { message = "Password reset and sent via email" });
         }
 
-        // Felhasználók listázása
-        [HttpGet("all-user")]
+        // List all users
+        [HttpGet("all-users")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _context.Users.ToListAsync();
-            return Ok(users);
+            return Ok(new { message = "Users retrieved successfully", users });
         }
 
-        // Felhasználó adatainak lekérdezése ID alapján
+        // Get user details by ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
-            return Ok(user);
+            return Ok(new { message = "User retrieved successfully", user });
         }
 
-        // Felhasználó adatainak lekérdezése felhasználónév alapján
-        [HttpGet("{username}")]
+        // Get user details by username
+        [HttpGet("username/{username}")]
         public async Task<IActionResult> GetUserByUsername(string username)
         {
             var user = await _context.Users.FirstOrDefaultAsync(f => f.Username == username);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
-            return Ok(user);
+            return Ok(new { message = "User retrieved successfully", user });
         }
 
-        // Felhasználó adatainak lekérdezése email alapján
-        [HttpGet("{email}")]
+        // Get user details by email
+        [HttpGet("email/{email}")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(f => f.Email == email);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
-            return Ok(user);
+            return Ok(new { message = "User retrieved successfully", user });
         }
 
-        // Felhasználó adatainak módosítása ID alapján
+        // Update user details by ID
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUserById(int id, [FromBody] User updatedUser)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
 
             user.Username = updatedUser.Username;
             user.Email = updatedUser.Email;
-            // Jelszó frissítése, ha szükséges
+            // Update password if necessary
             if (!string.IsNullOrEmpty(updatedUser.Password))
             {
                 user.Password = HashPassword(updatedUser.Password);
             }
 
             await _context.SaveChangesAsync();
-            return Ok(new { message = "Felhasználó adatai frissítve" });
+            return Ok(new { message = "User details updated successfully" });
         }
 
-        // Felhasználó törlése ID alapján
+        // Delete user by ID
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return NotFound(new { message = "Felhasználó nem található" });
+                return NotFound(new { message = "User not found" });
             }
 
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-            return Ok(new { message = "Felhasználó törölve" });
+            return Ok(new { message = "User deleted successfully" });
         }
 
         private string GenerateRandomPassword()
         {
-            // Generálj egy véletlenszerű jelszót
+            // Generate a random password
             const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
             return new string(Enumerable.Repeat(validChars, 8)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        // Jelszó hash-elése
+        // Hash password
         private string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())
@@ -216,13 +216,13 @@ namespace vizsga3.Controllers
             }
         }
 
-        // Jelszó ellenőrzése
+        // Verify password
         private bool VerifyPassword(string inputPassword, string hashedPassword)
         {
             return HashPassword(inputPassword) == hashedPassword;
         }
 
-        // JWT token generálása
+        // Generate JWT token
         private string GenerateJwtToken(User user)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings").Get<JwtSettings>();
@@ -284,3 +284,5 @@ namespace vizsga3.Controllers
         public string Email { get; set; }
     }
 }
+
+

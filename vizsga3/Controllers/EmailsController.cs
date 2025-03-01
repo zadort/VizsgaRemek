@@ -17,10 +17,20 @@ namespace vizsga3.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendNewEmail( EmailRequestDto emailRequestDto)
+        public ActionResult SendNewEmail(EmailRequestDto emailRequestDto)
         {
-            email.SendEmail(emailRequestDto);
-            return Ok(new { message = "Sikeres email küldés"});
+            try
+            {
+                email.SendEmail(emailRequestDto);
+                return Ok(new { message = "Email sent successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Email sending failed: {ex.Message}" });
+            }
         }
     }
 }
+
+
+
