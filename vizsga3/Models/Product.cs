@@ -12,10 +12,9 @@ public partial class Product
     public int? Price { get; set; }
 
     public string? Description { get; set; }
+    public string? Specs { get; set; }
 
     public string? Image { get; set; }
-
-    public string? Specs { get; set; }
 
     public string? Category { get; set; }
 }

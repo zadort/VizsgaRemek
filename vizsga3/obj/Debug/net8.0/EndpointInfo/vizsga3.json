@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Vizsga3 API",
-    "description": "A backend API for user login and other functionalities",
-    "version": "v1"
+    "title": "ASP.NET Core Web API",
+    "description": "",
+    "version": ""
   },
   "paths": {
     "/Card": {
@@ -472,11 +472,11 @@
             "type": "string",
             "nullable": true
           },
-          "image": {
+          "specs": {
             "type": "string",
             "nullable": true
           },
-          "specs": {
+          "image": {
             "type": "string",
             "nullable": true
           },
@@ -508,11 +508,11 @@
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "email": {
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "password": {
             "type": "string",
             "nullable": true
           }

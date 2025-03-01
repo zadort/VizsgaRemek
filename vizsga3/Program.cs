@@ -69,9 +69,9 @@ namespace vizsga3
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Vizsga3 API",
-                    Version = "v1",
-                    Description = "A backend API for user login and other functionalities"
+                    Title = "ASP.NET Core Web API",
+                    Version = "",
+                    Description = ""
                 });
             });
 
