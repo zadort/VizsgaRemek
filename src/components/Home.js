@@ -12,12 +12,17 @@ function Home({ cart, updateCart }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://localhost:7051/Kartya');
+        const response = await fetch('http://localhost:5123/Card');
         if (!response.ok) {
           throw new Error('Hiba a termékek lekérésekor');
         }
         const data = await response.json();
-        setProducts(data);
+        if (data.products && Array.isArray(data.products)) {
+          setProducts(data.products);
+        } else {
+          console.error('A kapott adat nem tartalmaz termékeket:', data);
+          throw new Error('A kapott adat nem tartalmaz termékeket');
+        }
       } catch (error) {
         console.error('Hiba a termékek lekérésekor:', error);
       }
@@ -44,11 +49,11 @@ function Home({ cart, updateCart }) {
       return;
     }
 
-    const productIndex = cart.findIndex((item) => item.nev === product.nev);
+    const productIndex = cart.findIndex((item) => item.name === product.name);
     const newCart = [...cart];
 
     if (productIndex === -1) {
-      newCart.push({ nev: product.nev, ar: product.ar, quantity: qty });
+      newCart.push({ name: product.name, price: product.price, quantity: qty });
     } else {
       newCart[productIndex].quantity += qty;
     }
@@ -69,10 +74,10 @@ function Home({ cart, updateCart }) {
             key={product.id} 
           >
             <div className="product-content" onClick={() => handleProductClick(product.id)}>
-              <img src={product.kepUrl} alt={product.nev} className="product-image" />
+              <img src={product.image} alt={product.name} className="product-image" />
               <div className="product-details">
-                <h2 className="product-name">{product.nev}</h2>
-                <p className="product-price">Ár: {product.ar} Ft</p>
+                <h2 className="product-name">{product.name}</h2>
+                <p className="product-price">Ár: {product.price} Ft</p>
               </div>
             </div>
             <div className="product-actions">
