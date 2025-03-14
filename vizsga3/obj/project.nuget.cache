@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yu7ggIRj3Rk=",
+  "dgSpecHash": "ME/BQbClnyo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+  "projectFilePath": "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zadortamas\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\zadortamas\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",

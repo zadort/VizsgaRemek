@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {}
+    "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {
+    "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\vizsga3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+        "projectUniqueName": "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
         "projectName": "vizsga3",
-        "projectPath": "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
+        "projectPath": "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\vizsga3.csproj",
         "packagesPath": "C:\\Users\\zadortamas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zadortamas\\Desktop\\jkkj\\VizsgaRemek\\vizsga3\\obj\\",
+        "outputPath": "C:\\Users\\zadortamas\\Desktop\\frontend\\VizsgaRemek\\vizsga3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
