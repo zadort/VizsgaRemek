@@ -18,9 +18,13 @@ function Header({ cart }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://localhost:7051/Kartya');
+        const response = await fetch('http://localhost:5123/Card');
         const data = await response.json();
-        setProducts(data);
+        if (Array.isArray(data.products)) {
+          setProducts(data.products);
+        } else {
+          console.error('Unexpected response format:', data);
+        }
       } catch (error) {
         console.error('Hiba a termékek betöltésekor:', error);
       }
@@ -32,7 +36,7 @@ function Header({ cart }) {
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.nev.toLowerCase().includes(searchTerm.toLowerCase())
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredProducts(filtered);
     } else {
@@ -91,7 +95,7 @@ function Header({ cart }) {
                 className="search-result-item"
                 onClick={() => handleProductClick(product.id)}
               >
-                {product.nev} - {product.ar} Ft
+                {product.name} - {product.price} Ft
               </div>
             ))}
           </div>

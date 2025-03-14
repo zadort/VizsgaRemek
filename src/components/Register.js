@@ -21,13 +21,15 @@ function Register() {
     }
 
     const requestBody = {
-      Felhasznalonev: username,
-      Email: email,
-      Jelszo: password,
+      username: username,
+      email: email,
+      password: password,
     };
+    console.log(requestBody);
+    
 
     try {
-      const response = await fetch('https://localhost:7051/Felhasznalo/register', {
+      const response = await fetch('http://localhost:5123/User/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

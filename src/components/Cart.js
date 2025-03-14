@@ -6,21 +6,22 @@ import './Cart.css';
 function Cart({ cart, updateCart }) {
   const { isDarkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
+  console.log('Cart:', cart);
 
   const removeFromCart = (itemName) => {
-    const newCart = cart.filter(item => item.nev !== itemName);
+    const newCart = cart.filter(item => item.name !== itemName);
     updateCart(newCart);
   };
 
   const updateQuantity = (itemName, newQuantity) => {
     const newCart = cart.map(item => 
-      item.nev === itemName ? { ...item, quantity: parseInt(newQuantity) } : item
+      item.name === itemName ? { ...item, quantity: parseInt(newQuantity) } : item
     );
     updateCart(newCart);
   };
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.ar * item.quantity, 0);
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   const handleCheckout = () => {
@@ -40,17 +41,17 @@ function Cart({ cart, updateCart }) {
           ) : (
             cart.map((item, index) => (
               <div className={`cart-item ${isDarkMode ? 'dark-mode' : ''}`} key={index}>
-                <h2>{item.nev}</h2>
-                <p>{item.ar} Ft</p>
-                <label htmlFor={`quantity-${item.nev}`}>Mennyiség:</label>
+                <h2>{item.name}</h2>
+                <p>{item.price} Ft</p>
+                <label htmlFor={`quantity-${item.name}`}>Mennyiség:</label>
                 <input
                   type="number"
-                  id={`quantity-${item.nev}`}
+                  id={`quantity-${item.name}`}
                   value={item.quantity}
                   min="1"
-                  onChange={(e) => updateQuantity(item.nev, e.target.value)}
+                  onChange={(e) => updateQuantity(item.name, e.target.value)}
                 />
-                <button className="remove-btn" onClick={() => removeFromCart(item.nev)}>
+                <button className="remove-btn" onClick={() => removeFromCart(item.name)}>
                   Eltávolítás
                 </button>
               </div>

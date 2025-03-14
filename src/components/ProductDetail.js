@@ -11,12 +11,13 @@ function ProductDetail({ addToCart }) {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://localhost:7051/Kartya/${id}`);
+        const response = await fetch(`http://localhost:5123/Card/${id}`);
         if (!response.ok) {
           throw new Error('Hiba a termék lekérésekor');
         }
         const data = await response.json();
-        setProduct(data);
+        console.log('Fetched product data:', data); // Debugging information
+        setProduct(data.product);
         setError(null); // Reset error state if data fetch is successful
       } catch (error) {
         console.error('Hiba a termék lekérésekor:', error);
@@ -32,7 +33,7 @@ function ProductDetail({ addToCart }) {
       alert("Kérlek, válassz érvényes mennyiséget!");
       return;
     }
-    addToCart(product.nev, product.ar, quantity);
+    addToCart(product.name, product.price, quantity);
   };
 
   if (error) {
@@ -43,15 +44,26 @@ function ProductDetail({ addToCart }) {
     return <div>Betöltés...</div>;
   }
 
+  // Debugging information
+  console.log('Product:', product);
+  console.log('Product Name:', product.name);
+  console.log('Product Price:', product.price);
+  console.log('Product Description:', product.description);
+  console.log('Product Image:', product.image);
+
   return (
     <div className="product-detail">
       <div className="product-image-container">
-        <img src={product.kepUrl} alt={product.nev} className="product-image" />
+        {product.image ? (
+          <img src={product.image} alt={product.name} className="product-image" onError={(e) => e.target.src = 'path/to/default-image.jpg'} />
+        ) : (
+          <div className="no-image">Nincs kép</div>
+        )}
       </div>
       <div className="product-info">
-        <h1 className="product-name">{product.nev}</h1>
-        <p className="product-price">{product.ar} Ft</p>
-        <p className="product-description">{product.leiras}</p>
+        <h1 className="product-name">{product.name}</h1>
+        <p className="product-price">{product.price} Ft</p>
+        <p className="product-description">{product.description}</p>
         <div className="product-actions">
           <input
             type="number"
