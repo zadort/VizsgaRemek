@@ -53,7 +53,15 @@ function Header({ cart }) {
   };
 
   const handleSearchBlur = () => {
-    setTimeout(() => setIsSearchFocused(false), 200); 
+    setTimeout(() => setIsSearchFocused(false), 200);
+  };
+
+  const handleSearchSubmit = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm('');
+      setFilteredProducts([]);
+    }
   };
 
   const handleProductClick = (productId) => {
@@ -87,6 +95,9 @@ function Header({ cart }) {
           onFocus={handleSearchFocus}
           onBlur={handleSearchBlur}
         />
+        <button className="search-button" onClick={handleSearchSubmit}>
+          <i className="fas fa-search"></i>
+        </button>
         {isSearchFocused && filteredProducts.length > 0 && (
           <div className="search-results">
             {filteredProducts.map((product) => (

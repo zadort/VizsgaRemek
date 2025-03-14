@@ -20,13 +20,31 @@ header.dark-mode {
   flex-grow: 1;
   margin: 0 20px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-bar input {
   width: 100%;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   border: 1px solid #ccc;
+  border-right: none;
+}
+
+.search-button {
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #e9ecef;
 }
 
 .search-results {

@@ -16,6 +16,7 @@ import ProductDetail from './components/ProductDetail';
 import Profile from './components/Profile';
 import Checkout from './components/Checkout';
 import CookieBanner from './components/CookieBanner';
+import SearchResults from './components/SearchResults';
 import { DarkModeProvider } from './components/DarkModeContext';
 import { AuthProvider } from './components/AuthContext';
 import './App.css';
@@ -46,6 +47,7 @@ function App() {
               <Route path="/cart" element={<Cart cart={cart} updateCart={updateCart} />} />
               <Route path="/products" element={<Products cart={cart} updateCart={updateCart} />} />
               <Route path="/product/:id" element={<ProductDetail cart={cart} updateCart={updateCart}/>} />
+              <Route path="/search" element={<SearchResults />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
