@@ -8,6 +8,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const { isDarkMode } = useContext(DarkModeContext);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,28 +16,31 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    //debug
-    
-
     try {
       const response = await fetch('http://localhost:5123/User/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ felhasznalonev: username, jelszo: password }),
+        body: JSON.stringify({ username: username, password: password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         login();
-        navigate('/');
+        setSuccessMessage('Sikeres bejelentkezés!');
+        setError('');
+        setTimeout(() => {
+          navigate('/');
+        }, 1500); // 1.5 másodperc várakozás után átirányítás
       } else {
         setError(data.message || 'Hibás felhasználónév vagy jelszó');
+        setSuccessMessage('');
       }
     } catch (error) {
       setError('Hiba történt a bejelentkezés során');
+      setSuccessMessage('');
     }
   };
 
@@ -44,7 +48,8 @@ function Login() {
     <div className={`login-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className={`login-box ${isDarkMode ? 'dark-mode' : ''}`}>
         <h2 className="text-center mb-4">Bejelentkezés</h2>
-        {error && <p className="error-message">{error}</p>}
+        {error && <div className="error-message">{error}</div>}
+        {successMessage && <div className="success-message">{successMessage}</div>}
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username" className="form-label">Felhasználónév</label>

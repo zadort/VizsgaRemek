@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DarkModeContext } from './DarkModeContext';
 import './Register.css';
 
@@ -12,8 +13,15 @@ function Register() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+    const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password.length < 6) {
+      setErrorMessage('A jelszónak legalább 6 karakter hosszúnak kell lennie!');
+      return;
+    }
 
     if (password !== confirmPassword) {
       setErrorMessage('A jelszavak nem egyeznek!');
@@ -26,7 +34,6 @@ function Register() {
       password: password,
     };
     console.log(requestBody);
-    
 
     try {
       const response = await fetch('http://localhost:5123/User/registration', {
@@ -40,6 +47,9 @@ function Register() {
       if (response.ok) {
         setSuccessMessage('Sikeres regisztráció!');
         setErrorMessage('');
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
       } else {
         const data = await response.json();
         setErrorMessage(data.message || 'Valami hiba történt!');
@@ -82,7 +92,7 @@ function Register() {
               type="password"
               className="form-control"
               id="password"
-              placeholder="Add meg a jelszavad"
+              placeholder="Add meg a jelszavad (minimum 6 karakter)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -101,8 +111,12 @@ function Register() {
           <button type="submit" className="btn btn-primary w-100 mt-3">Regisztráció</button>
         </form>
 
-        {errorMessage && <p className="text-danger text-center mt-3">{errorMessage}</p>}
-        {successMessage && <p className="text-success text-center mt-3">{successMessage}</p>}
+        {errorMessage && (
+          <div className="error-message animate-error">
+            <p>{errorMessage}</p>
+          </div>
+        )}
+        {successMessage && <p className="success-message">{successMessage}</p>}
 
         <p className="text-center mt-3">
           Már van fiókod? <a href="/login">Jelentkezz be itt!</a>
