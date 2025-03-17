@@ -9,7 +9,7 @@ function Products({ cart, updateCart }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://localhost:7051/Kartya');
+        const response = await fetch('https://localhost:5123/Card');
         if (!response.ok) {
           throw new Error('Hiba a termékek lekérésekor');
         }

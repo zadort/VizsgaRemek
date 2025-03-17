@@ -13,6 +13,7 @@ import Kapcsolat from './components/Kapcsolat';
 import Adatkezeles from './components/Adatkezeles';
 import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
+import Categories from './components/Categories';
 import Profile from './components/Profile';
 import Checkout from './components/Checkout';
 import CookieBanner from './components/CookieBanner';
@@ -47,7 +48,8 @@ function App() {
               <Route path="/cart" element={<Cart cart={cart} updateCart={updateCart} />} />
               <Route path="/products" element={<Products cart={cart} updateCart={updateCart} />} />
               <Route path="/product/:id" element={<ProductDetail cart={cart} updateCart={updateCart}/>} />
-              <Route path="/search" element={<SearchResults />} />
+              <Route path="/search" element={<SearchResults cart={cart} updateCart={updateCart}/>} />
+              <Route path="/categories" element={<Categories cart={cart} updateCart={updateCart}/>} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

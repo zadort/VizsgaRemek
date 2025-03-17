@@ -15,8 +15,8 @@ function Nav() {
           Kezdőlap
         </Link>
         <Link 
-          to="#categories" 
-          className="nav-link"
+          to="/categories" 
+          className={location.pathname === "/categories" ? "nav-link active" : "nav-link"}
         >
           Kategóriák
         </Link>

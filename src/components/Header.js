@@ -66,7 +66,7 @@ function Header({ cart }) {
 
   const handleSearchKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Megakadályozza az alapértelmezett viselkedést
+      e.preventDefault();
       handleSearchSubmit();
     }
   };
@@ -101,7 +101,7 @@ function Header({ cart }) {
           onChange={handleSearchChange}
           onFocus={handleSearchFocus}
           onBlur={handleSearchBlur}
-          onKeyDown={handleSearchKeyDown} // Enter gomb kezelése
+          onKeyDown={handleSearchKeyDown}
         />
         <button className="search-button" onClick={handleSearchSubmit}>
           <i className="fas fa-search"></i>
