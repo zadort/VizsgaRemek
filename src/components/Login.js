@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DarkModeContext } from './DarkModeContext';
 import { useAuth } from './AuthContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Login.css';
 
 function Login() {
@@ -9,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const { isDarkMode } = useContext(DarkModeContext);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ function Login() {
         setError('');
         setTimeout(() => {
           navigate('/');
-        }, 1500); // 1.5 másodperc várakozás után átirányítás
+        }, 1500);
       } else {
         setError(data.message || 'Hibás felhasználónév vagy jelszó');
         setSuccessMessage('');
@@ -63,17 +65,26 @@ function Login() {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group password-wrapper">
             <label htmlFor="password" className="form-label">Jelszó</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Add meg a jelszavad"
-              required
-            />
+            <div className="password-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Add meg a jelszavad"
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
           <button type="submit" className="btn btn-primary w-100 mt-3">
             Bejelentkezés

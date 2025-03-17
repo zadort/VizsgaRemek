@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DarkModeContext } from './DarkModeContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Ikonok importálása
 import './Register.css';
 
 function Register() {
@@ -10,10 +11,12 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Jelszó megjelenítés állapota
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Megerősítő jelszó állapota
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +36,6 @@ function Register() {
       email: email,
       password: password,
     };
-    console.log(requestBody);
 
     try {
       const response = await fetch('http://localhost:5123/User/registration', {
@@ -86,27 +88,45 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group password-wrapper">
             <label htmlFor="password" className="form-label">Jelszó</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Add meg a jelszavad (minimum 6 karakter)"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="password-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                id="password"
+                placeholder="Add meg a jelszavad (minimum 6 karakter)"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
-          <div className="form-group">
+          <div className="form-group password-wrapper">
             <label htmlFor="confirmPassword" className="form-label">Jelszó megerősítése</label>
-            <input
-              type="password"
-              className="form-control"
-              id="confirmPassword"
-              placeholder="Erősítsd meg a jelszavad"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <div className="password-container">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                className="form-control"
+                id="confirmPassword"
+                placeholder="Erősítsd meg a jelszavad"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
           <button type="submit" className="btn btn-primary w-100 mt-3">Regisztráció</button>
         </form>

@@ -205,3 +205,45 @@
 .dark-mode .login-link:hover {
   color: #0077cc;
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container .form-control {
+  width: 100%;
+  padding-right: 2.75rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle:hover {
+  color: #000;
+  opacity: 0.8;
+}
+
+/* Dark mode styling */
+.dark-mode .password-toggle {
+  color: #ccc;
+}
+
+.dark-mode .password-toggle:hover {
+  color: #fff;
+  opacity: 0.8;
+}

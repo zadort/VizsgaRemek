@@ -17,6 +17,7 @@
   width: 100%;
   max-width: 400px;
   color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-box h2 {
@@ -26,6 +27,7 @@
 
 .form-group {
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .form-label {
@@ -133,4 +135,45 @@
 
 .dark-mode .success-message {
   color: #28a745;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container .form-control {
+  width: 100%;
+  padding-right: 2.75rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle:hover {
+  color: #000;
+  opacity: 0.8;
+}
+
+.dark-mode .password-toggle {
+  color: #ccc;
+}
+
+.dark-mode .password-toggle:hover {
+  color: #fff;
+  opacity: 0.8;
 }
