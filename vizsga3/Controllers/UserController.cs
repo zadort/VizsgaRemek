@@ -197,6 +197,62 @@ namespace vizsga3.Controllers
             return Ok(new { message = "User deleted successfully" });
         }
 
+        // Change password
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            if (!VerifyPassword(request.OldPassword, user.Password))
+            {
+                return BadRequest(new { message = "Current password is incorrect" });
+            }
+
+            var newPassword = GenerateRandomPassword();
+            user.Password = HashPassword(newPassword);
+            await _context.SaveChangesAsync();
+
+            // Send email with the new password
+            var emailRequest = new EmailRequestDto(
+                user.Email,
+                "Password changed",
+                $"Dear {user.Username},\n\nYour new password is: {newPassword}\n\nBest regards,\nThe team"
+            );
+
+            _email.SendEmail(emailRequest);
+
+            return Ok(new { message = "Password changed successfully and sent via email" });
+        }
+
+        // Send current password to email
+        [HttpPost("send-password")]
+        public async Task<IActionResult> SendPassword([FromBody] SendPasswordRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            // Decrypt the password before sending
+            var decryptedPassword = DecryptPassword(user.Password);
+
+            // Send email with the current password
+            var emailRequest = new EmailRequestDto(
+                user.Email,
+                "Your current password",
+                $"Dear {user.Username},\n\nYour current password is: {decryptedPassword}\n\nBest regards,\nThe team"
+            );
+
+            _email.SendEmail(emailRequest);
+
+            return Ok(new { message = "Password sent to email successfully" });
+        }
+
         private string GenerateRandomPassword()
         {
             // Generate a random password
@@ -220,6 +276,51 @@ namespace vizsga3.Controllers
         private bool VerifyPassword(string inputPassword, string hashedPassword)
         {
             return HashPassword(inputPassword) == hashedPassword;
+        }
+
+        // Encrypt password
+        private string EncryptPassword(string password)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_configuration["EncryptionKey"]);
+                aes.IV = Encoding.UTF8.GetBytes(_configuration["EncryptionIV"]);
+
+                var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (var sw = new StreamWriter(cs))
+                        {
+                            sw.Write(password);
+                        }
+                    }
+                    return Convert.ToBase64String(ms.ToArray());
+                }
+            }
+        }
+
+        // Decrypt password
+        private string DecryptPassword(string encryptedPassword)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_configuration["EncryptionKey"]);
+                aes.IV = Encoding.UTF8.GetBytes(_configuration["EncryptionIV"]);
+
+                var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+                using (var ms = new MemoryStream(Convert.FromBase64String(encryptedPassword)))
+                {
+                    using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (var sr = new StreamReader(cs))
+                        {
+                            return sr.ReadToEnd();
+                        }
+                    }
+                }
+            }
         }
 
         // Generate JWT token
@@ -255,6 +356,7 @@ namespace vizsga3.Controllers
 
     public class ChangePasswordRequest
     {
+        public string Username { get; set; }
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
     }
@@ -283,6 +385,9 @@ namespace vizsga3.Controllers
     {
         public string Email { get; set; }
     }
+
+    public class SendPasswordRequest
+    {
+        public string Email { get; set; }
+    }
 }
-
-

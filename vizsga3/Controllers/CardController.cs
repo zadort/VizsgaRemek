@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using vizsga3.Models;
 using Microsoft.EntityFrameworkCore;
+using vizsga3.Models.Requests;
 
 namespace vizsga3.Controllers
 {
@@ -76,11 +77,14 @@ namespace vizsga3.Controllers
         [HttpGet("category/{category}")]
         public async Task<IActionResult> GetProductsByCategory(string category)
         {
+            var categoryExists = await _context.Categories.AnyAsync(c => c.Category1 == category);
+            if (!categoryExists)
+            {
+                return NotFound(new { message = "Category not found" });
+            }
+
             var products = await _context.Products.Where(p => p.Category == category).ToListAsync();
             return Ok(new { message = "Products retrieved successfully", products });
         }
     }
 }
-
-
-

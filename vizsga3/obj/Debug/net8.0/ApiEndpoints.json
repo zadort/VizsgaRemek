@@ -175,6 +175,22 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "User/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
     "Method": "GetUserByEmail",
     "RelativePath": "User/email/{email}",
     "HttpMethod": "GET",
@@ -232,6 +248,22 @@
       {
         "Name": "request",
         "Type": "vizsga3.Controllers.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "SendPassword",
+    "RelativePath": "User/send-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Controllers.SendPasswordRequest",
         "IsRequired": true
       }
     ],
