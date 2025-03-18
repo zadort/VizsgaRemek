@@ -49,7 +49,7 @@ const Checkout = () => {
         <h2>Kosár tartalma</h2>
         {cart.map((item, index) => (
           <div key={index} className="cart-item">
-            <p>{item.nev} - {item.quantity} db - {item.ar * item.quantity} Ft</p>
+            <p>{item.name} - {item.quantity} db - {item.price * item.quantity} Ft</p>
           </div>
         ))}
         <h3>Összesen: {total} Ft</h3>

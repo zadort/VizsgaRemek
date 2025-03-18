@@ -1,36 +1,139 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
+import './Profile.css';
 
-const Profile = () => {
-  const { currentUser } = useAuth();
-  const [userData, setUserData] = useState(null);
+function Profile() {
+    const { isLoggedIn, logout } = useAuth(); // Ellenőrizzük az isLoggedIn állapotot
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [newUsername, setNewUsername] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (currentUser) {
-      fetch(`https://localhost:7051/Felhasznalo/profile/${currentUser.username}`)
-        .then((response) => response.json())
-        .then((data) => setUserData(data))
-        .catch((error) => console.error('Error fetching user profile:', error));
-    }
-  }, [currentUser]);
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login'); // Ha nincs bejelentkezve, irányítsuk a bejelentkezés oldalra
+            return;
+        }
 
-  if (!currentUser) {
-    return <div>Please log in to view your profile.</div>;
-  }
+        const fetchUserData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    throw new Error('Token hiányzik');
+                }
 
-  return (
-    <div>
-      <h2>Profile</h2>
-      {userData ? (
-        <div>
-          <p>Username: {userData.username}</p>
-          <p>Email: {userData.email}</p>
+                const response = await fetch('http://localhost:5123/User/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        throw new Error('Érvénytelen token');
+                    }
+                    throw new Error('Hiba a felhasználói adatok lekérésekor');
+                }
+
+                const data = await response.json();
+                setUsername(data.username);
+                setEmail(data.email);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setError(error.message || 'Hiba történt a felhasználói adatok betöltésekor');
+            }
+        };
+
+        fetchUserData();
+    }, [isLoggedIn, navigate]);
+
+    const handleUpdateProfile = async (e) => {
+        e.preventDefault();
+
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token hiányzik');
+            }
+
+            const response = await fetch(`http://localhost:5123/User/${username}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    username: newUsername || username,
+                    password: newPassword,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Hiba történt a profil frissítésekor');
+            }
+
+            setSuccessMessage('Profil sikeresen frissítve!');
+            setError('');
+            setUsername(newUsername || username);
+            setNewUsername('');
+            setNewPassword('');
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            setError(error.message || 'Hiba történt a profil frissítésekor');
+            setSuccessMessage('');
+        }
+    };
+
+    return (
+        <div className="profile-container">
+            <h2>Profil</h2>
+            {error && <div className="error-message">{error}</div>}
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            <form onSubmit={handleUpdateProfile}>
+                <div className="form-group">
+                    <label htmlFor="username">Felhasználónév</label>
+                    <input
+                        type="text"
+                        id="username"
+                        value={newUsername}
+                        onChange={(e) => setNewUsername(e.target.value)}
+                        placeholder={username || 'Új felhasználónév'}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        disabled
+                        placeholder="Email cím"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Új jelszó</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="Új jelszó"
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Módosítás
+                </button>
+            </form>
+            <button className="btn btn-danger mt-3" onClick={logout}>
+                Kijelentkezés
+            </button>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-};
+    );
+}
 
 export default Profile;

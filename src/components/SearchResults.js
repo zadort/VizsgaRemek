@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Importáljuk a useNavigate-t
 import { DarkModeContext } from './DarkModeContext';
 import './SearchResults.css';
 
@@ -8,6 +8,7 @@ function SearchResults({ cart, updateCart }) {
   const [quantities, setQuantities] = useState({});
   const { isDarkMode } = useContext(DarkModeContext);
   const location = useLocation();
+  const navigate = useNavigate(); // Navigációs hook
   const query = new URLSearchParams(location.search).get('query');
 
   useEffect(() => {
@@ -63,6 +64,10 @@ function SearchResults({ cart, updateCart }) {
     updateCart(newCart);
   };
 
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`); // Navigálás a termék részletes oldalára
+  };
+
   return (
     <div className={`search-results-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <h1 className="search-results-title">Keresési eredmények: "{query}"</h1>
@@ -72,6 +77,7 @@ function SearchResults({ cart, updateCart }) {
             <div 
               className={`product-card ${isDarkMode ? 'dark-mode' : ''}`} 
               key={product.id}
+              onClick={() => handleProductClick(product.id)} // Kattintási eseménykezelő
             >
               <div className="product-content">
                 <img src={product.image} alt={product.name} className="product-image" />
@@ -80,7 +86,7 @@ function SearchResults({ cart, updateCart }) {
                   <p className="product-price">Ár: {product.price} Ft</p>
                 </div>
               </div>
-              <div className="product-actions">
+              <div className="product-actions" onClick={(e) => e.stopPropagation()}>
                 <input
                   type="number"
                   value={quantities[product.id] || 1}

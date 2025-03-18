@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importáljuk a useNavigate-t
 import './Categories.css';
 
 const Categories = ({ cart, updateCart }) => {
@@ -7,6 +8,7 @@ const Categories = ({ cart, updateCart }) => {
     const [products, setProducts] = useState([]);
     const [quantities, setQuantities] = useState({});
     const [error, setError] = useState('');
+    const navigate = useNavigate(); // Navigációs hook
 
     // Kategóriák betöltése
     useEffect(() => {
@@ -55,6 +57,10 @@ const Categories = ({ cart, updateCart }) => {
         updateCart(newCart);
     };
 
+    const handleProductClick = (id) => {
+        navigate(`/product/${id}`); // Navigálás a termék részletes oldalára
+    };
+
     return (
         <div className="categories-container">
             <h1>Kategóriák</h1>
@@ -73,11 +79,15 @@ const Categories = ({ cart, updateCart }) => {
 
             <div className="products-list">
                 {products.map((product) => (
-                    <div key={product.id} className="product-card">
+                    <div
+                        key={product.id}
+                        className="product-card"
+                        onClick={() => handleProductClick(product.id)} // Kattintási eseménykezelő
+                    >
                         <img src={product.image} alt={product.name} className="product-image" />
                         <h2>{product.name}</h2>
                         <p>Ár: {product.price} Ft</p>
-                        <div className="product-actions">
+                        <div className="product-actions" onClick={(e) => e.stopPropagation()}>
                             <input
                                 type="number"
                                 value={quantities[product.id] || 1}
