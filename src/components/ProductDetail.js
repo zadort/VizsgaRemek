@@ -64,6 +64,19 @@ function ProductDetail({ addToCart }) {
         <h1 className="product-name">{product.name}</h1>
         <p className="product-price">{product.price} Ft</p>
         <p className="product-description">{product.description}</p>
+
+        {/* Műszaki adatok rész */}
+        {product.specs && (
+          <div className="product-specs">
+            <h2 className="specs-title">Műszaki adatok</h2>
+            <div className="specs-content">
+              {product.specs.split('\n').map((line, index) => (
+                <p key={index} className="specs-line">{line}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="product-actions">
           <input
             type="number"

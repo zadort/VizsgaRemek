@@ -65,6 +65,42 @@
     margin-top: 20px;
 }
 
+.product-specs {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.specs-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.specs-content {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.specs-line {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .specs-title {
+        font-size: 1.5em;
+    }
+
+    .specs-content {
+        font-size: 1em;
+    }
+}
+
 .quantity-input {
     width: 100px;
     padding: 12px;

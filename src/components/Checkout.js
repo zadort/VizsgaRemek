@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Checkout.css';
@@ -7,9 +7,9 @@ const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart, total } = location.state || { cart: [], total: 0 };
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const createOrder = (data, actions) => {
-    console.log('createOrder', data, actions);
     return actions.order.create({
       purchase_units: [
         {
@@ -19,21 +19,22 @@ const Checkout = () => {
           },
         },
       ],
-    }).catch(error => {
-      console.error("Order creation error:", error);
+    }).catch((error) => {
+      console.error('Order creation error:', error);
       alert('Hiba történt a rendelés létrehozásakor.');
     });
   };
 
   const onApprove = (data, actions) => {
-    console.log('onApprove', data);
+    setIsProcessing(true);
     return actions.order.capture().then((details) => {
-      console.log('Fizetés sikeres:', details);
-      alert('Fizetés sikeres! Köszönjük a vásárlást.');
+      alert(`Fizetés sikeres! Köszönjük a vásárlást, ${details.payer.name.given_name}!`);
       navigate('/');
-    }).catch(error => {
+    }).catch((error) => {
       console.error('PayPal hiba:', error);
       alert('Hiba történt a fizetés feldolgozása közben. Kérjük, próbálja újra.');
+    }).finally(() => {
+      setIsProcessing(false);
     });
   };
 
@@ -44,19 +45,34 @@ const Checkout = () => {
 
   return (
     <div className="checkout-container">
-      <h1>Fizetés</h1>
+      <div className="checkout-header">
+        <h1>Fizetés</h1>
+        <p>Véglegesítsd a rendelésed és fizess biztonságosan a PayPal segítségével.</p>
+      </div>
+
       <div className="cart-summary">
         <h2>Kosár tartalma</h2>
-        {cart.map((item, index) => (
-          <div key={index} className="cart-item">
-            <p>{item.name} - {item.quantity} db - {item.price * item.quantity} Ft</p>
-          </div>
-        ))}
-        <h3>Összesen: {total} Ft</h3>
+        {cart.length > 0 ? (
+          cart.map((item, index) => (
+            <div key={index} className="cart-item">
+              <div className="cart-item-details">
+                <span className="cart-item-name">{item.name}</span>
+                <span className="cart-item-quantity">{item.quantity} db</span>
+                <span className="cart-item-price">{item.price * item.quantity} Ft</span>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="empty-cart-message">A kosár üres.</p>
+        )}
+        <div className="cart-total">
+          <h3>Összesen:</h3>
+          <p>{total.toLocaleString()} Ft</p>
+        </div>
       </div>
-      <div className="payment-methods">
-        <h2>Fizetési módok</h2>
-        <PayPalScriptProvider options={{ 'client-id': 'ARKb7iTQY6kcmxx3ms4a5j67y76p1dCw-mOTxFWdTam5cUj_zFfLdt1PCeHwFa9NRSSzCs8exmsCLLam' }}>
+
+      <div className="paypal-container">
+        <PayPalScriptProvider options={{ 'client-id': 'AYQxMUbBjGmkEPWkbPd0VzOskTtk1RYudk-oGJ1I-8EjMaR9b089AGuVwtafKj-vYBthb5xO5_kdikSZ' }}>
           <PayPalButtons
             createOrder={createOrder}
             onApprove={onApprove}
@@ -64,6 +80,13 @@ const Checkout = () => {
             style={{ layout: 'vertical', shape: 'rect', color: 'blue' }}
           />
         </PayPalScriptProvider>
+      </div>
+
+      <div className="checkout-footer">
+        <button className="back-to-cart-btn" onClick={() => navigate('/cart')}>
+          Vissza a kosárhoz
+        </button>
+        {isProcessing && <p className="processing-message">Fizetés feldolgozása...</p>}
       </div>
     </div>
   );

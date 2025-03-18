@@ -123,3 +123,11 @@ h1 {
         width: 100%;
     }
 }
+
+body.dark-mode .category-button {
+    color: #ffffff;
+}
+
+body.dark-mode h1 {
+    color: #ffffff;
+}
