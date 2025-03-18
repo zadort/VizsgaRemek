@@ -4,9 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using vizsga3.Models;
-using vizsga3.Services.IEmailService;
 using vizsga3.Services;
 using Microsoft.Extensions.Logging;
+using vizsga3.Middleware;
 
 namespace vizsga3
 {
@@ -24,7 +24,7 @@ namespace vizsga3
             // Bind JWT settings
             builder.Services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
-            builder.Services.AddScoped<IEmail, Email>();
+            builder.Services.AddScoped<IEmail, EmailService>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -70,8 +70,8 @@ namespace vizsga3
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "ASP.NET Core Web API",
-                    Version = "",
-                    Description = ""
+                    Version = "v1",
+                    Description = "Vizsga3 API"
                 });
             });
 
@@ -113,38 +113,5 @@ namespace vizsga3
         public string Issuer { get; set; }
         public string Audience { get; set; }
         public string SecretKey { get; set; }
-    }
-
-    // Global exception handling middleware
-    public class ExceptionHandlingMiddleware
-    {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
-
-        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
-        {
-            _next = next;
-            _logger = logger;
-        }
-
-        public async Task InvokeAsync(HttpContext context)
-        {
-            try
-            {
-                await _next(context);
-            }
-            catch (DbUpdateException dbEx)
-            {
-                _logger.LogError(dbEx, "A database update exception has occurred.");
-                context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("A database error occurred. Try again later.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An unhandled exception has occurred.");
-                context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
-            }
-        }
     }
 }

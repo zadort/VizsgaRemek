@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Org.BouncyCastle.Crypto.Utilities;
 
 namespace vizsga3.Controllers
 {
@@ -251,6 +253,45 @@ namespace vizsga3.Controllers
             _email.SendEmail(emailRequest);
 
             return Ok(new { message = "Password sent to email successfully" });
+        }
+
+        // Get orders for the specified user
+        [HttpGet("my-orders/{username}")]
+        public async Task<IActionResult> GetMyOrders(string username)
+        {
+            _logger.LogInformation($"GetMyOrders request for username: {username}");
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+            if (user == null)
+            {
+                _logger.LogWarning($"User not found: {username}");
+                return NotFound(new { message = "User not found" });
+            }
+
+            var orders = await _context.Orders
+                .Where(o => o.UserId == user.Id)
+                .ToListAsync();
+
+            if (orders.Count == 0)
+            {
+                _logger.LogInformation($"No orders found for user: {username}");
+                return Ok(new { message = "No orders found for this user" });
+            }
+
+            _logger.LogInformation($"Orders retrieved successfully for user: {username}");
+            return Ok(new { message = "Orders retrieved successfully", orders });
+        }
+
+        // Get all usernames
+        [HttpGet("all-active-orders")]
+        public async Task<IActionResult> GetAllActiveOrders()
+        {
+            var users = await _context.Users
+                .Select(u => u.Username)
+                .ToListAsync();
+
+            return Ok(new { message = "Usernames retrieved successfully", users });
         }
 
         private string GenerateRandomPassword()

@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ASP.NET Core Web API",
-    "description": "",
-    "version": ""
+    "description": "Vizsga3 API",
+    "version": "v1"
   },
   "paths": {
     "/Card": {
@@ -472,6 +472,40 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/User/my-orders/{username}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/User/all-active-orders": {
+      "get": {
+        "tags": [
+          "User"
+        ],
         "responses": {
           "200": {
             "description": "OK"

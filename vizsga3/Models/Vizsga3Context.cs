@@ -6,6 +6,8 @@ namespace vizsga3.Models;
 
 public partial class Vizsga3Context : DbContext
 {
+    public virtual DbSet<Order> Orders { get; set; }
+
     public Vizsga3Context()
     {
     }

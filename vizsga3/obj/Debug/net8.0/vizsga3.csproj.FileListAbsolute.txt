@@ -1548,10 +1548,10 @@ C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticw
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.vizsga3.props
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.vizsga3.props
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.csproj.Up2Date
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.dll
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\refint\vizsga3.dll
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.pdb
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\vizsga3.genruntimeconfig.cache
 C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\ref\vizsga3.dll
+C:\Users\zadortamas\Desktop\backend\VizsgaRemek\vizsga3\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

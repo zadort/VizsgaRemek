@@ -165,6 +165,16 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "GetAllActiveOrders",
+    "RelativePath": "User/all-active-orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
     "Method": "GetAllUsers",
     "RelativePath": "User/all-users",
     "HttpMethod": "GET",
@@ -216,6 +226,22 @@
       {
         "Name": "request",
         "Type": "vizsga3.Controllers.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "GetMyOrders",
+    "RelativePath": "User/my-orders/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
