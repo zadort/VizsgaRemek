@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetail.css';
 
-function ProductDetail({ addToCart }) {
+function ProductDetail({ cart, updateCart }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -16,7 +16,7 @@ function ProductDetail({ addToCart }) {
           throw new Error('Hiba a termék lekérésekor');
         }
         const data = await response.json();
-        console.log('Fetched product data:', data); // Debugging information
+        console.log(data); // Ellenőrizd, hogy a szerver milyen adatokat küld
         setProduct(data.product);
         setError(null); // Reset error state if data fetch is successful
       } catch (error) {
@@ -30,10 +30,22 @@ function ProductDetail({ addToCart }) {
 
   const handleAddToCart = () => {
     if (quantity <= 0 || isNaN(quantity)) {
-      alert("Kérlek, válassz érvényes mennyiséget!");
+      alert('Kérlek, válassz érvényes mennyiséget!');
       return;
     }
-    addToCart(product.name, product.price, quantity);
+  
+    const productIndex = cart.findIndex((item) => item.name === product.name);
+    const newCart = [...cart];
+  
+    if (productIndex === -1) {
+      // Add new product to the cart
+      newCart.push({ name: product.name, price: product.price, quantity });
+    } else {
+      // Update quantity of existing product
+      newCart[productIndex].quantity += quantity;
+    }
+  
+    updateCart(newCart);
   };
 
   if (error) {
@@ -44,18 +56,16 @@ function ProductDetail({ addToCart }) {
     return <div>Betöltés...</div>;
   }
 
-  // Debugging information
-  console.log('Product:', product);
-  console.log('Product Name:', product.name);
-  console.log('Product Price:', product.price);
-  console.log('Product Description:', product.description);
-  console.log('Product Image:', product.image);
-
   return (
     <div className="product-detail">
       <div className="product-image-container">
         {product.image ? (
-          <img src={product.image} alt={product.name} className="product-image" onError={(e) => e.target.src = 'path/to/default-image.jpg'} />
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-image"
+            onError={(e) => (e.target.src = 'path/to/default-image.jpg')}
+          />
         ) : (
           <div className="no-image">Nincs kép</div>
         )}
@@ -64,18 +74,6 @@ function ProductDetail({ addToCart }) {
         <h1 className="product-name">{product.name}</h1>
         <p className="product-price">{product.price} Ft</p>
         <p className="product-description">{product.description}</p>
-
-        {/* Műszaki adatok rész */}
-        {product.specs && (
-          <div className="product-specs">
-            <h2 className="specs-title">Műszaki adatok</h2>
-            <div className="specs-content">
-              {product.specs.split('\n').map((line, index) => (
-                <p key={index} className="specs-line">{line}</p>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div className="product-actions">
           <input
@@ -86,8 +84,8 @@ function ProductDetail({ addToCart }) {
             className="quantity-input"
             aria-label="Mennyiség"
           />
-          <button 
-            className="add-to-cart-btn" 
+          <button
+            className="add-to-cart-btn"
             onClick={handleAddToCart}
             aria-label="Hozzáadás a kosárhoz"
           >
