@@ -6,7 +6,7 @@ using vizsga3.Models.Requests;
 
 namespace vizsga3.Controllers
 {
-    [Route("api/products")]
+    [Route("[controller]")]
     [ApiController]
     public class CardController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace vizsga3.Controllers
         public async Task<IActionResult> Get()
         {
             var products = await _context.Products.ToListAsync();
-            return Ok(new { message = "Products retrieved successfully.", products });
+            return Ok(new { message = "Products retrieved successfully", products });
         }
 
         [HttpGet("{id}")]
@@ -30,9 +30,9 @@ namespace vizsga3.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
-                return NotFound(new { message = "Product not found." });
+                return NotFound(new { message = "Product not found" });
             }
-            return Ok(new { message = "Product retrieved successfully.", product });
+            return Ok(new { message = "Product retrieved successfully", product });
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace vizsga3.Controllers
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            return Ok(new { message = "Product created successfully." });
+            return Ok(new { message = "Product created successfully" });
         }
 
         [HttpPut("{id}")]
@@ -49,7 +49,7 @@ namespace vizsga3.Controllers
             var productToUpdate = await _context.Products.FindAsync(id);
             if (productToUpdate == null)
             {
-                return NotFound(new { message = "Product not found." });
+                return NotFound(new { message = "Product not found" });
             }
             productToUpdate.Name = product.Name;
             productToUpdate.Price = product.Price;
@@ -57,7 +57,7 @@ namespace vizsga3.Controllers
             productToUpdate.Image = product.Image;
             productToUpdate.Category = product.Category;
             await _context.SaveChangesAsync();
-            return Ok(new { message = "Product updated successfully." });
+            return Ok(new { message = "Product updated successfully" });
         }
 
         [HttpDelete("{id}")]
@@ -66,11 +66,11 @@ namespace vizsga3.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
-                return NotFound(new { message = "Product not found." });
+                return NotFound(new { message = "Product not found" });
             }
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return Ok(new { message = "Product deleted successfully." });
+            return Ok(new { message = "Product deleted successfully" });
         }
 
         // Get products by category
@@ -80,18 +80,11 @@ namespace vizsga3.Controllers
             var categoryExists = await _context.Categories.AnyAsync(c => c.Category1 == category);
             if (!categoryExists)
             {
-                return NotFound(new { message = "Category not found." });
+                return NotFound(new { message = "Category not found" });
             }
 
             var products = await _context.Products.Where(p => p.Category == category).ToListAsync();
-            return Ok(new { message = "Products retrieved successfully.", products });
-        }
-
-        [HttpGet("count")]
-        public ActionResult<int> GetProductCount()
-        {
-            var count = _context.Products.Count();
-            return Ok(new { message = "Product count retrieved successfully.", count });
+            return Ok(new { message = "Products retrieved successfully", products });
         }
     }
 }

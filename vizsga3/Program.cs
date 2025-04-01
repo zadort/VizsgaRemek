@@ -71,13 +71,7 @@ namespace vizsga3
                 {
                     Title = "ASP.NET Core Web API",
                     Version = "v1",
-                    Description = "Vizsga3 API",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Support Team",
-                        Email = "support@vizsga3.com",
-                        Url = new Uri("https://vizsga3.com/support")
-                    }
+                    Description = "Vizsga3 API"
                 });
             });
 
@@ -93,7 +87,6 @@ namespace vizsga3
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vizsga3 API V1");
-                    c.RoutePrefix = string.Empty;
                 });
             }
 

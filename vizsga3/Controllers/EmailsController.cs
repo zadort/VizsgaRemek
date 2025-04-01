@@ -5,7 +5,7 @@ using vizsga3.Services.IEmailService;
 
 namespace vizsga3.Controllers
 {
-    [Route("api/emails")]
+    [Route("emails")]
     [ApiController]
     public class EmailsController : ControllerBase
     {
@@ -22,24 +22,12 @@ namespace vizsga3.Controllers
             try
             {
                 email.SendEmail(emailRequestDto);
-                return Ok(new { message = "Email sent successfully." });
+                return Ok(new { message = "Email sent successfully" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Failed to send email: {ex.Message}" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Email sending failed: {ex.Message}" });
             }
-        }
-
-        [HttpGet("test")]
-        public ActionResult TestEmail()
-        {
-            return Ok(new { message = "Email service is operational." });
-        }
-
-        [HttpGet("status")]
-        public ActionResult GetEmailServiceStatus()
-        {
-            return Ok(new { message = "Email service is running smoothly." });
         }
     }
 }
