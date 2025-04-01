@@ -19,7 +19,8 @@ namespace vizsga3.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Category>> GetCategories()
         {
-            return Ok(_context.Categories.ToList());
+            var categories = _context.Categories.ToList();
+            return Ok(new { status = "success", message = "Categories retrieved successfully", categories });
         }
 
         [HttpGet("{id}")]
@@ -28,9 +29,9 @@ namespace vizsga3.Controllers
             var category = _context.Categories.Find(id);
             if (category == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "Category not found" });
             }
-            return Ok(category);
+            return Ok(new { status = "success", message = "Category retrieved successfully", category });
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
+            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, new { status = "success", message = "Category created successfully", category });
         }
 
         [HttpPut("{id}")]
@@ -46,7 +47,7 @@ namespace vizsga3.Controllers
         {
             if (id != category.Id)
             {
-                return BadRequest();
+                return BadRequest(new { status = "error", message = "Category ID mismatch" });
             }
 
             _context.Entry(category).State = EntityState.Modified;
@@ -61,7 +62,7 @@ namespace vizsga3.Controllers
             var category = _context.Categories.Find(id);
             if (category == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "Category not found" });
             }
 
             _context.Categories.Remove(category);

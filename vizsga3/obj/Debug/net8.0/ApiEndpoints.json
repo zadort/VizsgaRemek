@@ -104,7 +104,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[vizsga3.Models.Category, vizsga3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Category, vizsga3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -124,13 +124,13 @@
     "Parameters": [
       {
         "Name": "category",
-        "Type": "vizsga3.Models.Category",
+        "Type": "Category",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "vizsga3.Models.Category",
+        "Type": "Category",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -156,7 +156,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "vizsga3.Models.Category",
+        "Type": "Category",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -181,7 +181,7 @@
       },
       {
         "Name": "category",
-        "Type": "vizsga3.Models.Category",
+        "Type": "Category",
         "IsRequired": true
       }
     ],

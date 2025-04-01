@@ -19,7 +19,8 @@ namespace vizsga3.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            return Ok(_context.Users.ToList());
+            var users = _context.Users.ToList();
+            return Ok(new { status = "success", message = "Users retrieved successfully", users });
         }
 
         [HttpGet("{id}")]
@@ -28,9 +29,9 @@ namespace vizsga3.Controllers
             var user = _context.Users.Find(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "User not found" });
             }
-            return Ok(user);
+            return Ok(new { status = "success", message = "User retrieved successfully", user });
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Users.Add(user);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, new { status = "success", message = "User created successfully", user });
         }
 
         [HttpPut("{id}")]
@@ -46,7 +47,7 @@ namespace vizsga3.Controllers
         {
             if (id != user.Id)
             {
-                return BadRequest();
+                return BadRequest(new { status = "error", message = "User ID mismatch" });
             }
 
             _context.Entry(user).State = EntityState.Modified;
@@ -61,7 +62,7 @@ namespace vizsga3.Controllers
             var user = _context.Users.Find(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "User not found" });
             }
 
             _context.Users.Remove(user);

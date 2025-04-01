@@ -19,7 +19,8 @@ namespace vizsga3.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Order>> GetOrders()
         {
-            return Ok(_context.Orders.ToList());
+            var orders = _context.Orders.ToList();
+            return Ok(new { status = "success", message = "Orders retrieved successfully", orders });
         }
 
         [HttpGet("{id}")]
@@ -28,9 +29,9 @@ namespace vizsga3.Controllers
             var order = _context.Orders.Find(id);
             if (order == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "Order not found" });
             }
-            return Ok(order);
+            return Ok(new { status = "success", message = "Order retrieved successfully", order });
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
+            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, new { status = "success", message = "Order created successfully", order });
         }
 
         [HttpPut("{id}")]
@@ -46,7 +47,7 @@ namespace vizsga3.Controllers
         {
             if (id != order.Id)
             {
-                return BadRequest();
+                return BadRequest(new { status = "error", message = "Order ID mismatch" });
             }
 
             _context.Entry(order).State = EntityState.Modified;
@@ -61,7 +62,7 @@ namespace vizsga3.Controllers
             var order = _context.Orders.Find(id);
             if (order == null)
             {
-                return NotFound();
+                return NotFound(new { status = "error", message = "Order not found" });
             }
 
             _context.Orders.Remove(order);
