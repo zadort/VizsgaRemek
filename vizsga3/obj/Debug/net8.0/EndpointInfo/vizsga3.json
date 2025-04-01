@@ -3,10 +3,15 @@
   "info": {
     "title": "ASP.NET Core Web API",
     "description": "Vizsga3 API",
+    "contact": {
+      "name": "Support Team",
+      "url": "https://vizsga3.com/support",
+      "email": "support@vizsga3.com"
+    },
     "version": "v1"
   },
   "paths": {
-    "/Card": {
+    "/api/products": {
       "get": {
         "tags": [
           "Card"
@@ -47,7 +52,7 @@
         }
       }
     },
-    "/Card/{id}": {
+    "/api/products/{id}": {
       "get": {
         "tags": [
           "Card"
@@ -131,7 +136,7 @@
         }
       }
     },
-    "/Card/category/{category}": {
+    "/api/products/category/{category}": {
       "get": {
         "tags": [
           "Card"
@@ -153,7 +158,7 @@
         }
       }
     },
-    "/Card/count": {
+    "/api/products/count": {
       "get": {
         "tags": [
           "Card"
@@ -185,7 +190,7 @@
         }
       }
     },
-    "/categories": {
+    "/api/categories": {
       "get": {
         "tags": [
           "Categories"
@@ -269,7 +274,7 @@
         }
       }
     },
-    "/categories/{id}": {
+    "/api/categories/{id}": {
       "get": {
         "tags": [
           "Categories"
@@ -370,7 +375,7 @@
         }
       }
     },
-    "/categories/count": {
+    "/api/categories/count": {
       "get": {
         "tags": [
           "Categories"
@@ -402,7 +407,7 @@
         }
       }
     },
-    "/emails": {
+    "/api/emails": {
       "post": {
         "tags": [
           "Emails"
@@ -433,7 +438,7 @@
         }
       }
     },
-    "/emails/test": {
+    "/api/emails/test": {
       "get": {
         "tags": [
           "Emails"
@@ -445,7 +450,7 @@
         }
       }
     },
-    "/emails/status": {
+    "/api/emails/status": {
       "get": {
         "tags": [
           "Emails"
@@ -457,7 +462,7 @@
         }
       }
     },
-    "/orders": {
+    "/api/orders": {
       "get": {
         "tags": [
           "Orders"
@@ -541,7 +546,7 @@
         }
       }
     },
-    "/orders/{id}": {
+    "/api/orders/{id}": {
       "get": {
         "tags": [
           "Orders"
@@ -642,7 +647,7 @@
         }
       }
     },
-    "/orders/count": {
+    "/api/orders/count": {
       "get": {
         "tags": [
           "Orders"
@@ -1188,7 +1193,7 @@
         }
       }
     },
-    "/users": {
+    "/api/users": {
       "get": {
         "tags": [
           "Users"
@@ -1272,7 +1277,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/api/users/{id}": {
       "get": {
         "tags": [
           "Users"
@@ -1373,7 +1378,7 @@
         }
       }
     },
-    "/users/count": {
+    "/api/users/count": {
       "get": {
         "tags": [
           "Users"

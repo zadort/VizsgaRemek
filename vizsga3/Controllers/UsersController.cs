@@ -5,7 +5,7 @@ using vizsga3.Models;
 
 namespace vizsga3.Controllers
 {
-    [Route("users")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {

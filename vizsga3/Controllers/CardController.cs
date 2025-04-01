@@ -6,7 +6,7 @@ using vizsga3.Models.Requests;
 
 namespace vizsga3.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class CardController : ControllerBase
     {

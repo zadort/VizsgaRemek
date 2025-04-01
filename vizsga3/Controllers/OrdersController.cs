@@ -5,7 +5,7 @@ using vizsga3.Models;
 
 namespace vizsga3.Controllers
 {
-    [Route("orders")]
+    [Route("api/orders")]
     [ApiController]
     public class OrdersController : ControllerBase
     {

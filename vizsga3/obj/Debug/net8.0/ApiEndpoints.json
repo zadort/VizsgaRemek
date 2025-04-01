@@ -1,123 +1,8 @@
 [
   {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "Get",
-    "RelativePath": "Card",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "Post",
-    "RelativePath": "Card",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "product",
-        "Type": "vizsga3.Models.Product",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "Get",
-    "RelativePath": "Card/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "Put",
-    "RelativePath": "Card/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "product",
-        "Type": "vizsga3.Models.Product",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "Delete",
-    "RelativePath": "Card/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "GetProductsByCategory",
-    "RelativePath": "Card/category/{category}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "category",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "GetProductCount",
-    "RelativePath": "Card/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "GetCategories",
-    "RelativePath": "categories",
+    "RelativePath": "api/categories",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -137,7 +22,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "CreateCategory",
-    "RelativePath": "categories",
+    "RelativePath": "api/categories",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -163,7 +48,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "GetCategory",
-    "RelativePath": "categories/{id}",
+    "RelativePath": "api/categories/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -189,7 +74,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "UpdateCategory",
-    "RelativePath": "categories/{id}",
+    "RelativePath": "api/categories/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -210,7 +95,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "DeleteCategory",
-    "RelativePath": "categories/{id}",
+    "RelativePath": "api/categories/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -226,7 +111,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "GetCategoryCount",
-    "RelativePath": "categories/count",
+    "RelativePath": "api/categories/count",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -246,7 +131,7 @@
   {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "SendNewEmail",
-    "RelativePath": "emails",
+    "RelativePath": "api/emails",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -262,7 +147,7 @@
   {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "GetEmailServiceStatus",
-    "RelativePath": "emails/status",
+    "RelativePath": "api/emails/status",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -272,7 +157,7 @@
   {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "TestEmail",
-    "RelativePath": "emails/test",
+    "RelativePath": "api/emails/test",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -282,7 +167,7 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "GetOrders",
-    "RelativePath": "orders",
+    "RelativePath": "api/orders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -302,7 +187,7 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "CreateOrder",
-    "RelativePath": "orders",
+    "RelativePath": "api/orders",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -328,7 +213,7 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "GetOrder",
-    "RelativePath": "orders/{id}",
+    "RelativePath": "api/orders/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -354,7 +239,7 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "UpdateOrder",
-    "RelativePath": "orders/{id}",
+    "RelativePath": "api/orders/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -375,7 +260,7 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "DeleteOrder",
-    "RelativePath": "orders/{id}",
+    "RelativePath": "api/orders/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -391,7 +276,251 @@
   {
     "ContainingType": "vizsga3.Controllers.OrdersController",
     "Method": "GetOrderCount",
-    "RelativePath": "orders/count",
+    "RelativePath": "api/orders/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Get",
+    "RelativePath": "api/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Post",
+    "RelativePath": "api/products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "vizsga3.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Get",
+    "RelativePath": "api/products/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Put",
+    "RelativePath": "api/products/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "product",
+        "Type": "vizsga3.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "Delete",
+    "RelativePath": "api/products/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "GetProductsByCategory",
+    "RelativePath": "api/products/category/{category}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "GetProductCount",
+    "RelativePath": "api/products/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "GetUsers",
+    "RelativePath": "api/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[vizsga3.Models.User, vizsga3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "CreateUser",
+    "RelativePath": "api/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "vizsga3.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga3.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "GetUser",
+    "RelativePath": "api/users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga3.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "vizsga3.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "GetUserCount",
+    "RelativePath": "api/users/count",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -717,134 +846,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "GetUsers",
-    "RelativePath": "users",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[vizsga3.Models.User, vizsga3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "CreateUser",
-    "RelativePath": "users",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "user",
-        "Type": "vizsga3.Models.User",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga3.Models.User",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "GetUser",
-    "RelativePath": "users/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga3.Models.User",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "UpdateUser",
-    "RelativePath": "users/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "user",
-        "Type": "vizsga3.Models.User",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "DeleteUser",
-    "RelativePath": "users/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.UsersController",
-    "Method": "GetUserCount",
-    "RelativePath": "users/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]

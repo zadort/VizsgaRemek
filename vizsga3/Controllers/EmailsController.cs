@@ -5,7 +5,7 @@ using vizsga3.Services.IEmailService;
 
 namespace vizsga3.Controllers
 {
-    [Route("emails")]
+    [Route("api/emails")]
     [ApiController]
     public class EmailsController : ControllerBase
     {

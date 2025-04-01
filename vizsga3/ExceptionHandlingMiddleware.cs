@@ -32,7 +32,11 @@ namespace vizsga3.Middleware
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var result = JsonSerializer.Serialize(new { message = "An unexpected fault happened. Try again later." });
+            var result = JsonSerializer.Serialize(new
+            {
+                message = "An unexpected error occurred. Please try again later.",
+                details = exception.Message
+            });
             return context.Response.WriteAsync(result);
         }
     }
