@@ -135,7 +135,13 @@ namespace vizsga3.Controllers
             {
                 return NotFound(new { message = "User not found" });
             }
-            return Ok(new { message = "User retrieved successfully", user });
+
+            return Ok(new
+            {
+                id = user.Id,
+                username = user.Username,
+                email = user.Email
+            });
         }
 
         // Get user details by username
@@ -172,16 +178,23 @@ namespace vizsga3.Controllers
                 return NotFound(new { message = "User not found" });
             }
 
-            user.Username = updatedUser.Username;
-            user.Email = updatedUser.Email;
-            // Update password if necessary
+            // Ellenőrizzük, hogy az új jelszó különbözik-e a jelenlegitől
             if (!string.IsNullOrEmpty(updatedUser.Password))
             {
-                user.Password = HashPassword(updatedUser.Password);
+                var hashedNewPassword = HashPassword(updatedUser.Password);
+                if (hashedNewPassword == user.Password)
+                {
+                    return BadRequest(new { message = "Az új jelszó nem lehet ugyanaz, mint a jelenlegi jelszó." });
+                }
+
+                user.Password = hashedNewPassword;
             }
 
+            user.Username = updatedUser.Username ?? user.Username;
+            user.Email = updatedUser.Email ?? user.Email;
+
             await _context.SaveChangesAsync();
-            return Ok(new { message = "User details updated successfully" });
+            return Ok(new { message = "User details updated successfully", username = user.Username, email = user.Email });
         }
 
         // Delete user by ID
@@ -294,6 +307,58 @@ namespace vizsga3.Controllers
             return Ok(new { message = "Usernames retrieved successfully", users });
         }
 
+        [Authorize]
+        [HttpPut("update-profile")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UpdateUserProfileRequest request)
+        {
+            try
+            {
+                // JWT tokenből kinyerjük a felhasználónevet
+                var username = User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub)?.Value;
+
+                if (string.IsNullOrEmpty(username))
+                {
+                    return Unauthorized(new { message = "A felhasználó azonosítása sikertelen." });
+                }
+
+                // Lekérjük a felhasználót az adatbázisból
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+                if (user == null)
+                {
+                    return NotFound(new { message = "Felhasználó nem található." });
+                }
+
+                // Frissítjük a felhasználó adatait
+                if (!string.IsNullOrEmpty(request.Username))
+                {
+                    if (await _context.Users.AnyAsync(u => u.Username == request.Username && u.Id != user.Id))
+                    {
+                        return BadRequest(new { message = "Ez a felhasználónév már foglalt." });
+                    }
+                    user.Username = request.Username;
+                }
+
+                if (!string.IsNullOrEmpty(request.Email))
+                {
+                    if (await _context.Users.AnyAsync(u => u.Email == request.Email && u.Id != user.Id))
+                    {
+                        return BadRequest(new { message = "Ez az e-mail cím már használatban van." });
+                    }
+                    user.Email = request.Email;
+                }
+
+                // Mentjük a változtatásokat
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Profil sikeresen frissítve.", user });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Hiba történt a profil frissítése során: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Hiba történt a profil frissítése során." });
+            }
+        }
+
         private string GenerateRandomPassword()
         {
             // Generate a random password
@@ -367,20 +432,18 @@ namespace vizsga3.Controllers
         // Generate JWT token
         private string GenerateJwtToken(User user)
         {
-            var jwtSettings = _configuration.GetSection("JwtSettings").Get<JwtSettings>();
-
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: jwtSettings.Issuer,
-                audience: jwtSettings.Audience,
+                issuer: _configuration["JwtSettings:Issuer"],
+                audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: creds);
