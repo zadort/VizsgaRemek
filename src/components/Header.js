@@ -92,7 +92,7 @@ function Header({ cart }) {
 
   return (
     <header className={isDarkMode ? 'dark-mode' : ''}>
-      <div className="logo">Elektronikai Shop</div>
+      <div className="logo">TechNest</div>
       <div className="search-bar">
         <input
           type="text"

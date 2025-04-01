@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from './AuthContext'; // Importáljuk az AuthContext-et
 import './Checkout.css';
 
 const Checkout = () => {
@@ -8,6 +9,7 @@ const Checkout = () => {
   const location = useLocation();
   const { cart, total } = location.state || { cart: [], total: 0 };
   const [isProcessing, setIsProcessing] = useState(false);
+  const { isLoggedIn } = useAuth(); // Ellenőrizzük, hogy be van-e jelentkezve
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -72,14 +74,18 @@ const Checkout = () => {
       </div>
 
       <div className="paypal-container">
-        <PayPalScriptProvider options={{ 'client-id': 'AYQxMUbBjGmkEPWkbPd0VzOskTtk1RYudk-oGJ1I-8EjMaR9b089AGuVwtafKj-vYBthb5xO5_kdikSZ' }}>
-          <PayPalButtons
-            createOrder={createOrder}
-            onApprove={onApprove}
-            onError={handleError}
-            style={{ layout: 'vertical', shape: 'rect', color: 'blue' }}
-          />
-        </PayPalScriptProvider>
+        {isLoggedIn ? (
+          <PayPalScriptProvider options={{ 'client-id': 'AYQxMUbBjGmkEPWkbPd0VzOskTtk1RYudk-oGJ1I-8EjMaR9b089AGuVwtafKj-vYBthb5xO5_kdikSZ' }}>
+            <PayPalButtons
+              createOrder={createOrder}
+              onApprove={onApprove}
+              onError={handleError}
+              style={{ layout: 'vertical', shape: 'rect', color: 'blue' }}
+            />
+          </PayPalScriptProvider>
+        ) : (
+          <p className="login-warning">A fizetéshez kérjük, jelentkezz be!</p>
+        )}
       </div>
 
       <div className="checkout-footer">

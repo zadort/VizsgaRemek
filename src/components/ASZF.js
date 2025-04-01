@@ -9,7 +9,7 @@ const ASZF = () => {
 
       <h2>1. Általános rendelkezések</h2>
       <p>1.1. A jelen Általános Szerződési Feltételek (a továbbiakban: ÁSZF) a webáruházban történő vásárlással kapcsolatos jogokat és kötelezettségeket szabályozzák.</p>
-      <p>1.2. A webáruház tulajdonosa: Elektronikai Shop, székhely: 1234 Budapest, Vásárló utca 1.</p>
+      <p>1.2. A webáruház tulajdonosa: TechNest, székhely: 1234 Budapest, Vásárló utca 1.</p>
 
       <h2>2. Rendelési folyamat</h2>
       <p>2.1. A vásárlás során a vevő köteles helyes és valós adatokat megadni.</p>

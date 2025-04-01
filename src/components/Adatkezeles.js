@@ -11,7 +11,7 @@ const Adatkezeles = () => {
       <p>Köszönjük, hogy webáruházunkat választotta! Az alábbiakban tájékoztatjuk, hogyan kezeljük felhasználóink adatait.</p>
 
       <h2>1. Az adatkezelés alapvetése</h2>
-      <p>1.1. A webáruház tulajdonosa: Elektronikai Shop, székhely: 1234 Budapest, Vásárló utca 1.</p>
+      <p>1.1. A webáruház tulajdonosa: TechNest, székhely: 1234 Budapest, Vásárló utca 1.</p>
       <p>1.2. Az adatkezelés célja: A rendelések feldolgozása, a vásárlói élmény javítása, és a jogi kötelezettségek teljesítése.</p>
 
       <h2>2. Kezelt adatok</h2>

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import './Profile.css';
 
 function Profile() {
-    const { isLoggedIn, logout } = useAuth(); // Ellenőrizzük az isLoggedIn állapotot
+    const { isLoggedIn, logout } = useAuth();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [newUsername, setNewUsername] = useState('');
+    const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -15,7 +17,7 @@ function Profile() {
 
     useEffect(() => {
         if (!isLoggedIn) {
-            navigate('/login'); // Ha nincs bejelentkezve, irányítsuk a bejelentkezés oldalra
+            navigate('/login');
             return;
         }
 
@@ -23,10 +25,13 @@ function Profile() {
             try {
                 const token = localStorage.getItem('token');
                 if (!token) {
-                    throw new Error('Token hiányzik');
+                    throw new Error('Hiányzó token. Kérjük, jelentkezzen be újra.');
                 }
 
-                const response = await fetch('http://localhost:5123/User/me', {
+                const decodedToken = jwtDecode(token);
+                const userId = decodedToken.sub;
+
+                const response = await fetch(`http://localhost:5123/User/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -35,22 +40,29 @@ function Profile() {
 
                 if (!response.ok) {
                     if (response.status === 401) {
-                        throw new Error('Érvénytelen token');
+                        logout();
+                        navigate('/login');
+                        return;
                     }
-                    throw new Error('Hiba a felhasználói adatok lekérésekor');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Hiba a felhasználói adatok lekérésekor.');
                 }
 
                 const data = await response.json();
-                setUsername(data.username);
-                setEmail(data.email);
+                console.log('Lekért adatok:', data); // Ellenőrizd a backend válaszát
+                setUsername(data.username || 'Nincs megadva');
+                setEmail(data.email || 'Nincs megadva');
+                setNewUsername(data.username || '');
+                setNewEmail(data.email || '');
+                setError('');
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                setError(error.message || 'Hiba történt a felhasználói adatok betöltésekor');
+                setError(error.message || 'Hiba történt a felhasználói adatok betöltésekor.');
             }
         };
 
         fetchUserData();
-    }, [isLoggedIn, navigate]);
+    }, [isLoggedIn, navigate, logout]);
 
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
@@ -58,10 +70,13 @@ function Profile() {
         try {
             const token = localStorage.getItem('token');
             if (!token) {
-                throw new Error('Token hiányzik');
+                throw new Error('Hiányzó token. Kérjük, jelentkezzen be újra.');
             }
 
-            const response = await fetch(`http://localhost:5123/User/${username}`, {
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken.sub;
+
+            const response = await fetch(`http://localhost:5123/User/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,22 +84,27 @@ function Profile() {
                 },
                 body: JSON.stringify({
                     username: newUsername || username,
-                    password: newPassword,
+                    email: newEmail || email,
+                    password: newPassword || undefined,
                 }),
             });
 
             if (!response.ok) {
-                throw new Error('Hiba történt a profil frissítésekor');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Hiba történt a profil frissítésekor.');
             }
 
+            const updatedData = await response.json();
             setSuccessMessage('Profil sikeresen frissítve!');
             setError('');
-            setUsername(newUsername || username);
+            setUsername(updatedData.username);
+            setEmail(updatedData.email);
             setNewUsername('');
+            setNewEmail('');
             setNewPassword('');
         } catch (error) {
             console.error('Error updating profile:', error);
-            setError(error.message || 'Hiba történt a profil frissítésekor');
+            setError(error.message || 'Hiba történt a profil frissítésekor.');
             setSuccessMessage('');
         }
     };
@@ -110,9 +130,9 @@ function Profile() {
                     <input
                         type="email"
                         id="email"
-                        value={email}
-                        disabled
-                        placeholder="Email cím"
+                        value={newEmail}
+                        onChange={(e) => setNewEmail(e.target.value)}
+                        placeholder={email || 'Új email cím'}
                     />
                 </div>
                 <div className="form-group">

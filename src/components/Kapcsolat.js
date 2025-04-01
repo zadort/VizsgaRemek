@@ -14,7 +14,7 @@ const Kapcsolat = () => {
         <h2>Elérhetőségek</h2>
         <p><strong>Cím:</strong> 1234 Budapest, Vásárló utca 1.</p>
         <p><strong>Telefon:</strong> +36 1 234 5678</p>
-        <p><strong>E-mail:</strong> info@elektronikawebshop.hu</p>
+        <p><strong>E-mail:</strong> technestthereal@gmail.com</p>
         <p><strong>Nyitvatartás:</strong> Hétfőtől péntekig, 9:00 - 17:00</p>
       </div>
 

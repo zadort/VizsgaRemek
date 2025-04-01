@@ -64,7 +64,7 @@ function Home({ cart, updateCart }) {
   return (
     <div className={`home-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="hero">
-        <h1>Üdvözlünk az Elektronikai Shopban!</h1>
+        <h1>Üdvözlünk az TechNesten!</h1>
         <p>Találd meg a legjobb eszközöket és kiegészítőket!</p>
       </div>
       <section className="products-container">

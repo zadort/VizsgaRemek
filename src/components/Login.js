@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DarkModeContext } from './DarkModeContext';
 import { useAuth } from './AuthContext';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { jwtDecode } from 'jwt-decode'; // Helyes importálás
 import './Login.css';
 
 function Login() {
@@ -24,15 +24,26 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username: username, password: password }),
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
+        // Mentjük a JWT tokent a localStorage-ba
+        localStorage.setItem('token', data.token);
+
+        // Dekódoljuk a tokent, hogy kinyerjük a felhasználói ID-t
+        const decodedToken = jwtDecode(data.token);
+        const userId = decodedToken.sub; // A "sub" mező tartalmazza a felhasználó ID-jét
+        console.log('Bejelentkezett felhasználó ID:', userId);
+
+        // Bejelentkezés állapot frissítése
         login();
         setSuccessMessage('Sikeres bejelentkezés!');
         setError('');
+
+        // Átirányítás a kezdőlapra
         setTimeout(() => {
           navigate('/');
         }, 1500);
@@ -41,6 +52,7 @@ function Login() {
         setSuccessMessage('');
       }
     } catch (error) {
+      console.error('Hiba történt a bejelentkezés során:', error);
       setError('Hiba történt a bejelentkezés során');
       setSuccessMessage('');
     }
@@ -82,7 +94,7 @@ function Login() {
                 className="password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                {showPassword ? '🙈' : '👁️'}
               </button>
             </div>
           </div>

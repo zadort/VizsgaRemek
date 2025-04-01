@@ -8,7 +8,7 @@
   animation: fadeIn 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Tisztább elrendezés */
+  gap: 20px;
 }
 
 @keyframes fadeIn {
@@ -44,7 +44,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Görgethetővé tesszük, ha túl sok elem van */
+  overflow-y: auto;
 }
 
 .cart-summary h2 {
@@ -123,6 +123,13 @@
   color: #007bff;
   margin-top: 20px;
   text-align: center;
+}
+
+.login-warning {
+  color: #dc3545;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .checkout-footer {

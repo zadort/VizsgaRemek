@@ -6,8 +6,8 @@ function Footer() {
     <footer>
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Elektronikai Shop</h3>
-          <p>&copy; 2024 Elektronikai Shop - Minden jog fenntartva.</p>
+          <h3>TechNest</h3>
+          <p>&copy; 2024 TechNest - Minden jog fenntartva.</p>
         </div>
         <div className="footer-section">
           <h3>Hasznos linkek</h3>
@@ -24,7 +24,7 @@ function Footer() {
           <h3>Elérhetőségek</h3>
           <ul>
             <li>Telefonszám: +36 1 234 5678</li>
-            <li>Email: info@elektronikaishop.hu</li>
+            <li>Email: technestthereal@gmail.com</li>
             <li>Cím: 1234 Budapest, Vásárló utca 1.</li>
           </ul>
         </div>
