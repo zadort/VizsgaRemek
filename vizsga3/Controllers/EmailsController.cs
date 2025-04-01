@@ -22,18 +22,24 @@ namespace vizsga3.Controllers
             try
             {
                 email.SendEmail(emailRequestDto);
-                return Ok(new { status = "success", message = "Email sent successfully" });
+                return Ok(new { message = "Email sent successfully." });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { status = "error", message = $"Email sending failed: {ex.Message}" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Failed to send email: {ex.Message}" });
             }
         }
 
         [HttpGet("test")]
         public ActionResult TestEmail()
         {
-            return Ok(new { status = "success", message = "Email service is running" });
+            return Ok(new { message = "Email service is operational." });
+        }
+
+        [HttpGet("status")]
+        public ActionResult GetEmailServiceStatus()
+        {
+            return Ok(new { message = "Email service is running smoothly." });
         }
     }
 }

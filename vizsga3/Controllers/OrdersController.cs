@@ -20,7 +20,7 @@ namespace vizsga3.Controllers
         public ActionResult<IEnumerable<Order>> GetOrders()
         {
             var orders = _context.Orders.ToList();
-            return Ok(new { status = "success", message = "Orders retrieved successfully", orders });
+            return Ok(new { message = "Orders retrieved successfully.", orders });
         }
 
         [HttpGet("{id}")]
@@ -29,9 +29,9 @@ namespace vizsga3.Controllers
             var order = _context.Orders.Find(id);
             if (order == null)
             {
-                return NotFound(new { status = "error", message = "Order not found" });
+                return NotFound(new { message = "Order not found." });
             }
-            return Ok(new { status = "success", message = "Order retrieved successfully", order });
+            return Ok(new { message = "Order retrieved successfully.", order });
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, new { status = "success", message = "Order created successfully", order });
+            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, new { message = "Order created successfully.", order });
         }
 
         [HttpPut("{id}")]
@@ -47,7 +47,7 @@ namespace vizsga3.Controllers
         {
             if (id != order.Id)
             {
-                return BadRequest(new { status = "error", message = "Order ID mismatch" });
+                return BadRequest(new { message = "Order ID mismatch." });
             }
 
             _context.Entry(order).State = EntityState.Modified;
@@ -62,13 +62,20 @@ namespace vizsga3.Controllers
             var order = _context.Orders.Find(id);
             if (order == null)
             {
-                return NotFound(new { status = "error", message = "Order not found" });
+                return NotFound(new { message = "Order not found." });
             }
 
             _context.Orders.Remove(order);
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpGet("count")]
+        public ActionResult<int> GetOrderCount()
+        {
+            var count = _context.Orders.Count();
+            return Ok(new { message = "Order count retrieved successfully.", count });
         }
     }
 }

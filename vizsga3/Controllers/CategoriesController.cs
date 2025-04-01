@@ -20,7 +20,7 @@ namespace vizsga3.Controllers
         public ActionResult<IEnumerable<Category>> GetCategories()
         {
             var categories = _context.Categories.ToList();
-            return Ok(new { status = "success", message = "Categories retrieved successfully", categories });
+            return Ok(new { message = "Categories retrieved successfully.", categories });
         }
 
         [HttpGet("{id}")]
@@ -29,9 +29,9 @@ namespace vizsga3.Controllers
             var category = _context.Categories.Find(id);
             if (category == null)
             {
-                return NotFound(new { status = "error", message = "Category not found" });
+                return NotFound(new { message = "Category not found." });
             }
-            return Ok(new { status = "success", message = "Category retrieved successfully", category });
+            return Ok(new { message = "Category retrieved successfully.", category });
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace vizsga3.Controllers
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, new { status = "success", message = "Category created successfully", category });
+            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, new { message = "Category created successfully.", category });
         }
 
         [HttpPut("{id}")]
@@ -47,7 +47,7 @@ namespace vizsga3.Controllers
         {
             if (id != category.Id)
             {
-                return BadRequest(new { status = "error", message = "Category ID mismatch" });
+                return BadRequest(new { message = "Category ID mismatch." });
             }
 
             _context.Entry(category).State = EntityState.Modified;
@@ -62,13 +62,20 @@ namespace vizsga3.Controllers
             var category = _context.Categories.Find(id);
             if (category == null)
             {
-                return NotFound(new { status = "error", message = "Category not found" });
+                return NotFound(new { message = "Category not found." });
             }
 
             _context.Categories.Remove(category);
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpGet("count")]
+        public ActionResult<int> GetCategoryCount()
+        {
+            var count = _context.Categories.Count();
+            return Ok(new { message = "Category count retrieved successfully.", count });
         }
     }
 }

@@ -95,6 +95,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "vizsga3.Controllers.CardController",
+    "Method": "GetProductCount",
+    "RelativePath": "Card/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "vizsga3.Controllers.CategoriesController",
     "Method": "GetCategories",
     "RelativePath": "categories",
@@ -204,6 +224,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "vizsga3.Controllers.CategoriesController",
+    "Method": "GetCategoryCount",
+    "RelativePath": "categories/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "vizsga3.Controllers.EmailsController",
     "Method": "SendNewEmail",
     "RelativePath": "emails",
@@ -217,6 +257,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.EmailsController",
+    "Method": "GetEmailServiceStatus",
+    "RelativePath": "emails/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -337,6 +387,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.OrdersController",
+    "Method": "GetOrderCount",
+    "RelativePath": "orders/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "vizsga3.Controllers.ProductsController",
@@ -756,5 +826,25 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UsersController",
+    "Method": "GetUserCount",
+    "RelativePath": "users/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
