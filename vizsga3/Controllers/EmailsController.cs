@@ -29,7 +29,11 @@ namespace vizsga3.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Email sending failed: {ex.Message}" });
             }
         }
+
+        [HttpGet("test")]
+        public ActionResult TestEmail()
+        {
+            return Ok(new { message = "Email service is running" });
+        }
     }
 }
-
-
