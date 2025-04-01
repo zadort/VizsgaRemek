@@ -3,15 +3,10 @@
   "info": {
     "title": "ASP.NET Core Web API",
     "description": "Vizsga3 API",
-    "contact": {
-      "name": "Support Team",
-      "url": "https://vizsga3.com/support",
-      "email": "support@vizsga3.com"
-    },
     "version": "v1"
   },
   "paths": {
-    "/api/products": {
+    "/Card": {
       "get": {
         "tags": [
           "Card"
@@ -52,7 +47,7 @@
         }
       }
     },
-    "/api/products/{id}": {
+    "/Card/{id}": {
       "get": {
         "tags": [
           "Card"
@@ -136,7 +131,7 @@
         }
       }
     },
-    "/api/products/category/{category}": {
+    "/Card/category/{category}": {
       "get": {
         "tags": [
           "Card"
@@ -158,39 +153,7 @@
         }
       }
     },
-    "/api/products/count": {
-      "get": {
-        "tags": [
-          "Card"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/emails": {
+    "/emails": {
       "post": {
         "tags": [
           "Emails"
@@ -214,30 +177,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/emails/test": {
-      "get": {
-        "tags": [
-          "Emails"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/emails/status": {
-      "get": {
-        "tags": [
-          "Emails"
-        ],
         "responses": {
           "200": {
             "description": "OK"

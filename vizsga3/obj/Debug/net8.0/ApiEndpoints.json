@@ -1,44 +1,8 @@
 [
   {
-    "ContainingType": "vizsga3.Controllers.EmailsController",
-    "Method": "SendNewEmail",
-    "RelativePath": "api/emails",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "emailRequestDto",
-        "Type": "vizsga3.Models.Dtos.EmailRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.EmailsController",
-    "Method": "GetEmailServiceStatus",
-    "RelativePath": "api/emails/status",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga3.Controllers.EmailsController",
-    "Method": "TestEmail",
-    "RelativePath": "api/emails/test",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "Get",
-    "RelativePath": "api/products",
+    "RelativePath": "Card",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -48,7 +12,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "Post",
-    "RelativePath": "api/products",
+    "RelativePath": "Card",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -64,7 +28,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "Get",
-    "RelativePath": "api/products/{id}",
+    "RelativePath": "Card/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -80,7 +44,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "Put",
-    "RelativePath": "api/products/{id}",
+    "RelativePath": "Card/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -101,7 +65,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "Delete",
-    "RelativePath": "api/products/{id}",
+    "RelativePath": "Card/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -117,7 +81,7 @@
   {
     "ContainingType": "vizsga3.Controllers.CardController",
     "Method": "GetProductsByCategory",
-    "RelativePath": "api/products/category/{category}",
+    "RelativePath": "Card/category/{category}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -131,24 +95,20 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga3.Controllers.CardController",
-    "Method": "GetProductCount",
-    "RelativePath": "api/products/count",
-    "HttpMethod": "GET",
+    "ContainingType": "vizsga3.Controllers.EmailsController",
+    "Method": "SendNewEmail",
+    "RelativePath": "emails",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "emailRequestDto",
+        "Type": "vizsga3.Models.Dtos.EmailRequestDto",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "vizsga3.Controllers.UserController",
