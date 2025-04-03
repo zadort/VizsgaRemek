@@ -8,6 +8,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.profile-container.dark-mode {
+    background-color: #333;
+    color: #f9f9f9;
+}
+
 .profile-container h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -23,12 +28,22 @@
     font-weight: bold;
 }
 
-.form-control {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    background-color: #fff;
+    color: #000;
+}
+
+.profile-container.dark-mode .form-group input,
+.profile-container.dark-mode .form-group textarea {
+    background-color: #444;
+    color: #f9f9f9;
+    border: 1px solid #666;
 }
 
 .btn {

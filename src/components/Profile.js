@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode } from 'jwt-decode';
+import { DarkModeContext } from './DarkModeContext';
 import './Profile.css';
 
 function Profile() {
     const { isLoggedIn, logout } = useAuth();
+    const { isDarkMode } = useContext(DarkModeContext);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [newUsername, setNewUsername] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
@@ -49,7 +52,7 @@ function Profile() {
                 }
 
                 const data = await response.json();
-                console.log('Lekért adatok:', data); // Ellenőrizd a backend válaszát
+                console.log('Lekért adatok:', data);
                 setUsername(data.username || 'Nincs megadva');
                 setEmail(data.email || 'Nincs megadva');
                 setNewUsername(data.username || '');
@@ -66,6 +69,12 @@ function Profile() {
 
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
+
+        // Ellenőrizzük, hogy egyik mező se legyen üres
+        if (!newUsername.trim() || !newEmail.trim() || !newPassword.trim()) {
+            setError('Minden mezőt ki kell tölteni!');
+            return;
+        }
 
         try {
             const token = localStorage.getItem('token');
@@ -110,7 +119,7 @@ function Profile() {
     };
 
     return (
-        <div className="profile-container">
+        <div className={`profile-container ${isDarkMode ? 'dark-mode' : ''}`}>
             <h2>Profil</h2>
             {error && <div className="error-message">{error}</div>}
             {successMessage && <div className="success-message">{successMessage}</div>}
@@ -135,15 +144,24 @@ function Profile() {
                         placeholder={email || 'Új email cím'}
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group password-wrapper">
                     <label htmlFor="password">Új jelszó</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="Új jelszó"
-                    />
+                    <div className="password-container">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            placeholder="Új jelszó"
+                        />
+                        <button
+                            type="button"
+                            className="password-toggle"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? '🙈' : '👁️'}
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" className="btn btn-primary">
                     Módosítás
