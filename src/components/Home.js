@@ -8,6 +8,7 @@ function Home({ cart, updateCart }) {
   const { isDarkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
   const [quantities, setQuantities] = useState({});
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,7 +19,7 @@ function Home({ cart, updateCart }) {
         }
         const data = await response.json();
         if (data.products && Array.isArray(data.products)) {
-          setProducts(data.products);
+          setProducts(data.products.slice(0, 9));
         } else {
           console.error('A kapott adat nem tartalmaz termékeket:', data);
           throw new Error('A kapott adat nem tartalmaz termékeket');
@@ -61,39 +62,71 @@ function Home({ cart, updateCart }) {
     updateCart(newCart);
   };
 
+  const groupedProducts = [];
+  for (let i = 0; i < products.length; i += 3) {
+    groupedProducts.push(products.slice(i, i + 3));
+  }
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % groupedProducts.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + groupedProducts.length) % groupedProducts.length);
+  };
+
+  const getCarouselStyle = () => {
+    return {
+      transform: `translateX(-${currentSlide * 100}%)`,
+      transition: 'transform 0.5s ease-in-out',
+    };
+  };
+
   return (
     <div className={`home-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="hero">
         <h1>Üdvözlünk az TechNesten!</h1>
         <p>Találd meg a legjobb eszközöket és kiegészítőket!</p>
       </div>
-      <section className="products-container">
-        {products.map((product) => (
-          <div 
-            className={`product-card ${isDarkMode ? 'dark-mode' : ''}`} 
-            key={product.id} 
-          >
-            <div className="product-content" onClick={() => handleProductClick(product.id)}>
-              <img src={product.image} alt={product.name} className="product-image" />
-              <div className="product-details">
-                <h2 className="product-name">{product.name}</h2>
-                <p className="product-price">Ár: {product.price} Ft</p>
-              </div>
+      <section className="carousel-container">
+        <button className="carousel-btn prev-btn" onClick={handlePrevSlide}>
+          ←
+        </button>
+        <div className="carousel" style={getCarouselStyle()}>
+          {groupedProducts.map((group, index) => (
+            <div className="carousel-slide" key={index}>
+              {group.map((product) => (
+                <div 
+                  className={`product-card ${isDarkMode ? 'dark-mode' : ''}`} 
+                  key={product.id} 
+                >
+                  <div className="product-content" onClick={() => handleProductClick(product.id)}>
+                    <img src={product.image} alt={product.name} className="product-image" />
+                    <div className="product-details">
+                      <h2 className="product-name">{product.name}</h2>
+                      <p className="product-price">Ár: {product.price} Ft</p>
+                    </div>
+                  </div>
+                  <div className="product-actions">
+                    <input
+                      type="number"
+                      value={quantities[product.id] || 1}
+                      min="1"
+                      onChange={(e) => handleQuantityChange(product.id, e.target.value)}
+                      className="quantity-input"
+                    />
+                    <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
+                      Kosárba<span className="cart-icon">🛒</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="product-actions">
-              <input
-                type="number"
-                value={quantities[product.id] || 1}
-                min="1"
-                onChange={(e) => handleQuantityChange(product.id, e.target.value)}
-                className="quantity-input"
-              />
-              <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
-                Kosárba<span className="cart-icon">🛒</span>
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button className="carousel-btn next-btn" onClick={handleNextSlide}>
+          →
+        </button>
       </section>
     </div>
   );

@@ -16,29 +16,37 @@
   font-size: 1.2em;
 }
 
-.products-container {
+.carousel-container {
+  position: relative;
+  width: 100%;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 20px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.carousel-slide {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .product-card {
+  flex: 0 0 calc(33.333% - 20px);
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  width: calc(33.333% - 40px);
-  box-sizing: border-box;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 2px solid transparent;
   background-clip: padding-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .product-card:hover {
@@ -55,7 +63,7 @@
 }
 
 .product-details {
-  flex-grow: 1;
+  margin-top: 10px;
 }
 
 .product-card h2 {
@@ -77,140 +85,35 @@
   font-weight: 500;
 }
 
-.product-card button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.8);
   border: none;
-  border-radius: 5px;
+  font-size: 2em;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.product-card button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.product-actions {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 10;
 }
 
-.quantity-input {
-  width: 100px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1em;
-  text-align: center;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
-  color: #333;
-  height: 40px;
-  box-sizing: border-box;
+.carousel-btn:hover {
+  color: rgba(0, 0, 0, 1);
+  transform: scale(1.2);
 }
 
-.quantity-input:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.carousel-btn:active {
+  transform: scale(0.9);
 }
 
-.add-to-cart-btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 40px;
-  box-sizing: border-box;
+.prev-btn {
+  left: 10px;
 }
 
-.add-to-cart-btn:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.cart-icon {
-  font-size: 1.2em;
-}
-
-@media (max-width: 768px) {
-  .product-card {
-    width: calc(50% - 20px);
-  }
-}
-
-@media (max-width: 480px) {
-  .product-card {
-    width: 100%;
-  }
-}
-
-.dark-mode .home-container {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-.dark-mode .product-card {
-  background: #1f1f1f;
-  color: #ffffff;
-}
-
-.dark-mode .product-card h2 {
-  color: #ffffff;
-}
-
-.dark-mode .product-card p {
-  color: #cccccc;
-}
-
-.dark-mode .product-card .product-price {
-  color: #007bff;
-}
-
-.dark-mode .product-card button {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.dark-mode .product-card button:hover {
-  background-color: #0056b3;
-}
-
-.dark-mode .quantity-input {
-  background-color: #333;
-  border-color: #555;
-  color: #fff;
-}
-
-.dark-mode .quantity-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.dark-mode .add-to-cart-btn {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.dark-mode .add-to-cart-btn:hover {
-  background-color: #0056b3;
+.next-btn {
+  right: 10px;
 }
