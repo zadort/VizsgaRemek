@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 04. 09:18
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Apr 04, 2025 at 11:14 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `vizsga3`
+-- Database: `vizsga3`
 --
 CREATE DATABASE IF NOT EXISTS `vizsga3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `vizsga3`;
@@ -26,7 +26,7 @@ USE `vizsga3`;
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -35,7 +35,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `category`) VALUES
@@ -49,20 +49,28 @@ INSERT INTO `categories` (`id`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `message` text DEFAULT NULL
+  `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `name`, `email`, `content`) VALUES
+(1, 'sl', 'sl@gmail.com', 'hgj'),
+(2, 'Bolgár Milán', 'bolgarm@kkszki.hu', 'string');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -75,7 +83,7 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -89,7 +97,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `specs`, `image`, `category`) VALUES
@@ -162,7 +170,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `specs`, `image`, 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -173,7 +181,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
@@ -283,7 +291,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `__efmigrationshistory`
+-- Table structure for table `__efmigrationshistory`
 --
 
 CREATE TABLE `__efmigrationshistory` (
@@ -292,86 +300,86 @@ CREATE TABLE `__efmigrationshistory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- A tábla indexei `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `__efmigrationshistory`
+-- Indexes for table `__efmigrationshistory`
 --
 ALTER TABLE `__efmigrationshistory`
   ADD PRIMARY KEY (`MigrationId`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT a táblához `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT a táblához `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
--- AUTO_INCREMENT a táblához `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
