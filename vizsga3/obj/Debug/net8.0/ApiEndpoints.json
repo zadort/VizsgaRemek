@@ -281,6 +281,22 @@
   },
   {
     "ContainingType": "vizsga3.Controllers.UserController",
+    "Method": "SendMessage",
+    "RelativePath": "User/send-message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "vizsga3.Models.Dtos.MessageRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga3.Controllers.UserController",
     "Method": "SendPassword",
     "RelativePath": "User/send-password",
     "HttpMethod": "POST",

@@ -359,6 +359,22 @@ namespace vizsga3.Controllers
             }
         }
 
+        [HttpPost("send-message")]
+        public async Task<IActionResult> SendMessage([FromBody] MessageRequestDto request)
+        {
+            var message = new Message
+            {
+                Name = request.Name,
+                Email = request.Email,
+                Content = request.Content
+            };
+
+            _context.Messages.Add(message);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Message sent successfully!" });
+        }
+
         private string GenerateRandomPassword()
         {
             // Generate a random password
