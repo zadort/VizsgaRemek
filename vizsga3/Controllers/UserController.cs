@@ -362,8 +362,9 @@ namespace vizsga3.Controllers
         [HttpPost("send-message")]
         public async Task<IActionResult> SendMessage([FromBody] MessageRequestDto request)
         {
-            var message = new Message
+            Message message = new Message
             {
+                Id = 0,
                 Name = request.Name,
                 Email = request.Email,
                 Content = request.Content

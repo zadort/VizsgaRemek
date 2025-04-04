@@ -22,7 +22,7 @@ namespace vizsga3.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An unhandled exception has occurred.");
+                _logger.LogError(ex.Message, "An unhandled exception has occurred.");
                 await HandleExceptionAsync(context, ex);
             }
         }
