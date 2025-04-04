@@ -373,6 +373,15 @@ namespace vizsga3.Controllers
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
+            // Send email to the user
+            var emailRequest = new EmailRequestDto(
+                request.Email,
+                "Message Received",
+                $"Dear {request.Name},\n\nThank you for your message. We will respond within 1-2 days.\n\nBest regards,\nThe team"
+            );
+
+            _email.SendEmail(emailRequest);
+
             return Ok(new { message = "Message sent successfully!" });
         }
 
